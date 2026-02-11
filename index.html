@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DrakoBlog - Plataforma Académica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Dark Theme */
+        body.theme-dark {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.theme-dark .post,
+        body.theme-dark .create-post,
+        body.theme-dark .rewards-content {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        body.theme-dark .post-content,
+        body.theme-dark .comment-text {
+            color: #b0b0b0;
+        }
+
+        body.theme-dark .post-author,
+        body.theme-dark .comment-author {
+            color: #e0e0e0;
+        }
+
+        body.theme-dark .comment {
+            background: #333;
+        }
+
+        body.theme-dark .shop-item {
+            background: #333;
+        }
+
+        body.theme-dark .points-card,
+        body.theme-dark .achievement {
+            background: #333;
+        }
+
+        /* Rainbow Theme */
+        body.theme-rainbow {
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            background-size: 400% 400%;
+            animation: rainbowGradient 15s ease infinite;
+        }
+
+        @keyframes rainbowGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body.theme-rainbow .post,
+        body.theme-rainbow .create-post {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        body.theme-rainbow .rewards-content {
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        /* --- TOP BAR --- */
+        .top-bar {
+            background: #888;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4a90e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: #d30000;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d30000;
+            font-size: 20px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .search-container i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .user-role {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(211,0,0,0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 80px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+        }
+
+        .dragon-icon {
+            font-size: 100px;
+        }
+
+        /* --- REWARDS SECTION --- */
+        .rewards {
+            background: #d30000;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .reward-btn {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all .3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .reward-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .reward-btn.active {
+            background: #d30000;
+            color: white;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* --- CREATE POST FORM --- */
+        .create-post {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .create-post h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .category-selector {
+            margin-bottom: 15px;
+        }
+
+        .category-selector label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .category-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .create-post textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+            font-family: Arial, sans-serif;
+        }
+
+        .create-post button {
+            background: #d30000;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all .3s;
+        }
+
+        .create-post button:hover {
+            background: #a00000;
+            transform: translateY(-2px);
+        }
+
+        /* --- POSTS GRID --- */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* --- POST CARD --- */
+        .post {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+        }
+
+        .post-body {
+            padding: 20px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .post-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #d30000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .post-info {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .post-meta {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .post-date {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .post-category {
+            display: inline-block;
+            background: #d30000;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .post-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .post-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .post-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+            flex: 1;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all .2s;
+            padding: 5px;
+        }
+
+        .action-btn:hover {
+            color: #d30000;
+            transform: scale(1.2);
+        }
+
+        .action-btn.liked {
+            color: #d30000;
+        }
+
+        .action-btn.reacted {
+            color: #d30000;
+        }
+
+        .action-btn .count {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        /* --- REACTIONS POPUP --- */
+        .reactions-popup {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 30px;
+            padding: 10px 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            display: none;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 8px;
+            z-index: 100;
+        }
+
+        .reactions-popup::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            transform: translateX(-50%) rotate(45deg);
+            z-index: -1;
+        }
+
+        .reactions-popup.active {
+            display: flex;
+        }
+
+        .reactions-column {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .reactions-column.purchased {
+            padding-right: 10px;
+            border-right: 2px solid #eee;
+        }
+
+        .reactions-column.base {
+            padding-left: 5px;
+        }
+
+        .reaction-option {
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform .2s;
+            padding: 5px 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+        }
+
+        .reaction-option:hover {
+            transform: scale(1.4);
+            background: #f0f0f0;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 15px;
+            position: relative;
+        }
+
+        .reaction-btn-wrapper {
+            position: relative;
+        }
+
+        .reaction-summary {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 14px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .reaction-item {
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .reaction-item span {
+            font-size: 16px;
+        }
+
+        /* --- COMMENTS SECTION --- */
+        .comments-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .comment {
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .add-comment {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .add-comment input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .add-comment button {
+            background: #d30000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .add-comment button:hover {
+            background: #a00000;
+        }
+
+        .no-posts {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .no-posts i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .rojo {
+            color: #d30000;
+        }
+
+        /* --- REWARDS MODAL --- */
+        .rewards-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rewards-modal.active {
+            display: flex;
+        }
+
+        .rewards-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .rewards-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .rewards-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .rewards-header h2 {
+            color: #d30000;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .streak-display {
+            background: linear-gradient(135deg, #d30000, #ff4444);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(211,0,0,0.3);
+        }
+
+        .streak-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .streak-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .streak-fire {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .points-display {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .points-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .points-card i {
+            font-size: 32px;
+            color: #d30000;
+            margin-bottom: 10px;
+        }
+
+        .points-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .points-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .achievements {
+            margin-top: 25px;
+        }
+
+        .achievements h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .achievement {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all .3s;
+        }
+
+        .achievement.unlocked {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            box-shadow: 0 4px 10px rgba(255,215,0,0.3);
+        }
+
+        .achievement.locked {
+            opacity: 0.4;
+        }
+
+        .achievement i {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .achievement.unlocked i {
+            color: #d30000;
+        }
+
+        .achievement.locked i {
+            color: #999;
+        }
+
+        .achievement-name {
+            font-size: 11px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .rewards-btn-header {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all .3s;
+            box-shadow: 0 2px 8px rgba(255,215,0,0.3);
+        }
+
+        .rewards-btn-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,215,0,0.5);
+        }
+
+        .rewards-btn-header i {
+            margin-right: 5px;
+        }
+
+        /* --- REWARDS SHOP --- */
+        .rewards-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .rewards-tab {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all .3s;
+        }
+
+        .rewards-tab.active {
+            color: #d30000;
+            border-bottom-color: #d30000;
+        }
+
+        .rewards-tab:hover {
+            color: #d30000;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            min-height: 200px;
+        }
+
+        .shop-item {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all .3s;
+            border: 2px solid transparent;
+        }
+
+        .shop-item:hover {
+            border-color: #d30000;
+            transform: translateY(-3px);
+        }
+
+        .shop-item.owned {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-color: #4caf50;
+        }
+
+        .shop-item.locked {
+            background: #e0e0e0;
+            opacity: 0.7;
+        }
+
+        .shop-item.locked:hover {
+            border-color: #999;
+            transform: translateY(-1px);
+        }
+
+        .shop-item.locked .shop-item-icon {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        .shop-item.locked .shop-item-name,
+        .shop-item.locked .shop-item-desc {
+            color: #999;
+        }
+
+        .shop-item-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .shop-item-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .shop-item-price {
+            color: #d30000;
+            font-weight: bold;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .shop-item-price i {
+            color: #ffd700;
+        }
+
+        .shop-item.locked .shop-item-price {
+            color: #999;
+        }
+
+        .shop-item.locked .shop-item-price i {
+            color: #bbb;
+        }
+
+        .shop-buy-btn {
+            background: #d30000;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all .3s;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .shop-buy-btn:hover {
+            background: #a00000;
+        }
+
+        .shop-buy-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+            color: #ddd;
+        }
+
+        .shop-buy-btn.locked {
+            background: #bbb;
+        }
+
+        .shop-item-desc {
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .owned-badge {
+            background: #4caf50;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 50px;
+            }
+            
+            .dragon-icon {
+                font-size: 60px;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-container {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="user-avatar" onclick="toggleUserMenu()">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <button class="close-btn" onclick="alert('Cerrar sesión')">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="user-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Buscar..." id="searchInput">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        <div class="logo">
+            DRAKOBLOG
+            <span class="user-role" id="currentRole">PROFESOR</span>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <button class="switch-role" onclick="resetPage()" style="background: #a00000; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 15px; font-size: 13px;">
+            <i class="fa-solid fa-rotate-right"></i> Reiniciar
+        </button>
+        <button class="admin-mode-btn" onclick="toggleAdminMode()" style="background: #ffd700; color: #333; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px; font-size: 13px; font-weight: bold;">
+            <i class="fa-solid fa-crown"></i> <span id="adminModeText">ADMIN MODE</span>
+        </button>
+    </header>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <i class="fa-solid fa-dragon dragon-icon"></i>
+                <span>DRAKOBLOG</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- REWARDS SECTION -->
+    <div class="rewards">
+        <button class="reward-btn" id="btn-todos" onclick="showRewards('todos')">TODOS</button>
+        <button class="reward-btn" id="btn-avisos" onclick="showRewards('avisos')">AVISOS</button>
+        <button class="reward-btn" id="btn-eventos" onclick="showRewards('eventos')">EVENTOS</button>
+        <button class="reward-btn" id="btn-actividades" onclick="showRewards('actividades')">ACTIVIDADES</button>
+        <button class="reward-btn" id="btn-populares" onclick="showRewards('populares')">POPULARES</button>
+        <button class="reward-btn" id="btn-recompensas" onclick="openRewardsModal()" style="background: linear-gradient(135deg, #ffd700, #ffed4e); color: #333;">
+            <i class="fa-solid fa-trophy"></i> RECOMPENSAS
+        </button>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <div id="content"></div>
+    </div>
+
+    <!-- REWARDS MODAL -->
+    <div class="rewards-modal" id="rewardsModal">
+        <div class="rewards-content">
+            <button class="rewards-close" onclick="closeRewardsModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="rewards-header">
+                <h2><i class="fa-solid fa-trophy"></i> Mis Recompensas</h2>
+            </div>
+
+            <!-- Tabs -->
+            <div class="rewards-tabs">
+                <button class="rewards-tab active" onclick="switchRewardsTab('stats')">
+                    <i class="fa-solid fa-chart-line"></i> Estadísticas
+                </button>
+                <button class="rewards-tab" onclick="switchRewardsTab('shop')">
+                    <i class="fa-solid fa-store"></i> Tienda
+                </button>
+            </div>
+
+            <!-- Stats Tab -->
+            <div class="tab-content active" id="stats-tab">
+                <div class="streak-display">
+                    <div class="streak-fire">🔥</div>
+                    <div class="streak-number" id="streakDays">0</div>
+                    <div class="streak-label">Días de racha consecutiva</div>
+                </div>
+
+                <div class="points-display">
+                    <div class="points-card">
+                        <i class="fa-solid fa-star"></i>
+                        <div class="points-value" id="totalPoints">0</div>
+                        <div class="points-label">Puntos Totales</div>
+                    </div>
+                    <div class="points-card">
+                        <i class="fa-solid fa-heart"></i>
+                        <div class="points-value" id="totalLikes">0</div>
+                        <div class="points-label">Likes Dados</div>
+                    </div>
+                    <div class="points-card">
+                        <i class="fa-solid fa-comment"></i>
+                        <div class="points-value" id="totalComments">0</div>
+                        <div class="points-label">Comentarios</div>
+                    </div>
+                    <div class="points-card">
+                        <i class="fa-solid fa-fire"></i>
+                        <div class="points-value" id="bestStreak">0</div>
+                        <div class="points-label">Mejor Racha</div>
+                    </div>
+                </div>
+
+                <div class="achievements">
+                    <h3><i class="fa-solid fa-medal"></i> Logros Desbloqueados</h3>
+                    <div class="achievement-grid" id="achievementGrid">
+                        <!-- Achievements will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shop Tab -->
+            <div class="tab-content" id="shop-tab">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 14px; color: #666; margin-bottom: 10px;">Puntos Disponibles</div>
+                    <div style="font-size: 32px; font-weight: bold; color: #d30000;">
+                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
+                        <span id="shopPoints">0</span>
+                    </div>
+                </div>
+
+                <!-- Theme Selector -->
+                <div id="themeSelector" style="display: none; margin-bottom: 20px; padding: 15px; background: #f0f0f0; border-radius: 10px;">
+                    <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px; text-align: center;">
+                        <i class="fa-solid fa-palette"></i> Cambiar Tema
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button onclick="applyTheme('default')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: white; cursor: pointer; font-size: 12px;">
+                            ☀️ Normal
+                        </button>
+                        <button onclick="applyTheme('theme_dark')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: #2a2a2a; color: white; cursor: pointer; font-size: 12px;">
+                            🌙 Oscuro
+                        </button>
+                        <button onclick="applyTheme('theme_rainbow')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: linear-gradient(45deg, #ff6b6b, #48dbfb); color: white; cursor: pointer; font-size: 12px;">
+                            🌈 Arcoíris
+                        </button>
+                    </div>
+                </div>
+
+                <div class="shop-grid" id="shopGrid">
+                    <!-- Shop items will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Estado global
+        let currentUser = {
+            role: 'profesor',
+            name: 'Prof. García'
+        };
+
+        let currentFilter = 'todos';
+
+        // Tienda de recompensas - definir ANTES de las funciones
+        var shopItems = [
+            { id: 'gif_happy', name: 'GIF Feliz', icon: '🎉', price: 300, type: 'gif', description: 'Celebra con estilo' },
+            { id: 'gif_fire', name: 'GIF Fuego', icon: '🔥', price: 300, type: 'gif', description: 'Para posts increíbles' },
+            { id: 'gif_star', name: 'GIF Estrella', icon: '⭐', price: 300, type: 'gif', description: 'Brilla con luz propia' },
+            { id: 'gif_rocket', name: 'GIF Cohete', icon: '🚀', price: 300, type: 'gif', description: 'Despega al éxito' },
+            { id: 'sticker_cool', name: 'Sticker Cool', icon: '😎', price: 150, type: 'sticker', description: 'Reacción premium' },
+            { id: 'sticker_genius', name: 'Sticker Genio', icon: '🧠', price: 150, type: 'sticker', description: 'Para ideas brillantes' },
+            { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' },
+            { id: 'sticker_trophy', name: 'Sticker Trofeo', icon: '🏆', price: 150, type: 'sticker', description: 'Reconoce el éxito' },
+            { id: 'badge_vip', name: 'Insignia VIP', icon: '👑', price: 500, type: 'badge', description: 'Estatus premium' },
+            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' },
+            { id: 'theme_dark', name: 'Tema Oscuro', icon: '🌙', price: 1000, type: 'theme', description: 'Modo nocturno' },
+            { id: 'theme_rainbow', name: 'Tema Arcoíris', icon: '🌈', price: 1000, type: 'theme', description: 'Colores vibrantes' }
+        ];
+
+        var currentRewardsTab = 'stats';
+
+        // Admin Mode
+        var adminMode = false;
+
+        // Sistema de recompensas
+        let userRewards = JSON.parse(localStorage.getItem('drakoblog_rewards')) || {
+            currentStreak: 0,
+            bestStreak: 0,
+            lastLoginDate: null,
+            totalPoints: 0,
+            totalLikes: 0,
+            totalComments: 0,
+            achievements: [],
+            ownedItems: []
+        };
+
+        // Definición de logros
+        const achievements = [
+            { id: 'first_like', name: 'Primera Reacción', icon: 'fa-heart', requirement: 1, type: 'likes' },
+            { id: 'social_butterfly', name: 'Mariposa Social', icon: 'fa-comments', requirement: 5, type: 'comments' },
+            { id: 'week_warrior', name: 'Guerrero Semanal', icon: 'fa-fire', requirement: 7, type: 'streak' },
+            { id: 'like_master', name: 'Maestro del Like', icon: 'fa-heart-circle-check', requirement: 10, type: 'likes' },
+            { id: 'comment_king', name: 'Rey de Comentarios', icon: 'fa-crown', requirement: 15, type: 'comments' },
+            { id: 'month_champion', name: 'Campeón Mensual', icon: 'fa-trophy', requirement: 30, type: 'streak' },
+            { id: 'point_collector', name: 'Coleccionista', icon: 'fa-star', requirement: 100, type: 'points' },
+            { id: 'dedication', name: 'Dedicación Total', icon: 'fa-medal', requirement: 50, type: 'streak' },
+            { id: 'super_active', name: 'Super Activo', icon: 'fa-bolt', requirement: 500, type: 'points' }
+        ];
+
+        // Cargar posts desde localStorage o crear datos de ejemplo
+        let posts = JSON.parse(localStorage.getItem('drakoblog_posts')) || [
+            {
+                id: 1,
+                author: 'Prof. García',
+                role: 'profesor',
+                category: 'avisos',
+                title: 'Bienvenidos al nuevo semestre',
+                content: '¡Hola estudiantes! Les doy la bienvenida al nuevo semestre académico. Recuerden revisar el syllabus y las fechas importantes. Estoy emocionado de trabajar con ustedes este periodo.',
+                date: new Date().toISOString(),
+                likes: [],
+                reactions: { heart: [], laugh: [], cry: [], worried: [] },
+                comments: [
+                    { author: 'Ana López', text: 'Gracias profesor, ya lo revisé!' }
+                ]
+            },
+            {
+                id: 2,
+                author: 'Prof. Martínez',
+                role: 'profesor',
+                category: 'eventos',
+                title: 'Taller de programación',
+                content: 'El próximo viernes tendremos un taller especial de programación avanzada. No olviden traer sus laptops y el material que compartí en la plataforma.',
+                date: new Date(Date.now() - 86400000).toISOString(),
+                likes: ['Ana López'],
+                reactions: { heart: ['Ana López'], laugh: [], cry: [], worried: [] },
+                comments: []
+            },
+            {
+                id: 3,
+                author: 'Prof. Rodríguez',
+                role: 'profesor',
+                category: 'actividades',
+                title: 'Proyecto final',
+                content: 'Ya están disponibles las especificaciones del proyecto final. Tienen hasta fin de mes para formar equipos de 3-4 personas. ¡Mucho éxito!',
+                date: new Date(Date.now() - 172800000).toISOString(),
+                likes: ['Ana López', 'Carlos Ruiz'],
+                reactions: { heart: ['Ana López', 'Carlos Ruiz'], laugh: [], cry: [], worried: [] },
+                comments: [
+                    { author: 'Carlos Ruiz', text: '¿Podemos elegir el tema libremente?' },
+                    { author: 'Prof. Rodríguez', text: 'Sí, dentro de los parámetros establecidos en el documento.' }
+                ]
+            }
+        ];
+
+        // Inicializar
+        function init() {
+            checkDailyStreak();
+            loadSavedTheme();
+            renderFeed();
+        }
+
+        // Verificar racha diaria
+        function checkDailyStreak() {
+            const today = new Date().toDateString();
+            const lastLogin = userRewards.lastLoginDate;
+
+            if (lastLogin !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const yesterdayStr = yesterday.toDateString();
+
+                if (lastLogin === yesterdayStr) {
+                    // Continuar racha
+                    userRewards.currentStreak++;
+                    userRewards.totalPoints += 10; // 10 puntos por día consecutivo
+                } else if (lastLogin === null) {
+                    // Primera vez
+                    userRewards.currentStreak = 1;
+                    userRewards.totalPoints += 5;
+                } else {
+                    // Racha rota
+                    userRewards.currentStreak = 1;
+                    userRewards.totalPoints += 5;
+                }
+
+                // Actualizar mejor racha
+                if (userRewards.currentStreak > userRewards.bestStreak) {
+                    userRewards.bestStreak = userRewards.currentStreak;
+                }
+
+                userRewards.lastLoginDate = today;
+                saveRewards();
+                checkAchievements();
+            }
+        }
+
+        // Abrir modal de recompensas
+        function openRewardsModal() {
+            updateRewardsDisplay();
+            document.getElementById('rewardsModal').classList.add('active');
+            // Render shop if on shop tab
+            if (currentRewardsTab === 'shop') {
+                renderShop();
+            }
+        }
+
+        // Cerrar modal de recompensas
+        function closeRewardsModal() {
+            document.getElementById('rewardsModal').classList.remove('active');
+        }
+
+        // Cambiar tab de recompensas
+        function switchRewardsTab(tab) {
+            currentRewardsTab = tab;
+            
+            // Update tabs
+            document.querySelectorAll('.rewards-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.rewards-tab').forEach(t => {
+                if (t.onclick.toString().includes(`'${tab}'`)) {
+                    t.classList.add('active');
+                }
+            });
+            
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`${tab}-tab`).classList.add('active');
+            
+            if (tab === 'shop') {
+                renderShop();
+            }
+        }
+
+        // Renderizar tienda
+        function renderShop() {
+            const shopGrid = document.getElementById('shopGrid');
+            if (!shopGrid) {
+                alert('ERROR: shopGrid not found!');
+                return;
+            }
+            
+            const shopPointsEl = document.getElementById('shopPoints');
+            if (shopPointsEl) {
+                shopPointsEl.textContent = userRewards.totalPoints;
+            }
+            
+            // Asegurar que ownedItems existe
+            if (!userRewards.ownedItems) {
+                userRewards.ownedItems = [];
+                saveRewards();
+            }
+            
+            // Mostrar selector de temas si tiene algún tema
+            const hasThemes = userRewards.ownedItems.some(id => id.startsWith('theme_'));
+            const themeSelector = document.getElementById('themeSelector');
+            if (themeSelector) {
+                themeSelector.style.display = hasThemes ? 'block' : 'none';
+            }
+            
+            let html = '';
+            
+            for (let i = 0; i < shopItems.length; i++) {
+                const item = shopItems[i];
+                const owned = userRewards.ownedItems.includes(item.id);
+                const canBuy = userRewards.totalPoints >= item.price;
+                const locked = !owned && !canBuy;
+                const pointsNeeded = item.price - userRewards.totalPoints;
+                
+                html += '<div class="shop-item';
+                if (owned) html += ' owned';
+                if (locked) html += ' locked';
+                html += '">';
+                
+                html += '<div class="shop-item-icon">' + item.icon + '</div>';
+                html += '<div class="shop-item-name">' + item.name + '</div>';
+                html += '<div class="shop-item-desc">' + item.description + '</div>';
+                
+                if (owned) {
+                    html += '<div class="owned-badge"><i class="fa-solid fa-check"></i> ADQUIRIDO</div>';
+                } else {
+                    html += '<div class="shop-item-price">';
+                    html += '<i class="fa-solid fa-star"></i> ' + item.price;
+                    html += '</div>';
+                    
+                    html += '<button class="shop-buy-btn';
+                    if (locked) html += ' locked';
+                    html += '" onclick="buyItem(\'' + item.id + '\')"';
+                    if (!canBuy) html += ' disabled';
+                    html += '>';
+                    
+                    if (canBuy) {
+                        html += '<i class="fa-solid fa-shopping-cart"></i> COMPRAR';
+                    } else {
+                        html += '<i class="fa-solid fa-lock"></i> BLOQUEADO (' + pointsNeeded + ' pts más)';
+                    }
+                    
+                    html += '</button>';
+                }
+                
+                html += '</div>';
+            }
+            
+            shopGrid.innerHTML = html;
+        }
+
+        // Comprar item
+        function buyItem(itemId) {
+            const item = shopItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            if (userRewards.totalPoints < item.price) {
+                alert('No tienes suficientes puntos para comprar este item.');
+                return;
+            }
+            
+            if (userRewards.ownedItems.includes(itemId)) {
+                alert('Ya tienes este item.');
+                return;
+            }
+            
+            if (confirm(`¿Comprar ${item.name} por ${item.price} puntos?`)) {
+                userRewards.totalPoints -= item.price;
+                userRewards.ownedItems.push(itemId);
+                saveRewards();
+                renderShop();
+                updateRewardsDisplay();
+                
+                // Si es un tema, aplicarlo automáticamente
+                if (item.type === 'theme') {
+                    applyTheme(itemId);
+                    alert(`¡${item.name} adquirido y aplicado! ${item.icon}\n\nPuedes cambiar de tema desde el menú de temas.`);
+                } else {
+                    alert(`¡${item.name} adquirido! ${item.icon}\n\nAhora puedes usarlo en las reacciones.`);
+                }
+                
+                renderFeed();
+            }
+        }
+
+        // Aplicar tema
+        function applyTheme(themeId) {
+            // Remover todos los temas
+            document.body.classList.remove('theme-dark', 'theme-rainbow');
+            
+            // Aplicar el tema seleccionado
+            if (themeId === 'theme_dark') {
+                document.body.classList.add('theme-dark');
+                localStorage.setItem('drakoblog_active_theme', 'theme-dark');
+            } else if (themeId === 'theme_rainbow') {
+                document.body.classList.add('theme-rainbow');
+                localStorage.setItem('drakoblog_active_theme', 'theme-rainbow');
+            } else {
+                localStorage.removeItem('drakoblog_active_theme');
+            }
+        }
+
+        // Cargar tema guardado al iniciar
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('drakoblog_active_theme');
+            if (savedTheme) {
+                document.body.classList.add(savedTheme);
+            }
+        }
+
+        // Actualizar visualización de recompensas
+        function updateRewardsDisplay() {
+            document.getElementById('streakDays').textContent = userRewards.currentStreak;
+            document.getElementById('totalPoints').textContent = userRewards.totalPoints;
+            document.getElementById('totalLikes').textContent = userRewards.totalLikes;
+            document.getElementById('totalComments').textContent = userRewards.totalComments;
+            document.getElementById('bestStreak').textContent = userRewards.bestStreak;
+            
+            if (document.getElementById('shopPoints')) {
+                document.getElementById('shopPoints').textContent = userRewards.totalPoints;
+            }
+
+            // Renderizar logros
+            const achievementGrid = document.getElementById('achievementGrid');
+            achievementGrid.innerHTML = achievements.map(achievement => {
+                const isUnlocked = userRewards.achievements.includes(achievement.id);
+                return `
+                    <div class="achievement ${isUnlocked ? 'unlocked' : 'locked'}">
+                        <i class="fa-solid ${achievement.icon}"></i>
+                        <div class="achievement-name">${achievement.name}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Verificar y desbloquear logros
+        function checkAchievements() {
+            achievements.forEach(achievement => {
+                if (!userRewards.achievements.includes(achievement.id)) {
+                    let value = 0;
+                    switch(achievement.type) {
+                        case 'likes':
+                            value = userRewards.totalLikes;
+                            break;
+                        case 'comments':
+                            value = userRewards.totalComments;
+                            break;
+                        case 'streak':
+                            value = userRewards.currentStreak;
+                            break;
+                        case 'points':
+                            value = userRewards.totalPoints;
+                            break;
+                    }
+
+                    if (value >= achievement.requirement) {
+                        userRewards.achievements.push(achievement.id);
+                        userRewards.totalPoints += 50; // Bonus por logro
+                        showAchievementNotification(achievement);
+                    }
+                }
+            });
+            saveRewards();
+        }
+
+        // Mostrar notificación de logro
+        function showAchievementNotification(achievement) {
+            alert(`🎉 ¡Logro Desbloqueado!\n\n${achievement.name}\n+50 puntos bonus`);
+        }
+
+        // Guardar recompensas
+        function saveRewards() {
+            localStorage.setItem('drakoblog_rewards', JSON.stringify(userRewards));
+        }
+
+        // Toggle Admin Mode
+        function toggleAdminMode() {
+            adminMode = !adminMode;
+            
+            if (adminMode) {
+                // Activar modo admin - dar 10,000 puntos
+                userRewards.totalPoints = 10000;
+                userRewards.currentStreak = 30;
+                userRewards.bestStreak = 30;
+                userRewards.totalLikes = 100;
+                userRewards.totalComments = 50;
+                
+                // Desbloquear todos los logros
+                userRewards.achievements = achievements.map(a => a.id);
+                
+                saveRewards();
+                
+                document.getElementById('adminModeText').textContent = 'ADMIN: ON';
+                document.querySelector('.admin-mode-btn').style.background = '#4caf50';
+                
+                alert('🔧 ADMIN MODE ACTIVADO\n\n✅ 10,000 puntos otorgados\n✅ Racha de 30 días\n✅ Todos los logros desbloqueados\n\n¡Ahora puedes comprar todo en la tienda!');
+            } else {
+                // Desactivar modo admin - resetear a valores normales
+                userRewards.totalPoints = 0;
+                userRewards.currentStreak = 0;
+                userRewards.bestStreak = 0;
+                userRewards.totalLikes = 0;
+                userRewards.totalComments = 0;
+                userRewards.achievements = [];
+                userRewards.ownedItems = [];
+                
+                saveRewards();
+                
+                document.getElementById('adminModeText').textContent = 'ADMIN MODE';
+                document.querySelector('.admin-mode-btn').style.background = '#ffd700';
+                
+                alert('❌ ADMIN MODE DESACTIVADO\n\nTodos los valores han sido reseteados.');
+            }
+            
+            updateRewardsDisplay();
+            renderFeed();
+        }
+
+        // Toggle menu
+        function toggleMenu() {
+            const role = currentUser.role === 'profesor' ? 'estudiante' : 'profesor';
+            currentUser.role = role;
+            currentUser.name = role === 'profesor' ? 'Prof. García' : 'Estudiante';
+            document.getElementById('currentRole').textContent = role.toUpperCase();
+            renderFeed();
+        }
+
+        // Toggle user menu
+        function toggleUserMenu() {
+            alert(`Usuario: ${currentUser.name}\nRol: ${currentUser.role}`);
+        }
+
+        // Show rewards filter
+        function showRewards(filter) {
+            currentFilter = filter;
+            
+            // Update active button
+            document.querySelectorAll('.reward-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${filter}`).classList.add('active');
+            
+            renderFeed();
+        }
+
+        // Renderizar feed
+        function renderFeed() {
+            const content = document.getElementById('content');
+            let html = '';
+
+            // Formulario de crear post (solo para profesores)
+            if (currentUser.role === 'profesor') {
+                html += `
+                    <div class="create-post">
+                        <h3><i class="fa-solid fa-pen-to-square"></i> Crear Nueva Publicación</h3>
+                        <div class="category-selector">
+                            <label for="postCategory"><i class="fa-solid fa-tag"></i> Categoría:</label>
+                            <select id="postCategory">
+                                <option value="avisos">Avisos</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="actividades">Actividades</option>
+                            </select>
+                        </div>
+                        <textarea id="newPostContent" placeholder="Comparte algo con tus estudiantes..."></textarea>
+                        <button onclick="createPost()">
+                            <i class="fa-solid fa-paper-plane"></i> Publicar
+                        </button>
+                    </div>
+                `;
+            }
+
+            // Filtrar y ordenar posts
+            let filteredPosts = [...posts];
+            
+            // Filtrar por categoría
+            if (currentFilter === 'populares') {
+                filteredPosts.sort((a, b) => b.likes.length - a.likes.length);
+            } else if (currentFilter !== 'todos') {
+                filteredPosts = filteredPosts.filter(p => p.category === currentFilter);
+            }
+            
+            // Ordenar por fecha (más recientes primero)
+            filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            // Mostrar posts en grid
+            if (filteredPosts.length === 0) {
+                html += `
+                    <div class="no-posts">
+                        <i class="fa-solid fa-inbox"></i>
+                        <h3>No hay publicaciones aún</h3>
+                        <p>Sé el primero en compartir algo</p>
+                    </div>
+                `;
+            } else {
+                html += '<div class="posts-grid">';
+                filteredPosts.forEach(post => {
+                    // Asegurar que el post tenga la estructura de reacciones
+                    if (!post.reactions) {
+                        post.reactions = {};
+                        // Migrar likes antiguos a reactions
+                        if (post.likes && post.likes.length > 0) {
+                            post.reactions.heart = [...post.likes];
+                        }
+                    }
+
+                    // Calcular total de reacciones (incluyendo custom)
+                    let totalReactions = 0;
+                    for (let [type, users] of Object.entries(post.reactions)) {
+                        if (users && Array.isArray(users)) {
+                            totalReactions += users.length;
+                        }
+                    }
+                    
+                    const userReaction = getUserReaction(post);
+                    const commentCount = post.comments.length;
+
+                    html += `
+                        <div class="post">
+                            <div class="post-image">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div class="post-body">
+                                <div class="post-header">
+                                    <div class="post-avatar">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div class="post-info">
+                                        <div class="post-author">${post.author}</div>
+                                        <div class="post-meta">${post.role === 'profesor' ? 'Profesor' : 'Estudiante'}</div>
+                                        <div class="post-date">${formatDate(post.date)}</div>
+                                    </div>
+                                </div>
+                                <div class="post-category">${getCategoryName(post.category)}</div>
+                                <div class="post-title">${post.title || 'Publicación'}</div>
+                                <div class="post-content">${post.content}</div>
+                                ${renderReactionSummary(post)}
+                                <div class="post-footer">
+                                    <div class="post-stats">
+                                        <div class="read-time">
+                                            <i class="fa-solid fa-clock"></i>
+                                            <span>HACE ${getTimeAgo(post.date)}</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-actions">
+                                        <div class="reaction-btn-wrapper">
+                                            <button class="action-btn ${userReaction ? 'reacted' : ''}" 
+                                                    onclick="toggleReactionPopup(${post.id})" 
+                                                    title="Reaccionar">
+                                                ${getReactionIcon(userReaction)}
+                                                <span class="count">${totalReactions}</span>
+                                            </button>
+                                            <div class="reactions-popup" id="reactions-${post.id}">
+                                                ${(() => {
+                                                    const reactions = getAvailableReactions();
+                                                    const purchased = reactions.filter(r => !['heart', 'laugh', 'cry', 'worried'].includes(r.type));
+                                                    const base = reactions.filter(r => ['heart', 'laugh', 'cry', 'worried'].includes(r.type));
+                                                    
+                                                    let html = '';
+                                                    
+                                                    // Purchased reactions column (left side)
+                                                    if (purchased.length > 0) {
+                                                        html += '<div class="reactions-column purchased">';
+                                                        purchased.forEach(r => {
+                                                            html += `<span class="reaction-option" onclick="addReaction(${post.id}, '${r.type}', event)" title="${r.title}">${r.emoji}</span>`;
+                                                        });
+                                                        html += '</div>';
+                                                    }
+                                                    
+                                                    // Base reactions column (right side)
+                                                    html += '<div class="reactions-column base">';
+                                                    base.forEach(r => {
+                                                        html += `<span class="reaction-option" onclick="addReaction(${post.id}, '${r.type}', event)" title="${r.title}">${r.emoji}</span>`;
+                                                    });
+                                                    html += '</div>';
+                                                    
+                                                    return html;
+                                                })()}
+                                            </div>
+                                        </div>
+                                        <button class="action-btn" onclick="toggleComments(${post.id})" title="Comentarios">
+                                            <i class="fa-solid fa-comment"></i>
+                                            <span class="count">${commentCount}</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="comments-section" id="comments-${post.id}" style="display: none;">
+                                    ${renderComments(post)}
+                                    <div class="add-comment">
+                                        <input type="text" id="comment-input-${post.id}" placeholder="Escribe un comentario...">
+                                        <button onclick="addComment(${post.id})">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            content.innerHTML = html;
+        }
+
+        // Renderizar comentarios
+        function renderComments(post) {
+            if (post.comments.length === 0) {
+                return '<p style="color: #999; font-size: 13px; margin: 10px 0;">No hay comentarios aún.</p>';
+            }
+            return post.comments.map(comment => `
+                <div class="comment">
+                    <div class="comment-author">${comment.author}</div>
+                    <div class="comment-text">${comment.text}</div>
+                </div>
+            `).join('');
+        }
+
+        // Crear post
+        function createPost() {
+            const content = document.getElementById('newPostContent').value.trim();
+            const category = document.getElementById('postCategory').value;
+            
+            if (!content) {
+                alert('Por favor escribe algo antes de publicar.');
+                return;
+            }
+
+            const newPost = {
+                id: Date.now(),
+                author: currentUser.name,
+                role: currentUser.role,
+                category: category,
+                title: content.substring(0, 50) + (content.length > 50 ? '...' : ''),
+                content: content,
+                date: new Date().toISOString(),
+                likes: [],
+                reactions: { heart: [], laugh: [], cry: [], worried: [] },
+                comments: []
+            };
+
+            posts.push(newPost);
+            savePosts();
+            renderFeed();
+        }
+
+        // Obtener reacción del usuario actual
+        function getUserReaction(post) {
+            if (!post.reactions) return null;
+            
+            for (let [type, users] of Object.entries(post.reactions)) {
+                if (users && users.includes(currentUser.name)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        // Obtener icono de reacción
+        function getReactionIcon(reactionType) {
+            if (!reactionType) {
+                return '<i class="fa-regular fa-face-smile"></i>';
+            }
+            
+            // Buscar en reacciones disponibles
+            const availableReactions = getAvailableReactions();
+            const reaction = availableReactions.find(r => r.type === reactionType);
+            
+            if (reaction) {
+                return reaction.emoji;
+            }
+            
+            // Fallback para reacciones básicas
+            const icons = {
+                heart: '<i class="fa-solid fa-heart"></i>',
+                laugh: '😂',
+                cry: '😢',
+                worried: '😟'
+            };
+            return icons[reactionType] || '<i class="fa-regular fa-face-smile"></i>';
+        }
+
+        // Obtener reacciones disponibles para el usuario
+        function getAvailableReactions() {
+            // Agregar reacciones compradas PRIMERO
+            const purchasedReactions = [];
+            
+            if (!userRewards.ownedItems) {
+                userRewards.ownedItems = [];
+            }
+            
+            userRewards.ownedItems.forEach(itemId => {
+                const item = shopItems.find(i => i.id === itemId);
+                if (item && (item.type === 'sticker' || item.type === 'gif')) {
+                    purchasedReactions.push({
+                        type: itemId,
+                        emoji: item.icon,
+                        title: item.name
+                    });
+                }
+            });
+            
+            // Reacciones básicas (al final)
+            const baseReactions = [
+                { type: 'heart', emoji: '❤️', title: 'Me encanta' },
+                { type: 'laugh', emoji: '😂', title: 'Me divierte' },
+                { type: 'cry', emoji: '😢', title: 'Me entristece' },
+                { type: 'worried', emoji: '😟', title: 'Me preocupa' }
+            ];
+            
+            // Purchased reactions FIRST, then base reactions
+            return purchasedReactions.concat(baseReactions);
+        }
+
+        // Renderizar resumen de reacciones
+        function renderReactionSummary(post) {
+            if (!post.reactions) return '';
+            
+            let html = '';
+            const reactionCounts = [];
+            
+            // Obtener emoji para cada tipo de reacción
+            function getReactionEmoji(type) {
+                const availableReactions = getAvailableReactions();
+                const reaction = availableReactions.find(r => r.type === type);
+                if (reaction) return reaction.emoji;
+                
+                // Fallback para reacciones básicas
+                const basicEmojis = {
+                    heart: '❤️',
+                    laugh: '😂',
+                    cry: '😢',
+                    worried: '😟'
+                };
+                return basicEmojis[type] || '👍';
+            }
+
+            for (let [type, users] of Object.entries(post.reactions)) {
+                if (users && users.length > 0) {
+                    reactionCounts.push({ 
+                        type, 
+                        count: users.length, 
+                        emoji: getReactionEmoji(type)
+                    });
+                }
+            }
+
+            if (reactionCounts.length > 0) {
+                html = '<div class="reaction-summary">';
+                reactionCounts.forEach(reaction => {
+                    html += `
+                        <div class="reaction-item">
+                            <span>${reaction.emoji}</span>
+                            <span>${reaction.count}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            return html;
+        }
+
+        // Toggle popup de reacciones
+        function toggleReactionPopup(postId) {
+            const popup = document.getElementById(`reactions-${postId}`);
+            
+            // Cerrar otros popups
+            document.querySelectorAll('.reactions-popup').forEach(p => {
+                if (p.id !== `reactions-${postId}`) {
+                    p.classList.remove('active');
+                }
+            });
+            
+            popup.classList.toggle('active');
+        }
+
+        // Agregar reacción
+        function addReaction(postId, reactionType, event) {
+            event.stopPropagation();
+            
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            // Asegurar que existe la estructura de reacciones
+            if (!post.reactions) {
+                post.reactions = {};
+            }
+
+            // Remover reacción anterior del usuario
+            const currentReaction = getUserReaction(post);
+            if (currentReaction) {
+                if (post.reactions[currentReaction]) {
+                    const index = post.reactions[currentReaction].indexOf(currentUser.name);
+                    if (index > -1) {
+                        post.reactions[currentReaction].splice(index, 1);
+                        userRewards.totalLikes--;
+                        userRewards.totalPoints -= 2;
+                    }
+                }
+            }
+
+            // Si es la misma reacción, solo remover (toggle off)
+            if (currentReaction === reactionType) {
+                savePosts();
+                saveRewards();
+                renderFeed();
+                return;
+            }
+
+            // Agregar nueva reacción
+            if (!post.reactions[reactionType]) {
+                post.reactions[reactionType] = [];
+            }
+            post.reactions[reactionType].push(currentUser.name);
+            
+            // Actualizar recompensas
+            userRewards.totalLikes++;
+            userRewards.totalPoints += 2;
+
+            // Actualizar likes array para compatibilidad
+            post.likes = post.reactions.heart || [];
+
+            savePosts();
+            saveRewards();
+            checkAchievements();
+            renderFeed();
+        }
+
+        // Toggle like (mantener para compatibilidad)
+        function toggleLike(postId) {
+            addReaction(postId, 'heart', { stopPropagation: () => {} });
+        }
+
+        // Toggle comments
+        function toggleComments(postId) {
+            const commentsSection = document.getElementById(`comments-${postId}`);
+            commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Agregar comentario
+        function addComment(postId) {
+            const input = document.getElementById(`comment-input-${postId}`);
+            const text = input.value.trim();
+            
+            if (!text) {
+                alert('Por favor escribe un comentario.');
+                return;
+            }
+
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            post.comments.push({
+                author: currentUser.name,
+                text: text
+            });
+
+            // Actualizar recompensas
+            userRewards.totalComments++;
+            userRewards.totalPoints += 5; // 5 puntos por comentario
+
+            savePosts();
+            saveRewards();
+            checkAchievements();
+            renderFeed();
+            toggleComments(postId);
+        }
+
+        // Guardar posts
+        function savePosts() {
+            localStorage.setItem('drakoblog_posts', JSON.stringify(posts));
+        }
+
+        // Formatear fecha
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', { 
+                day: 'numeric', 
+                month: 'short', 
+                year: 'numeric' 
+            });
+        }
+
+        // Tiempo transcurrido
+        function getTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000);
+
+            if (diff < 3600) return `${Math.floor(diff / 60)} MIN`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} H`;
+            return `${Math.floor(diff / 86400)} DÍAS`;
+        }
+
+        // Obtener nombre de categoría
+        function getCategoryName(category) {
+            const categories = {
+                'avisos': 'Avisos',
+                'eventos': 'Eventos',
+                'actividades': 'Actividades'
+            };
+            return categories[category] || category;
+        }
+
+        // Búsqueda
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('input', function(e) {
+                    const query = e.target.value.toLowerCase();
+                    if (query) {
+                        const filtered = posts.filter(p => 
+                            p.content.toLowerCase().includes(query) || 
+                            p.author.toLowerCase().includes(query)
+                        );
+                        console.log('Resultados:', filtered.length);
+                    }
+                });
+            }
+        });
+
+        // Iniciar aplicación
+        init();
+        
+        // Activar botón "TODOS" por defecto
+        document.getElementById('btn-todos').classList.add('active');
+
+        // Función para reiniciar la página
+        function resetPage() {
+            if (confirm('¿Estás seguro de que quieres reiniciar? Se borrarán todos los posts y recompensas.')) {
+                localStorage.removeItem('drakoblog_posts');
+                localStorage.removeItem('drakoblog_rewards');
+                location.reload();
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('rewardsModal');
+            if (e.target === modal) {
+                closeRewardsModal();
+            }
+
+            // Cerrar popups de reacciones al hacer clic fuera
+            if (!e.target.closest('.post-actions')) {
+                document.querySelectorAll('.reactions-popup').forEach(popup => {
+                    popup.classList.remove('active');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
