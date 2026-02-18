@@ -161,6 +161,17 @@
             border: none;
             border-radius: 5px;
             font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(211, 0, 0, 0.3);
+        }
+
+        .search-container input.active {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
         }
 
         .search-container i {
@@ -169,6 +180,33 @@
             top: 50%;
             transform: translateY(-50%);
             color: #999;
+        }
+
+        .search-container .clear-search {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #999;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .search-container .clear-search:hover {
+            background: #d30000;
+        }
+
+        .search-container .clear-search.active {
+            display: flex;
         }
 
         .logo {
@@ -1630,6 +1668,261 @@
                 height: 52px;
             }
         }
+
+        /* --- CALENDAR MODAL --- */
+        .calendar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .calendar-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .calendar-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .calendar-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .calendar-close:hover {
+            background: #d30000;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .calendar-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-header h2 {
+            color: #4a90e2;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .calendar-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .calendar-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .calendar-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .calendar-controls button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .calendar-current {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            color: #4a90e2;
+            padding: 10px 5px;
+            font-size: 12px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            position: relative;
+            background: #f9f9f9;
+        }
+
+        .calendar-day:hover {
+            background: #e3f2fd;
+            transform: scale(1.05);
+        }
+
+        .calendar-day.other-month {
+            color: #ccc;
+            background: transparent;
+        }
+
+        .calendar-day.today {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(74, 144, 226, 0.4);
+        }
+
+        .calendar-day.selected {
+            background: #d30000;
+            color: white;
+            font-weight: bold;
+        }
+
+        .calendar-day.has-event {
+            border: 2px solid #ffd700;
+        }
+
+        .calendar-day.has-event::after {
+            content: '•';
+            position: absolute;
+            bottom: 2px;
+            font-size: 20px;
+            color: #ffd700;
+        }
+
+        .calendar-year-selector {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .year-btn {
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .year-btn:hover {
+            background: #e3f2fd;
+            border-color: #4a90e2;
+            transform: translateY(-2px);
+        }
+
+        .year-btn.active {
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        /* Mobile Calendar */
+        @media (max-width: 768px) {
+            .calendar-content {
+                width: 95%;
+                padding: 20px;
+                max-height: 90vh;
+            }
+
+            .calendar-header h2 {
+                font-size: 22px;
+            }
+
+            .calendar-controls {
+                padding: 12px;
+            }
+
+            .calendar-current {
+                font-size: 16px;
+            }
+
+            .calendar-day {
+                font-size: 12px;
+            }
+
+            .calendar-day-header {
+                font-size: 10px;
+                padding: 8px 3px;
+            }
+
+            .year-btn {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 
@@ -1652,7 +1945,10 @@
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="search-container">
-                <input type="text" placeholder="Buscar..." id="searchInput">
+                <input type="text" placeholder="Buscar posts, eventos, autores..." id="searchInput">
+                <button class="clear-search" id="clearSearch" onclick="clearSearch()" title="Limpiar búsqueda">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
@@ -1690,6 +1986,9 @@
         <button class="reward-btn" id="btn-populares" onclick="showRewards('populares')">POPULARES</button>
         <button class="reward-btn" id="btn-recompensas" onclick="openRewardsModal()" style="background: linear-gradient(135deg, #ffd700, #ffed4e); color: #333;">
             <i class="fa-solid fa-trophy"></i> RECOMPENSAS
+        </button>
+        <button class="reward-btn" id="btn-calendario" onclick="openCalendarModal()" style="background: linear-gradient(135deg, #4a90e2, #357abd); color: white;">
+            📅 CALENDARIO
         </button>
     </div>
 
@@ -1788,6 +2087,41 @@
                 <div class="shop-grid" id="shopGrid">
                     <!-- Shop items will be rendered here -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALENDAR MODAL -->
+    <div class="calendar-modal" id="calendarModal">
+        <div class="calendar-content">
+            <button class="calendar-close" onclick="closeCalendarModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="calendar-header">
+                <h2>📅 Calendario Académico</h2>
+            </div>
+
+            <!-- Year Selector -->
+            <div class="calendar-year-selector" id="yearSelector">
+                <!-- Years will be rendered here -->
+            </div>
+
+            <!-- Calendar Controls -->
+            <div class="calendar-controls">
+                <button onclick="previousMonth()" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="calendar-current" id="currentMonth">
+                    <!-- Current month/year will be displayed here -->
+                </div>
+                <button onclick="nextMonth()" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Calendar will be rendered here -->
             </div>
         </div>
     </div>
@@ -1947,6 +2281,158 @@
         // Cerrar modal de recompensas
         function closeRewardsModal() {
             document.getElementById('rewardsModal').classList.remove('active');
+        }
+
+        // --- CALENDAR FUNCTIONS ---
+        let currentCalendarDate = new Date();
+        let selectedDate = null;
+
+        // Abrir modal de calendario
+        function openCalendarModal() {
+            document.getElementById('calendarModal').classList.add('active');
+            renderYearSelector();
+            renderCalendar();
+        }
+
+        // Cerrar modal de calendario
+        function closeCalendarModal() {
+            document.getElementById('calendarModal').classList.remove('active');
+        }
+
+        // Renderizar selector de años (2024-2027)
+        function renderYearSelector() {
+            const yearSelector = document.getElementById('yearSelector');
+            const currentYear = currentCalendarDate.getFullYear();
+            let html = '';
+            
+            for (let year = 2024; year <= 2027; year++) {
+                html += `
+                    <button class="year-btn ${year === currentYear ? 'active' : ''}" 
+                            onclick="selectYear(${year})">
+                        ${year}
+                    </button>
+                `;
+            }
+            
+            yearSelector.innerHTML = html;
+        }
+
+        // Seleccionar año
+        function selectYear(year) {
+            currentCalendarDate.setFullYear(year);
+            renderYearSelector();
+            renderCalendar();
+        }
+
+        // Mes anterior
+        function previousMonth() {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+            renderCalendar();
+            renderYearSelector();
+        }
+
+        // Mes siguiente
+        function nextMonth() {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+            renderCalendar();
+            renderYearSelector();
+        }
+
+        // Renderizar calendario
+        function renderCalendar() {
+            const year = currentCalendarDate.getFullYear();
+            const month = currentCalendarDate.getMonth();
+            
+            // Actualizar título del mes
+            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                              'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            
+            // Habilitar/deshabilitar botones
+            const minDate = new Date(2024, 0, 1);
+            const maxDate = new Date(2027, 11, 31);
+            const firstDayOfMonth = new Date(year, month, 1);
+            const lastDayOfMonth = new Date(year, month + 1, 0);
+            
+            document.getElementById('prevBtn').disabled = firstDayOfMonth <= minDate;
+            document.getElementById('nextBtn').disabled = lastDayOfMonth >= maxDate;
+            
+            // Renderizar días
+            const calendarGrid = document.getElementById('calendarGrid');
+            let html = '';
+            
+            // Headers de días de la semana
+            const dayHeaders = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            dayHeaders.forEach(day => {
+                html += `<div class="calendar-day-header">${day}</div>`;
+            });
+            
+            // Primer día del mes (0 = Domingo, 6 = Sábado)
+            const firstDay = firstDayOfMonth.getDay();
+            const daysInMonth = lastDayOfMonth.getDate();
+            
+            // Días del mes anterior
+            const prevMonthLastDay = new Date(year, month, 0).getDate();
+            for (let i = firstDay - 1; i >= 0; i--) {
+                html += `<div class="calendar-day other-month">${prevMonthLastDay - i}</div>`;
+            }
+            
+            // Días del mes actual
+            const today = new Date();
+            for (let day = 1; day <= daysInMonth; day++) {
+                const currentDate = new Date(year, month, day);
+                const isToday = currentDate.toDateString() === today.toDateString();
+                const isSelected = selectedDate && currentDate.toDateString() === selectedDate.toDateString();
+                
+                // Verificar si hay eventos en este día (posts de eventos)
+                const hasEvent = posts.some(post => {
+                    if (post.category === 'eventos') {
+                        const postDate = new Date(post.date);
+                        return postDate.toDateString() === currentDate.toDateString();
+                    }
+                    return false;
+                });
+                
+                let classes = 'calendar-day';
+                if (isToday) classes += ' today';
+                if (isSelected) classes += ' selected';
+                if (hasEvent) classes += ' has-event';
+                
+                html += `<div class="${classes}" onclick="selectDate(${year}, ${month}, ${day})">${day}</div>`;
+            }
+            
+            // Días del mes siguiente
+            const remainingDays = 42 - (firstDay + daysInMonth); // 6 semanas = 42 días
+            for (let day = 1; day <= remainingDays; day++) {
+                html += `<div class="calendar-day other-month">${day}</div>`;
+            }
+            
+            calendarGrid.innerHTML = html;
+        }
+
+        // Seleccionar fecha
+        function selectDate(year, month, day) {
+            selectedDate = new Date(year, month, day);
+            renderCalendar();
+            
+            // Filtrar posts por fecha seleccionada
+            const selectedDateStr = selectedDate.toDateString();
+            const eventsOnDate = posts.filter(post => {
+                const postDate = new Date(post.date);
+                return postDate.toDateString() === selectedDateStr;
+            });
+            
+            if (eventsOnDate.length > 0) {
+                alert(`📅 ${eventsOnDate.length} evento${eventsOnDate.length > 1 ? 's' : ''} en esta fecha:\n\n` + 
+                      eventsOnDate.map(p => `• ${p.title || p.content.substring(0, 50)}`).join('\n'));
+            } else {
+                alert(`📅 Fecha seleccionada: ${selectedDate.toLocaleDateString('es-ES', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                })}\n\nNo hay eventos programados para esta fecha.`);
+            }
         }
 
         // Cambiar tab de recompensas
@@ -2277,6 +2763,41 @@
             // Filtrar y ordenar posts
             let filteredPosts = [...posts];
             
+            // Filtrar por búsqueda
+            if (currentSearchQuery) {
+                filteredPosts = filteredPosts.filter(p => {
+                    // Buscar en contenido
+                    if (p.content.toLowerCase().includes(currentSearchQuery)) return true;
+                    
+                    // Buscar en título
+                    if (p.title && p.title.toLowerCase().includes(currentSearchQuery)) return true;
+                    
+                    // Buscar en autor
+                    if (p.author.toLowerCase().includes(currentSearchQuery)) return true;
+                    
+                    // Buscar en categoría
+                    if (p.category.toLowerCase().includes(currentSearchQuery)) return true;
+                    
+                    // Buscar en tipo de evento
+                    if (p.eventType) {
+                        const eventNames = {
+                            valentine: 'san valentin valentín',
+                            patrick: 'san patricio',
+                            halloween: 'halloween',
+                            christmas: 'navidad christmas',
+                            newyear: 'año nuevo year',
+                            sports: 'deportivo deporte sports',
+                            conference: 'conferencia conference',
+                            show: 'espectáculo show'
+                        };
+                        const eventName = eventNames[p.eventType] || '';
+                        if (eventName.includes(currentSearchQuery)) return true;
+                    }
+                    
+                    return false;
+                });
+            }
+            
             // Filtrar por categoría
             if (currentFilter === 'populares') {
                 filteredPosts.sort((a, b) => b.likes.length - a.likes.length);
@@ -2289,14 +2810,31 @@
 
             // Mostrar posts en grid
             if (filteredPosts.length === 0) {
+                const message = currentSearchQuery 
+                    ? `No se encontraron resultados para "${currentSearchQuery}"`
+                    : 'No hay publicaciones aún';
+                const icon = currentSearchQuery ? 'fa-magnifying-glass' : 'fa-inbox';
+                
                 html += `
                     <div class="no-posts">
-                        <i class="fa-solid fa-inbox"></i>
-                        <h3>No hay publicaciones aún</h3>
-                        <p>Sé el primero en compartir algo</p>
+                        <i class="fa-solid ${icon}"></i>
+                        <h3>${message}</h3>
+                        <p>${currentSearchQuery ? 'Intenta con otras palabras clave' : 'Sé el primero en compartir algo'}</p>
                     </div>
                 `;
             } else {
+                // Mostrar contador de resultados si hay búsqueda activa
+                if (currentSearchQuery) {
+                    html += `
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 2px solid #ffc107;">
+                            <i class="fa-solid fa-magnifying-glass" style="color: #856404; margin-right: 8px;"></i>
+                            <strong style="color: #856404;">
+                                ${filteredPosts.length} resultado${filteredPosts.length !== 1 ? 's' : ''} encontrado${filteredPosts.length !== 1 ? 's' : ''} para "${currentSearchQuery}"
+                            </strong>
+                        </div>
+                    `;
+                }
+                
                 html += '<div class="posts-grid">';
                 filteredPosts.forEach(post => {
                     // Asegurar que el post tenga la estructura de reacciones
@@ -2801,18 +3339,49 @@
             return categories[category] || category;
         }
 
+        // Variable global para búsqueda
+        let currentSearchQuery = '';
+
+        // Función de búsqueda
+        function searchPosts(query) {
+            currentSearchQuery = query.toLowerCase().trim();
+            
+            // Actualizar UI del input
+            const searchInput = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            
+            if (currentSearchQuery) {
+                searchInput.classList.add('active');
+                clearBtn.classList.add('active');
+            } else {
+                searchInput.classList.remove('active');
+                clearBtn.classList.remove('active');
+            }
+            
+            renderFeed();
+        }
+
+        // Limpiar búsqueda
+        function clearSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            searchPosts('');
+        }
+
         // Búsqueda
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 searchInput.addEventListener('input', function(e) {
-                    const query = e.target.value.toLowerCase();
-                    if (query) {
-                        const filtered = posts.filter(p => 
-                            p.content.toLowerCase().includes(query) || 
-                            p.author.toLowerCase().includes(query)
-                        );
-                        console.log('Resultados:', filtered.length);
+                    const query = e.target.value;
+                    searchPosts(query);
+                });
+                
+                // Buscar al presionar Enter
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        searchPosts(e.target.value);
                     }
                 });
             }
@@ -2835,9 +3404,14 @@
 
         // Cerrar modal al hacer clic fuera
         document.addEventListener('click', function(e) {
-            const modal = document.getElementById('rewardsModal');
-            if (e.target === modal) {
+            const rewardsModal = document.getElementById('rewardsModal');
+            if (e.target === rewardsModal) {
                 closeRewardsModal();
+            }
+
+            const calendarModal = document.getElementById('calendarModal');
+            if (e.target === calendarModal) {
+                closeCalendarModal();
             }
 
             // Cerrar popups de reacciones al hacer clic fuera
