@@ -713,7 +713,7 @@
             font-size: 25px;
             opacity: 0;
             top: 50%;
-            left: 50%;
+            left: calc(50% + var(--start-x, 0%));
             animation: starFromText 1.5s ease-out var(--star-delay) forwards;
         }
 
@@ -733,7 +733,7 @@
             }
             100% {
                 opacity: 0;
-                transform: translate(var(--end-x), var(--end-y)) scale(0.3) rotate(720deg);
+                transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.3) rotate(720deg);
             }
         }
 
@@ -2524,11 +2524,13 @@
                     <span class="letter" style="--i:8">G</span>
                 </span>
             </div>
-            <!-- Stars shoot out from text DURING cartoon effect -->
-            <div class="star" style="--star-delay:3.2s; --end-x:-200px; --end-y:-200px;"></div>
-            <div class="star" style="--star-delay:3.4s; --end-x:200px; --end-y:-200px;"></div>
-            <div class="star" style="--star-delay:3.6s; --end-x:-200px; --end-y:200px;"></div>
-            <div class="star" style="--star-delay:3.8s; --end-x:200px; --end-y:200px;"></div>
+            <!-- Stars: 2 from dragon, 2 from end of BLOG -->
+            <!-- From dragon -->
+            <div class="star" style="--star-delay:3.2s; --start-x:-40%; --end-x:-250px; --end-y:-200px;"></div>
+            <div class="star" style="--star-delay:3.4s; --start-x:-40%; --end-x:-250px; --end-y:200px;"></div>
+            <!-- From end of BLOG -->
+            <div class="star" style="--star-delay:3.6s; --start-x:40%; --end-x:250px; --end-y:-200px;"></div>
+            <div class="star" style="--star-delay:3.8s; --start-x:40%; --end-x:250px; --end-y:200px;"></div>
         </div>
     </div>
 
