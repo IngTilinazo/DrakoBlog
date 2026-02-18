@@ -2347,24 +2347,32 @@
 
             .hero-logo {
                 font-size: 32px;
-                flex-direction: row;
+                flex-direction: column;
                 gap: 5px;
             }
 
             .dragon-icon {
-                width: 50px;
-                height: 50px;
-                margin-bottom: -5px;
+                width: 60px;
+                height: 60px;
+                margin-bottom: 0;
             }
 
             .rewards {
                 padding: 10px 8px;
                 gap: 6px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .reward-btn {
-                padding: 8px 14px;
-                font-size: 11px;
+                padding: 10px 12px;
+                font-size: 10px;
+                white-space: nowrap;
+                min-width: fit-content;
+            }
+            
+            #btn-recompensas {
+                padding: 10px 14px !important;
             }
 
             .logo {
