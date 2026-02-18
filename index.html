@@ -636,20 +636,22 @@
 
         /* Dragon animation */
         .dragon-icon {
-            font-size: 100px;
-            color: #666;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
             opacity: 0.5;
             animation: dragonBreatheFire 4s ease-out forwards;
             position: relative;
             display: inline-block;
             z-index: 2;
+            filter: brightness(0.5);
         }
 
-        /* Fire Canvas - positioned at dragon's mouth (higher) */
+        /* Fire Canvas - positioned at dragon's mouth */
         .fire-canvas {
             position: absolute;
-            left: 95%;
-            top: -5%;
+            left: 85%;
+            top: 5%;
             width: 300px;
             height: 150px;
             pointer-events: none;
@@ -802,46 +804,39 @@
         /* Dragon breathes fire animation */
         @keyframes dragonBreatheFire {
             0% {
-                color: #666;
                 opacity: 0.5;
                 transform: scale(1) rotate(0deg) translateZ(0);
+                filter: brightness(0.5);
             }
             10% {
-                color: #ff4500;
                 opacity: 1;
                 transform: scale(1.1) rotate(-5deg) translateZ(20px);
-                filter: drop-shadow(0 5px 20px rgba(255, 69, 0, 0.6));
+                filter: brightness(1.2) drop-shadow(0 5px 20px rgba(255, 69, 0, 0.6));
             }
             20% {
-                color: #ff6347;
                 transform: scale(1.15) rotate(-8deg) translateZ(30px);
-                filter: drop-shadow(0 8px 30px rgba(255, 69, 0, 0.7)) brightness(1.3);
+                filter: brightness(1.4) drop-shadow(0 8px 30px rgba(255, 69, 0, 0.7));
             }
             40% {
-                color: #ff6347;
                 transform: scale(1.1) rotate(-5deg) translateZ(25px);
-                filter: drop-shadow(0 6px 25px rgba(255, 69, 0, 0.6)) brightness(1.2);
+                filter: brightness(1.3) drop-shadow(0 6px 25px rgba(255, 69, 0, 0.6));
             }
             50% {
-                color: white;
                 transform: scale(1.2) rotate(15deg) translateZ(40px);
-                filter: drop-shadow(0 10px 40px rgba(255, 255, 255, 0.6)) brightness(1.4);
+                filter: brightness(1.5) drop-shadow(0 10px 40px rgba(255, 255, 255, 0.6));
             }
             65% {
-                color: white;
                 transform: scale(1) rotate(-10deg) translateZ(20px);
-                filter: drop-shadow(0 8px 30px rgba(255, 255, 255, 0.4)) brightness(1.2);
+                filter: brightness(1.3) drop-shadow(0 8px 30px rgba(255, 255, 255, 0.4));
             }
             80% {
-                color: white;
                 transform: scale(1) rotate(0deg) translateZ(5px);
-                filter: brightness(1.05);
+                filter: brightness(1.1);
             }
             100% {
-                color: white;
                 opacity: 1;
                 transform: scale(1) rotate(0deg) translateZ(0);
-                filter: none;
+                filter: brightness(1);
             }
         }
 
@@ -2691,7 +2686,7 @@
         <div class="hero-content">
             <div class="hero-logo" id="heroLogo">
                 <div class="dragon-container">
-                    <i class="fa-solid fa-dragon dragon-icon" id="dragonIcon"></i>
+                    <img src="dragon.png.jpeg" alt="Dragon" class="dragon-icon" id="dragonIcon">
                     <canvas id="fireCanvas" class="fire-canvas"></canvas>
                     <div class="dragon-wing"></div>
                 </div>
