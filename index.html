@@ -357,11 +357,108 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             transition: transform .3s, box-shadow .3s;
+            position: relative;
         }
 
         .post:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Event Decorations */
+        .post.event-valentine {
+            border: 3px solid #ff69b4;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffffff 100%);
+        }
+
+        .post.event-valentine .post-image {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        }
+
+        .post.event-patrick {
+            border: 3px solid #00ff00;
+            background: linear-gradient(135deg, #f0fff0 0%, #ffffff 100%);
+        }
+
+        .post.event-patrick .post-image {
+            background: linear-gradient(135deg, #228b22 0%, #32cd32 100%);
+        }
+
+        .post.event-halloween {
+            border: 3px solid #ff8c00;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #ff8c00;
+        }
+
+        .post.event-halloween .post-image {
+            background: linear-gradient(135deg, #000000 0%, #4a0080 100%);
+        }
+
+        .post.event-halloween .post-content,
+        .post.event-halloween .post-author,
+        .post.event-halloween .post-title {
+            color: #ffa500;
+        }
+
+        .post.event-christmas {
+            border: 3px solid #c41e3a;
+            background: linear-gradient(135deg, #fff5f5 0%, #f0fff0 100%);
+        }
+
+        .post.event-christmas .post-image {
+            background: linear-gradient(135deg, #c41e3a 0%, #0f8a5f 100%);
+        }
+
+        .post.event-newyear {
+            border: 3px solid #ffd700;
+            background: linear-gradient(135deg, #fffacd 0%, #ffffff 100%);
+        }
+
+        .post.event-newyear .post-image {
+            background: linear-gradient(135deg, #4169e1 0%, #ffd700 100%);
+        }
+
+        .post.event-sports {
+            border: 3px solid #1e90ff;
+            background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%);
+        }
+
+        .post.event-sports .post-image {
+            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+        }
+
+        .post.event-conference {
+            border: 3px solid #4b0082;
+            background: linear-gradient(135deg, #f8f8ff 0%, #ffffff 100%);
+        }
+
+        .post.event-conference .post-image {
+            background: linear-gradient(135deg, #4b0082 0%, #8a2be2 100%);
+        }
+
+        .post.event-show {
+            border: 3px solid #ff1493;
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+        }
+
+        .post.event-show .post-image {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ffd700 100%);
+        }
+
+        /* Event Badge */
+        .event-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 32px;
+            z-index: 10;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
 
         @media (hover: none) {
@@ -552,6 +649,28 @@
 
         .reactions-popup.active {
             display: flex;
+        }
+
+        /* Mobile backdrop */
+        .reactions-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+
+        .reactions-backdrop.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .reactions-popup {
+                z-index: 100;
+            }
         }
 
         .reactions-column {
@@ -1101,89 +1220,243 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero-logo {
-                font-size: 50px;
-            }
-            
-            .dragon-icon {
-                font-size: 60px;
-            }
-
-            .posts-grid {
-                grid-template-columns: 1fr;
-            }
-
+            /* Hide desktop header elements */
             .search-container {
-                max-width: 200px;
+                display: none;
             }
 
-            /* Better mobile buttons */
-            .reward-btn {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-
-            /* Larger touch targets */
-            .action-btn {
-                font-size: 20px;
-                padding: 8px;
-                min-width: 44px;
-                min-height: 44px;
-            }
-
-            .reaction-option {
-                font-size: 24px;
-                min-width: 44px;
-                height: 44px;
-                padding: 8px;
-            }
-
-            /* Better reaction popup for mobile */
-            .reactions-popup {
-                padding: 12px 18px;
-                gap: 8px;
-            }
-
-            .reactions-column {
-                gap: 8px;
-            }
-
-            /* Larger post cards */
-            .post-body {
-                padding: 18px;
-            }
-
-            .post-content {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            /* Better comment input */
-            .add-comment input {
-                font-size: 14px;
-                padding: 12px 16px;
-            }
-
-            .add-comment button {
-                padding: 12px 24px;
-                font-size: 14px;
-            }
-
-            /* Mobile-friendly header */
+            /* Mobile Header */
             header {
                 padding: 12px 15px;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .header-left {
+                gap: 10px;
             }
 
             .logo {
-                font-size: 20px;
+                font-size: 18px;
+                letter-spacing: 1px;
             }
 
             .user-role {
-                font-size: 10px;
-                padding: 4px 8px;
+                font-size: 9px;
+                padding: 3px 8px;
             }
 
-            /* Better shop grid for mobile */
+            /* Mobile Hero - Compact */
+            .hero {
+                height: 200px;
+            }
+
+            .hero-logo {
+                font-size: 40px;
+            }
+            
+            .dragon-icon {
+                font-size: 50px;
+            }
+
+            /* Mobile Navigation Tabs */
+            .rewards {
+                padding: 12px 10px;
+                gap: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .rewards::-webkit-scrollbar {
+                display: none;
+            }
+
+            .reward-btn {
+                padding: 10px 18px;
+                font-size: 12px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            /* Mobile Container */
+            .container {
+                padding: 0 12px;
+                margin: 20px auto;
+            }
+
+            /* Mobile Post Grid */
+            .posts-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            /* Mobile Post Card - Enhanced */
+            .post {
+                border-radius: 16px;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            }
+
+            .post-image {
+                height: 180px;
+            }
+
+            .post-body {
+                padding: 16px;
+            }
+
+            .post-header {
+                margin-bottom: 12px;
+            }
+
+            .post-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .post-author {
+                font-size: 14px;
+            }
+
+            .post-meta {
+                font-size: 11px;
+            }
+
+            .post-title {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .post-content {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            /* Mobile Actions - Larger Touch Targets */
+            .post-footer {
+                padding-top: 12px;
+                margin-top: 12px;
+            }
+
+            .action-btn {
+                font-size: 20px;
+                padding: 10px;
+                min-width: 48px;
+                min-height: 48px;
+                border-radius: 12px;
+            }
+
+            .action-btn .count {
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            /* Mobile Reactions Popup - Bottom Sheet Style */
+            .reactions-popup {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                transform: none;
+                border-radius: 24px 24px 0 0;
+                padding: 20px;
+                margin-bottom: 0;
+                flex-direction: column;
+                gap: 16px;
+                max-height: 60vh;
+                overflow-y: auto;
+            }
+
+            .reactions-popup::after {
+                display: none;
+            }
+
+            .reactions-popup::before {
+                content: '';
+                position: absolute;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 40px;
+                height: 4px;
+                background: #ddd;
+                border-radius: 2px;
+            }
+
+            .reactions-column {
+                border-right: none;
+                border-bottom: 2px solid #f0f0f0;
+                padding: 0 0 16px 0;
+                justify-content: center;
+            }
+
+            .reactions-column.base {
+                padding: 16px 0 0 0;
+                border-bottom: none;
+            }
+
+            .reaction-option {
+                font-size: 32px;
+                min-width: 56px;
+                height: 56px;
+                padding: 12px;
+            }
+
+            /* Mobile Comments */
+            .comments-section {
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+
+            .comment {
+                padding: 12px;
+                margin-bottom: 8px;
+                border-radius: 12px;
+            }
+
+            .add-comment {
+                gap: 8px;
+                margin-top: 12px;
+            }
+
+            .add-comment input {
+                font-size: 14px;
+                padding: 12px 16px;
+                border-radius: 24px;
+            }
+
+            .add-comment button {
+                padding: 12px 20px;
+                font-size: 13px;
+                border-radius: 24px;
+            }
+
+            /* Mobile Create Post */
+            .create-post {
+                border-radius: 16px;
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+
+            .create-post h3 {
+                font-size: 16px;
+            }
+
+            .create-post textarea {
+                font-size: 14px;
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            .create-post button {
+                padding: 12px 24px;
+                font-size: 14px;
+                border-radius: 24px;
+            }
+
+            /* Mobile Shop */
             .shop-grid {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -1191,77 +1464,167 @@
 
             .shop-item {
                 padding: 20px;
+                border-radius: 16px;
             }
 
             .shop-item-icon {
                 font-size: 56px;
             }
 
-            /* Rewards modal mobile */
+            .shop-item-name {
+                font-size: 15px;
+            }
+
+            .shop-buy-btn {
+                padding: 12px 24px;
+                font-size: 13px;
+                border-radius: 24px;
+            }
+
+            /* Mobile Rewards Modal */
+            .rewards-modal {
+                padding: 0;
+            }
+
             .rewards-content {
-                width: 95%;
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+                padding: 20px 16px;
+            }
+
+            .rewards-close {
+                top: 12px;
+                right: 12px;
+                font-size: 28px;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #f0f0f0;
+                border-radius: 50%;
+            }
+
+            .rewards-header h2 {
+                font-size: 24px;
+            }
+
+            .streak-display {
                 padding: 20px;
-                max-height: 90vh;
+                border-radius: 16px;
+            }
+
+            .streak-number {
+                font-size: 42px;
+            }
+
+            .points-display {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .points-card {
+                padding: 16px;
+                border-radius: 12px;
             }
 
             .achievement-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .achievement {
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            /* Mobile Buttons */
+            .switch-role,
+            .admin-mode-btn {
+                font-size: 11px !important;
+                padding: 6px 10px !important;
             }
 
             /* Better touch feedback */
             .reward-btn:active,
             .action-btn:active,
-            .shop-buy-btn:active {
+            .shop-buy-btn:active,
+            .create-post button:active,
+            .add-comment button:active {
                 transform: scale(0.95);
+                opacity: 0.8;
+            }
+
+            /* Floating Action Button Style for Rewards */
+            #btn-recompensas {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 99;
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+                font-size: 24px;
+            }
+
+            #btn-recompensas span {
+                display: none;
             }
         }
 
         /* Extra small devices */
         @media (max-width: 480px) {
             .hero {
-                height: 250px;
+                height: 160px;
             }
 
             .hero-logo {
-                font-size: 35px;
+                font-size: 32px;
                 flex-direction: column;
-                gap: 10px;
-            }
-
-            .dragon-icon {
-                font-size: 50px;
-            }
-
-            .rewards {
-                padding: 15px 10px;
                 gap: 8px;
             }
 
+            .dragon-icon {
+                font-size: 40px;
+            }
+
+            .rewards {
+                padding: 10px 8px;
+                gap: 6px;
+            }
+
             .reward-btn {
-                padding: 8px 15px;
-                font-size: 12px;
+                padding: 8px 14px;
+                font-size: 11px;
+            }
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .post-image {
+                height: 160px;
             }
 
             .points-display {
                 grid-template-columns: 1fr;
             }
 
-            .reactions-popup {
-                flex-direction: column;
-                gap: 10px;
+            .achievement-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .reactions-column {
-                border-right: none;
-                border-bottom: 2px solid #eee;
-                padding-right: 0;
-                padding-bottom: 10px;
-            }
-
-            .reactions-column.base {
-                padding-left: 0;
-                padding-top: 5px;
-                border-bottom: none;
+            .reaction-option {
+                font-size: 28px;
+                min-width: 52px;
+                height: 52px;
             }
         }
     </style>
@@ -1880,10 +2243,24 @@
                         <h3><i class="fa-solid fa-pen-to-square"></i> Crear Nueva Publicación</h3>
                         <div class="category-selector">
                             <label for="postCategory"><i class="fa-solid fa-tag"></i> Categoría:</label>
-                            <select id="postCategory">
+                            <select id="postCategory" onchange="toggleEventDecorations()">
                                 <option value="avisos">Avisos</option>
                                 <option value="eventos">Eventos</option>
                                 <option value="actividades">Actividades</option>
+                            </select>
+                        </div>
+                        <div class="category-selector" id="eventTypeSelector" style="display: none;">
+                            <label for="eventType"><i class="fa-solid fa-palette"></i> Tipo de Evento:</label>
+                            <select id="eventType">
+                                <option value="">Sin decoración</option>
+                                <option value="valentine">💕 San Valentín</option>
+                                <option value="patrick">🍀 San Patricio</option>
+                                <option value="halloween">🎃 Halloween</option>
+                                <option value="christmas">🎄 Navidad</option>
+                                <option value="newyear">🎆 Año Nuevo</option>
+                                <option value="sports">⚽ Evento Deportivo</option>
+                                <option value="conference">🎓 Conferencia</option>
+                                <option value="show">🎭 Espectáculo</option>
                             </select>
                         </div>
                         <textarea id="newPostContent" placeholder="Comparte algo con tus estudiantes..."></textarea>
@@ -1939,8 +2316,27 @@
                     const userReaction = getUserReaction(post);
                     const commentCount = post.comments.length;
 
+                    // Get event decoration class and badge
+                    let eventClass = '';
+                    let eventBadge = '';
+                    if (post.eventType) {
+                        eventClass = ` event-${post.eventType}`;
+                        const eventEmojis = {
+                            valentine: '💕',
+                            patrick: '🍀',
+                            halloween: '🎃',
+                            christmas: '🎄',
+                            newyear: '🎆',
+                            sports: '⚽',
+                            conference: '🎓',
+                            show: '🎭'
+                        };
+                        eventBadge = eventEmojis[post.eventType] || '';
+                    }
+
                     html += `
-                        <div class="post">
+                        <div class="post${eventClass}">
+                            ${eventBadge ? `<div class="event-badge">${eventBadge}</div>` : ''}
                             <div class="post-image">
                                 <i class="fa-solid fa-graduation-cap"></i>
                             </div>
@@ -2038,6 +2434,18 @@
             `).join('');
         }
 
+        // Toggle event decorations selector
+        function toggleEventDecorations() {
+            const category = document.getElementById('postCategory').value;
+            const eventTypeSelector = document.getElementById('eventTypeSelector');
+            
+            if (category === 'eventos') {
+                eventTypeSelector.style.display = 'block';
+            } else {
+                eventTypeSelector.style.display = 'none';
+            }
+        }
+
         // Crear post
         function createPost() {
             const content = document.getElementById('newPostContent').value.trim();
@@ -2061,8 +2469,23 @@
                 comments: []
             };
 
+            // Add event type if category is eventos
+            if (category === 'eventos') {
+                const eventType = document.getElementById('eventType').value;
+                if (eventType) {
+                    newPost.eventType = eventType;
+                }
+            }
+
             posts.push(newPost);
             savePosts();
+            
+            // Clear form
+            document.getElementById('newPostContent').value = '';
+            document.getElementById('postCategory').value = 'avisos';
+            document.getElementById('eventType').value = '';
+            toggleEventDecorations();
+            
             renderFeed();
         }
 
@@ -2195,6 +2618,15 @@
             });
             
             popup.classList.toggle('active');
+            
+            // En móvil, prevenir scroll del body cuando el popup está abierto
+            if (window.innerWidth <= 768) {
+                if (popup.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
         }
 
         // Agregar reacción
@@ -2394,10 +2826,14 @@
             }
 
             // Cerrar popups de reacciones al hacer clic fuera
-            if (!e.target.closest('.post-actions')) {
+            if (!e.target.closest('.post-actions') && !e.target.closest('.reactions-popup')) {
                 document.querySelectorAll('.reactions-popup').forEach(popup => {
                     popup.classList.remove('active');
                 });
+                // Restaurar scroll en móvil
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = '';
+                }
             }
         });
     </script>
@@ -2405,3 +2841,6 @@
 </body>
 
 </html>
+
+
+  
