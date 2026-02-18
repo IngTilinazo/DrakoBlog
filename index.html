@@ -580,6 +580,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            perspective: 1000px;
         }
 
         .hero::before {
@@ -607,8 +608,8 @@
             font-size: 80px;
             font-weight: bold;
             letter-spacing: 5px;
-            animation: logoCartoonBounce 2s ease-out 2.5s forwards;
             transform-origin: center;
+            transform-style: preserve-3d;
         }
 
         /* Logo starts off (no glow) */
@@ -622,118 +623,296 @@
             color: #666;
             text-shadow: none;
             opacity: 0.3;
-            animation: letterLightUp 0.3s ease-out forwards;
-            animation-delay: calc(1s + var(--i) * 0.15s);
+            animation: letterBurn 4s ease-out forwards;
+            animation-delay: calc(0.8s + var(--i) * 0.1s);
         }
 
-        /* Dragon starts off */
+        /* Dragon container */
+        /* Dragon container */
+        .dragon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dragon animation */
         .dragon-icon {
             font-size: 100px;
             color: #666;
-            text-shadow: none;
-            opacity: 0.3;
-            animation: dragonLightUp 0.3s ease-out 0.5s forwards;
+            opacity: 0.5;
+            animation: dragonBreatheFire 4s ease-out forwards;
+            position: relative;
+            display: inline-block;
+            z-index: 2;
         }
 
-        /* Dragon lights up like letters */
-        @keyframes dragonLightUp {
-            0% {
-                color: #666;
-                text-shadow: none;
-                opacity: 0.3;
-                transform: scale(1);
+        /* Fire Canvas - positioned at dragon's mouth (higher) */
+        .fire-canvas {
+            position: absolute;
+            left: 95%;
+            top: -5%;
+            width: 300px;
+            height: 150px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Air current - visible wind stream */
+        .dragon-wing {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 200px;
+            height: 100px;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: airCurrent 4s ease-out forwards;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Wind stream lines */
+        .dragon-wing::before,
+        .dragon-wing::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, 
+                transparent,
+                rgba(255,255,255,0.8) 20%,
+                rgba(200,200,200,0.9) 50%,
+                rgba(255,255,255,0.8) 80%,
+                transparent);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .dragon-wing::before {
+            top: 30%;
+            animation: windLine1 4s ease-out forwards;
+        }
+
+        .dragon-wing::after {
+            top: 60%;
+            animation: windLine2 4s ease-out forwards;
+        }
+
+        /* Air current container animation */
+        @keyframes airCurrent {
+            0%, 48% {
+                opacity: 0;
             }
             50% {
-                transform: scale(1.2);
-            }
-            100% {
-                color: white;
-                text-shadow: 
-                    0 0 8px rgba(255, 255, 255, 0.6),
-                    0 0 15px rgba(255, 255, 255, 0.4),
-                    0 0 20px rgba(255, 255, 255, 0.2);
                 opacity: 1;
-                transform: scale(1);
+            }
+            80%, 100% {
+                opacity: 0;
             }
         }
 
-        /* Each letter lights up in sequence */
-        @keyframes letterLightUp {
-            0% {
-                color: #666;
-                text-shadow: none;
-                opacity: 0.3;
-                transform: scale(1);
+        /* Wind line 1 - top wave */
+        @keyframes windLine1 {
+            0%, 48% {
+                opacity: 0;
+                width: 0%;
+                transform: translateX(0) translateY(0);
             }
             50% {
-                transform: scale(1.2);
-            }
-            100% {
-                color: white;
-                text-shadow: 
-                    0 0 8px rgba(255, 255, 255, 0.6),
-                    0 0 15px rgba(255, 255, 255, 0.4),
-                    0 0 20px rgba(255, 255, 255, 0.2);
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Logo cartoon bounce effect */
-        @keyframes logoCartoonBounce {
-            0% {
-                transform: scale(1);
-            }
-            20% {
-                transform: scale(0.7) translateZ(-100px);
-            }
-            40% {
-                transform: scale(1.3) translateZ(0);
+                opacity: 0.9;
+                width: 40%;
+                transform: translateX(0) translateY(-5px);
             }
             55% {
-                transform: scale(0.95);
+                opacity: 1;
+                width: 70%;
+                transform: translateX(20px) translateY(5px);
+            }
+            60% {
+                opacity: 1;
+                width: 100%;
+                transform: translateX(40px) translateY(-3px);
+            }
+            65% {
+                opacity: 0.9;
+                width: 120%;
+                transform: translateX(60px) translateY(4px);
             }
             70% {
-                transform: scale(1.05);
+                opacity: 0.7;
+                width: 140%;
+                transform: translateX(80px) translateY(-2px);
             }
-            85% {
-                transform: scale(0.98);
+            75% {
+                opacity: 0.4;
+                width: 160%;
+                transform: translateX(100px) translateY(0);
+            }
+            80%, 100% {
+                opacity: 0;
+                width: 180%;
+                transform: translateX(120px) translateY(0);
+            }
+        }
+
+        /* Wind line 2 - bottom wave (delayed) */
+        @keyframes windLine2 {
+            0%, 50% {
+                opacity: 0;
+                width: 0%;
+                transform: translateX(0) translateY(0);
+            }
+            52% {
+                opacity: 0.8;
+                width: 35%;
+                transform: translateX(0) translateY(5px);
+            }
+            57% {
+                opacity: 1;
+                width: 65%;
+                transform: translateX(20px) translateY(-4px);
+            }
+            62% {
+                opacity: 1;
+                width: 95%;
+                transform: translateX(40px) translateY(3px);
+            }
+            67% {
+                opacity: 0.8;
+                width: 115%;
+                transform: translateX(60px) translateY(-3px);
+            }
+            72% {
+                opacity: 0.6;
+                width: 135%;
+                transform: translateX(80px) translateY(2px);
+            }
+            77% {
+                opacity: 0.3;
+                width: 155%;
+                transform: translateX(100px) translateY(0);
+            }
+            82%, 100% {
+                opacity: 0;
+                width: 175%;
+                transform: translateX(120px) translateY(0);
+            }
+        }
+
+        /* Dragon breathes fire animation */
+        @keyframes dragonBreatheFire {
+            0% {
+                color: #666;
+                opacity: 0.5;
+                transform: scale(1) rotate(0deg) translateZ(0);
+            }
+            10% {
+                color: #ff4500;
+                opacity: 1;
+                transform: scale(1.1) rotate(-5deg) translateZ(20px);
+                filter: drop-shadow(0 5px 20px rgba(255, 69, 0, 0.6));
+            }
+            20% {
+                color: #ff6347;
+                transform: scale(1.15) rotate(-8deg) translateZ(30px);
+                filter: drop-shadow(0 8px 30px rgba(255, 69, 0, 0.7)) brightness(1.3);
+            }
+            40% {
+                color: #ff6347;
+                transform: scale(1.1) rotate(-5deg) translateZ(25px);
+                filter: drop-shadow(0 6px 25px rgba(255, 69, 0, 0.6)) brightness(1.2);
+            }
+            50% {
+                color: white;
+                transform: scale(1.2) rotate(15deg) translateZ(40px);
+                filter: drop-shadow(0 10px 40px rgba(255, 255, 255, 0.6)) brightness(1.4);
+            }
+            65% {
+                color: white;
+                transform: scale(1) rotate(-10deg) translateZ(20px);
+                filter: drop-shadow(0 8px 30px rgba(255, 255, 255, 0.4)) brightness(1.2);
+            }
+            80% {
+                color: white;
+                transform: scale(1) rotate(0deg) translateZ(5px);
+                filter: brightness(1.05);
             }
             100% {
-                transform: scale(1);
+                color: white;
+                opacity: 1;
+                transform: scale(1) rotate(0deg) translateZ(0);
+                filter: none;
             }
         }
 
-        /* Falling Stars - appear AFTER cartoon effect from the text */
-        .star {
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            color: white;
-            font-size: 25px;
-            opacity: 0;
-            top: 50%;
-            left: calc(50% + var(--start-x, 0%));
-            animation: starFromText 1.5s ease-out var(--star-delay) forwards;
-        }
-
-        .star::before {
-            content: '⭐';
-            filter: grayscale(100%) brightness(2);
-        }
-
-        @keyframes starFromText {
+        /* Letters burn then get cleaned */
+        @keyframes letterBurn {
             0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                color: #666;
+                text-shadow: none;
+                opacity: 0.3;
+                transform: scale(1) translateY(0) translateZ(0);
             }
             15% {
+                color: #ff4500;
+                text-shadow: 
+                    0 0 15px #ff4500,
+                    0 5px 30px rgba(255, 69, 0, 0.7);
                 opacity: 1;
-                transform: translate(-50%, -50%) scale(1.5) rotate(45deg);
+                transform: scale(1.2) translateY(-5px) translateZ(20px);
+                filter: brightness(1.4);
+            }
+            30% {
+                color: #ff6347;
+                text-shadow: 
+                    0 0 20px #ff6347,
+                    0 0 35px #ff0000,
+                    0 8px 40px rgba(255, 69, 0, 0.8);
+                opacity: 1;
+                transform: scale(1.15) translateY(-8px) translateZ(35px) rotate(calc(var(--i) * 2deg - 8deg));
+                filter: brightness(1.6) contrast(1.2);
+            }
+            45% {
+                color: #ff8c00;
+                text-shadow: 
+                    0 0 25px #ff4500,
+                    0 0 40px #ff0000,
+                    0 10px 50px rgba(255, 69, 0, 0.9);
+                opacity: 0.95;
+                transform: scale(1.2) translateY(-10px) translateZ(40px) rotate(calc(var(--i) * -2deg + 8deg));
+                filter: brightness(1.7) contrast(1.2);
+            }
+            60% {
+                color: #ffa500;
+                text-shadow: 
+                    0 0 20px #ff8c00,
+                    0 5px 35px rgba(255, 140, 0, 0.6);
+                opacity: 0.8;
+                transform: scale(1.1) translateY(-5px) translateZ(25px) rotate(0deg);
+                filter: brightness(1.4);
+            }
+            75% {
+                color: rgba(255, 255, 255, 0.5);
+                text-shadow: 
+                    0 0 15px rgba(255, 255, 255, 0.6),
+                    0 5px 25px rgba(255, 255, 255, 0.3);
+                opacity: 0.6;
+                transform: scale(0.9) translateY(5px) translateZ(15px);
+                filter: brightness(1.1);
+            }
+            90% {
+                color: white;
+                text-shadow: none;
+                opacity: 0.9;
+                transform: scale(1.05) translateY(0) translateZ(5px);
+                filter: brightness(1);
             }
             100% {
-                opacity: 0;
-                transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(0.3) rotate(720deg);
+                color: white;
+                text-shadow: none;
+                opacity: 1;
+                transform: scale(1) translateY(0) translateZ(0);
+                filter: brightness(1);
             }
         }
 
@@ -2511,7 +2690,11 @@
     <div class="hero">
         <div class="hero-content">
             <div class="hero-logo" id="heroLogo">
-                <i class="fa-solid fa-dragon dragon-icon" id="dragonIcon"></i>
+                <div class="dragon-container">
+                    <i class="fa-solid fa-dragon dragon-icon" id="dragonIcon"></i>
+                    <canvas id="fireCanvas" class="fire-canvas"></canvas>
+                    <div class="dragon-wing"></div>
+                </div>
                 <span class="logo-text">
                     <span class="letter" style="--i:0">D</span>
                     <span class="letter" style="--i:1">R</span>
@@ -2524,13 +2707,6 @@
                     <span class="letter" style="--i:8">G</span>
                 </span>
             </div>
-            <!-- Stars: 2 from dragon, 2 from end of BLOG -->
-            <!-- From dragon -->
-            <div class="star" style="--star-delay:3.2s; --start-x:-40%; --end-x:-250px; --end-y:-200px;"></div>
-            <div class="star" style="--star-delay:3.4s; --start-x:-40%; --end-x:-250px; --end-y:200px;"></div>
-            <!-- From end of BLOG -->
-            <div class="star" style="--star-delay:3.6s; --start-x:40%; --end-x:250px; --end-y:-200px;"></div>
-            <div class="star" style="--star-delay:3.8s; --start-x:40%; --end-x:250px; --end-y:200px;"></div>
         </div>
     </div>
 
@@ -3989,6 +4165,92 @@
                 }
             }
         });
+
+        // ===== FIRE PARTICLES ANIMATION =====
+        (function() {
+            const canvas = document.getElementById('fireCanvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const particles = [];
+            let animationActive = false;
+            let animationStartTime = 0;
+            
+            class FireParticle {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * 50;
+                    this.y = canvas.height / 2 + (Math.random() - 0.5) * 40;
+                    this.vx = 2 + Math.random() * 3;
+                    this.vy = (Math.random() - 0.5) * 2;
+                    this.life = 1;
+                    this.decay = 0.01 + Math.random() * 0.02;
+                    this.size = 3 + Math.random() * 8;
+                    this.color = Math.random() > 0.5 ? 'orange' : 'red';
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.life -= this.decay;
+                    this.vy -= 0.1;
+                    
+                    if (this.life <= 0) {
+                        this.reset();
+                    }
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.life;
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            
+            // Create particles
+            for (let i = 0; i < 30; i++) {
+                particles.push(new FireParticle());
+            }
+            
+            function animate() {
+                const currentTime = Date.now();
+                const elapsed = currentTime - animationStartTime;
+                
+                // Fire animation runs from 400ms to 2000ms (matching CSS animation)
+                if (elapsed >= 400 && elapsed <= 2000) {
+                    if (!animationActive) {
+                        animationActive = true;
+                    }
+                    
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    particles.forEach(particle => {
+                        particle.update();
+                        particle.draw();
+                    });
+                    
+                    requestAnimationFrame(animate);
+                } else if (elapsed > 2000) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    animationActive = false;
+                } else {
+                    requestAnimationFrame(animate);
+                }
+            }
+            
+            // Start animation on page load
+            window.addEventListener('load', () => {
+                animationStartTime = Date.now();
+                animate();
+            });
+        })();
     </script>
 
 </body>
