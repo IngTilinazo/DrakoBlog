@@ -604,7 +604,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
             font-size: 80px;
             font-weight: bold;
             letter-spacing: 5px;
@@ -636,8 +636,8 @@
 
         /* Dragon animation */
         .dragon-icon {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             object-fit: contain;
             opacity: 0.5;
             animation: dragonBreatheFire 4s ease-out forwards;
@@ -645,6 +645,8 @@
             display: inline-block;
             z-index: 2;
             filter: brightness(0.5);
+            vertical-align: middle;
+            margin-bottom: -20px;
         }
 
         /* Fire Canvas - positioned at dragon's mouth */
@@ -2686,7 +2688,7 @@
         <div class="hero-content">
             <div class="hero-logo" id="heroLogo">
                 <div class="dragon-container">
-                    <img src="dragon.png.jpeg" alt="Dragon" class="dragon-icon" id="dragonIcon">
+                    <img src="dragon1.png" alt="Dragon" class="dragon-icon" id="dragonIcon">
                     <canvas id="fireCanvas" class="fire-canvas"></canvas>
                     <div class="dragon-wing"></div>
                 </div>
