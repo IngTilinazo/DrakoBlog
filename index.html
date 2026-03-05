@@ -1002,23 +1002,23 @@
         /* --- SOCIAL MEDIA FLOATING BUTTONS --- */
         .social-buttons {
             position: fixed;
-            bottom: 80px;
+            bottom: 20px;
             right: 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
+            gap: 12px;
+            z-index: 999;
         }
 
         .social-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 28px;
+            font-size: 22px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -1042,14 +1042,14 @@
         /* Responsive para móvil */
         @media (max-width: 768px) {
             .social-buttons {
-                bottom: 70px;
+                bottom: 15px;
                 right: 15px;
             }
 
             .social-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
             }
         }
 
@@ -4323,7 +4323,7 @@
         <a href="https://www.instagram.com/drakoblog?igsh=MXB6MWh5Zml5OGRpMg==" target="_blank" class="social-btn instagram" title="Síguenos en Instagram">
             <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=drakoemail.blog@gmail.com&su=Dudas%20-%20DrakoBlog" target="_blank" class="social-btn gmail" title="Envíanos tus dudas">
+        <a href="mailto:drakoemail.blog@gmail.com?subject=Dudas%20-%20DrakoBlog" class="social-btn gmail" title="Envíanos tus dudas">
             <i class="fa-solid fa-envelope"></i>
         </a>
     </div>
