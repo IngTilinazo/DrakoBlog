@@ -441,7 +441,7 @@
 
         /* --- HEADER --- */
         header {
-            background: #d30000;
+            background: rgba(200, 0, 30, 1);
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -915,7 +915,7 @@
 
         /* --- REWARDS SECTION --- */
         .rewards {
-            background: #d30000;
+            background: rgba(200, 0, 30, 1);
             padding: 20px;
             display: flex;
             justify-content: center;
@@ -970,7 +970,7 @@
         }
 
         .reward-btn.active {
-            background: #d30000;
+            background: rgba(200, 0, 30, 1);
             color: white;
             box-shadow: 0 2px 8px rgba(211, 0, 0, 0.5);
         }
@@ -1002,12 +1002,54 @@
         /* --- SOCIAL MEDIA FLOATING BUTTONS --- */
         .social-buttons {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            bottom: 90px;
+            right: 20px;
             display: flex;
-            flex-direction: row;
+            flex-direction: row-reverse;
+            align-items: center;
             gap: 12px;
             z-index: 999;
+        }
+
+        .social-toggle-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(200, 0, 30, 1), rgba(255, 50, 50, 1));
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .social-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(211, 0, 0, 0.5);
+        }
+
+        .social-toggle-btn.active {
+            transform: rotate(45deg);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            transform: translateX(20px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links.show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
         }
 
         .social-btn {
@@ -1042,8 +1084,14 @@
         /* Responsive para móvil */
         @media (max-width: 768px) {
             .social-buttons {
-                bottom: 15px;
-                left: 15px;
+                bottom: 75px;
+                right: 15px;
+            }
+
+            .social-toggle-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
             }
 
             .social-btn {
@@ -1102,7 +1150,7 @@
         }
 
         .create-post button {
-            background: #d30000;
+            background: rgba(200, 0, 30, 1);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -2507,6 +2555,35 @@
             }
         }
 
+        /* Decoraciones de eventos especiales */
+        .event-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 30px;
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes fallAnimation {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.5; }
+        }
+
+        @keyframes pumpkinBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes mexicanWave {
+            0%, 100% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(10px) scale(1.1); }
+        }
+
         .calendar-close {
             position: absolute;
             top: 15px;
@@ -2625,7 +2702,7 @@
         }
 
         .calendar-day.selected {
-            background: #d30000;
+            background: rgba(200, 0, 30, 1);
             color: white;
             font-weight: bold;
         }
@@ -2640,6 +2717,18 @@
             bottom: 2px;
             font-size: 20px;
             color: #ffd700;
+        }
+
+        .calendar-day.special-event {
+            background: linear-gradient(135deg, #ff6b9d, #c471ed);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 107, 157, 0.4);
+        }
+
+        .calendar-day.special-event:hover {
+            background: linear-gradient(135deg, #ff8fb3, #d891f5);
+            transform: scale(1.1);
         }
 
         .calendar-year-selector {
@@ -2904,6 +2993,19 @@
                 <!-- Years will be rendered here -->
             </div>
 
+            <!-- Quick Month Jump (Temporal) -->
+            <div style="text-align: center; margin: 15px 0; padding: 10px; background: rgba(255, 107, 157, 0.1); border-radius: 8px;">
+                <p style="margin: 0 0 10px 0; font-size: 12px; color: #666;">🎉 Saltar a meses con eventos especiales:</p>
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="jumpToMonth(2026, 1)" style="padding: 6px 12px; background: #ff6b9d; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">Feb 2026 💝</button>
+                    <button onclick="jumpToMonth(2026, 2)" style="padding: 6px 12px; background: #40c057; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">Mar 2026 ☘️</button>
+                    <button onclick="jumpToMonth(2026, 4)" style="padding: 6px 12px; background: #4a90e2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">May 2026 🎓</button>
+                    <button onclick="jumpToMonth(2026, 8)" style="padding: 6px 12px; background: #00b341; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">Sep 2026 🇲🇽</button>
+                    <button onclick="jumpToMonth(2026, 9)" style="padding: 6px 12px; background: #ff6b35; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">Oct 2026 🎃</button>
+                    <button onclick="jumpToMonth(2026, 11)" style="padding: 6px 12px; background: #c92a2a; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 11px;">Dic 2026 🎄</button>
+                </div>
+            </div>
+
             <!-- Calendar Controls -->
             <div class="calendar-controls">
                 <button onclick="previousMonth()" id="prevBtn">
@@ -2944,15 +3046,103 @@
             { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' },
             { id: 'sticker_trophy', name: 'Sticker Trofeo', icon: '🏆', price: 150, type: 'sticker', description: 'Reconoce el éxito' },
             { id: 'badge_vip', name: 'Insignia VIP', icon: '👑', price: 500, type: 'badge', description: 'Estatus premium' },
-            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' },
-            { id: 'theme_dark', name: 'Tema Oscuro', icon: '🌙', price: 1000, type: 'theme', description: 'Modo nocturno' },
-            { id: 'theme_rainbow', name: 'Tema Arcoíris', icon: '🌈', price: 1000, type: 'theme', description: 'Colores vibrantes' }
+            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' }
         ];
 
         var currentRewardsTab = 'stats';
 
         // Admin Mode
         var adminMode = false;
+
+        // Sistema de temas automáticos por eventos
+        function checkEventTheme() {
+            const today = new Date();
+            const month = today.getMonth() + 1; // 1-12
+            const day = today.getDate();
+            
+            // Remover todos los temas
+            document.body.classList.remove('theme-dark', 'theme-rainbow', 'theme-valentine', 'theme-stpatrick', 'theme-mexican');
+            
+            // San Valentín (Febrero 14)
+            if (month === 2 && day === 14) {
+                document.body.classList.add('theme-rainbow');
+                return 'San Valentín';
+            }
+            
+            // San Patricio (Marzo 17)
+            if (month === 3 && day === 17) {
+                document.body.classList.add('theme-rainbow');
+                return 'San Patricio';
+            }
+            
+            // Día del Estudiante (Mayo 23)
+            if (month === 5 && day === 23) {
+                document.body.classList.add('theme-rainbow');
+                return 'Día del Estudiante';
+            }
+            
+            // Independencia de México (Septiembre 16)
+            if (month === 9 && day === 16) {
+                document.body.classList.add('theme-rainbow');
+                return 'Independencia de México';
+            }
+            
+            // Halloween (Octubre 31)
+            if (month === 10 && day === 31) {
+                document.body.classList.add('theme-dark');
+                return 'Halloween';
+            }
+            
+            // Navidad (Diciembre 20-26)
+            if (month === 12 && day >= 20 && day <= 26) {
+                document.body.classList.add('theme-rainbow');
+                return 'Navidad';
+            }
+            
+            // Año Nuevo (Enero 1)
+            if (month === 1 && day === 1) {
+                document.body.classList.add('theme-rainbow');
+                return 'Año Nuevo';
+            }
+            
+            return null;
+        }
+
+        // Eventos especiales para marcar en el calendario
+        const specialEvents = {
+            '2026-01-01': { name: 'Año Nuevo', emoji: '🎉', theme: 'rainbow' },
+            '2026-02-14': { name: 'San Valentín', emoji: '💝', theme: 'rainbow' },
+            '2026-03-17': { name: 'San Patricio', emoji: '☘️', theme: 'rainbow' },
+            '2026-05-23': { name: 'Día del Estudiante', emoji: '🎓', theme: 'rainbow' },
+            '2026-09-16': { name: 'Independencia de México', emoji: '🇲🇽', theme: 'rainbow' },
+            '2026-10-31': { name: 'Halloween', emoji: '🎃', theme: 'dark' },
+            '2026-12-20': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-21': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-22': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-23': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-24': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-25': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2026-12-26': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-01-01': { name: 'Año Nuevo', emoji: '🎉', theme: 'rainbow' },
+            '2027-02-14': { name: 'San Valentín', emoji: '💝', theme: 'rainbow' },
+            '2027-03-17': { name: 'San Patricio', emoji: '☘️', theme: 'rainbow' },
+            '2027-05-23': { name: 'Día del Estudiante', emoji: '🎓', theme: 'rainbow' },
+            '2027-09-16': { name: 'Independencia de México', emoji: '🇲🇽', theme: 'rainbow' },
+            '2027-10-31': { name: 'Halloween', emoji: '🎃', theme: 'dark' },
+            '2027-12-20': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-21': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-22': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-23': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-24': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-25': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' },
+            '2027-12-26': { name: 'Navidad', emoji: '🎄', theme: 'rainbow' }
+        };
+
+        // Aplicar tema al cargar la página
+        const activeEvent = checkEventTheme();
+        if (activeEvent) {
+            console.log('🎉 Tema especial activado:', activeEvent);
+        }
 
         // Sistema de recompensas
         let userRewards = JSON.parse(localStorage.getItem('drakoblog_rewards')) || {
@@ -3089,7 +3279,7 @@
         }
 
         // --- CALENDAR FUNCTIONS ---
-        let currentCalendarDate = new Date();
+        let currentCalendarDate = new Date(2026, 0, 1); // Iniciar en Enero 2026
         let selectedDate = null;
 
         // Abrir modal de calendario
@@ -3143,6 +3333,82 @@
             renderYearSelector();
         }
 
+        // Saltar a un mes específico
+        function jumpToMonth(year, month) {
+            currentCalendarDate = new Date(year, month, 1);
+            renderCalendar();
+            renderYearSelector();
+            showEventDecoration(month);
+        }
+
+        // Mostrar decoraciones según el mes
+        function showEventDecoration(month) {
+            // Limpiar decoraciones anteriores
+            const existingDecorations = document.querySelectorAll('.event-decoration');
+            existingDecorations.forEach(dec => dec.remove());
+
+            let decorations = [];
+            
+            // San Valentín (Febrero - mes 1)
+            if (month === 1) {
+                decorations = ['💕', '💖', '💗', '💝', '💘', '❤️', '💓', '💞'];
+            }
+            // San Patricio (Marzo - mes 2)
+            else if (month === 2) {
+                decorations = ['☘️', '🍀', '🌈', '🎩', '🍺', '💚'];
+            }
+            // Día del Estudiante (Mayo - mes 4)
+            else if (month === 4) {
+                decorations = ['🎓', '📚', '✏️', '📖', '🏆', '⭐', '🎉'];
+            }
+            // Independencia de México (Septiembre - mes 8)
+            else if (month === 8) {
+                decorations = ['🇲🇽', '🌮', '🎺', '🎊', '🎉', '💚', '🤍', '❤️'];
+            }
+            // Halloween (Octubre - mes 9)
+            else if (month === 9) {
+                decorations = ['🎃', '👻', '🦇', '🕷️', '🕸️', '💀', '🧙', '🍬'];
+            }
+            // Navidad (Diciembre - mes 11)
+            else if (month === 11) {
+                decorations = ['🎄', '🎅', '⛄', '🎁', '❄️', '⭐', '🔔', '🤶'];
+            }
+
+            // Crear y animar decoraciones
+            if (decorations.length > 0) {
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const decoration = document.createElement('div');
+                        decoration.className = 'event-decoration';
+                        decoration.textContent = decorations[Math.floor(Math.random() * decorations.length)];
+                        decoration.style.left = Math.random() * 100 + '%';
+                        decoration.style.top = Math.random() * 100 + '%';
+                        decoration.style.animationDelay = Math.random() * 2 + 's';
+                        decoration.style.animationDuration = (3 + Math.random() * 2) + 's';
+                        
+                        // Animación especial para Halloween
+                        if (month === 9) {
+                            decoration.style.animation = 'pumpkinBounce 2s ease-in-out infinite';
+                        }
+                        // Animación especial para México
+                        else if (month === 8) {
+                            decoration.style.animation = 'mexicanWave 2s ease-in-out infinite';
+                        }
+                        // Animación de caída para Navidad
+                        else if (month === 11) {
+                            decoration.style.animation = 'fallAnimation 5s linear infinite';
+                            decoration.style.animationDelay = (Math.random() * 5) + 's';
+                        }
+                        
+                        document.body.appendChild(decoration);
+                        
+                        // Remover después de 10 segundos
+                        setTimeout(() => decoration.remove(), 10000);
+                    }, i * 100);
+                }
+            }
+        }
+
         // Renderizar calendario
         function renderCalendar() {
             const year = currentCalendarDate.getFullYear();
@@ -3153,9 +3419,9 @@
                               'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
             document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
             
-            // Habilitar/deshabilitar botones
-            const minDate = new Date(2024, 0, 1);
-            const maxDate = new Date(2027, 11, 31);
+            // Habilitar/deshabilitar botones (desde 2026 en adelante)
+            const minDate = new Date(2026, 0, 1);
+            const maxDate = new Date(2030, 11, 31);
             const firstDayOfMonth = new Date(year, month, 1);
             const lastDayOfMonth = new Date(year, month + 1, 0);
             
@@ -3189,6 +3455,10 @@
                 const isToday = currentDate.toDateString() === today.toDateString();
                 const isSelected = selectedDate && currentDate.toDateString() === selectedDate.toDateString();
                 
+                // Verificar si hay eventos especiales en este día
+                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const specialEvent = specialEvents[dateKey];
+                
                 // Verificar si hay eventos en este día (posts de eventos)
                 const hasEvent = posts.some(post => {
                     if (post.category === 'eventos') {
@@ -3202,8 +3472,14 @@
                 if (isToday) classes += ' today';
                 if (isSelected) classes += ' selected';
                 if (hasEvent) classes += ' has-event';
+                if (specialEvent) classes += ' special-event';
                 
-                html += `<div class="${classes}" onclick="selectDate(${year}, ${month}, ${day})">${day}</div>`;
+                let dayContent = day;
+                if (specialEvent) {
+                    dayContent = `${day} ${specialEvent.emoji}`;
+                }
+                
+                html += `<div class="${classes}" onclick="selectDate(${year}, ${month}, ${day})" title="${specialEvent ? specialEvent.name : ''}">${dayContent}</div>`;
             }
             
             // Días del mes siguiente
@@ -4320,13 +4596,27 @@
 
     <!-- SOCIAL MEDIA BUTTONS -->
     <div class="social-buttons">
-        <a href="https://www.instagram.com/drakoblog?igsh=MXB6MWh5Zml5OGRpMg==" target="_blank" class="social-btn instagram" title="Síguenos en Instagram">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="mailto:drakoemail.blog@gmail.com?subject=Dudas%20-%20DrakoBlog" class="social-btn gmail" title="Envíanos tus dudas">
-            <i class="fa-solid fa-envelope"></i>
-        </a>
+        <button class="social-toggle-btn" onclick="toggleSocialButtons()" title="Redes sociales">
+            <i class="fa-solid fa-at"></i>
+        </button>
+        <div class="social-links" id="socialLinks">
+            <a href="https://www.instagram.com/drakoblog?igsh=MXB6MWh5Zml5OGRpMg==" target="_blank" class="social-btn instagram" title="Síguenos en Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="mailto:drakoemail.blog@gmail.com?subject=Dudas%20-%20DrakoBlog" class="social-btn gmail" title="Envíanos tus dudas">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
     </div>
+
+    <script>
+        function toggleSocialButtons() {
+            const socialLinks = document.getElementById('socialLinks');
+            const toggleBtn = document.querySelector('.social-toggle-btn');
+            socialLinks.classList.toggle('show');
+            toggleBtn.classList.toggle('active');
+        }
+    </script>
 
 </body>
 
