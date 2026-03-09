@@ -88,6 +88,117 @@
             background: rgba(255, 255, 255, 0.98);
         }
 
+        /* ===== TEMAS DE CELEBRACIÓN ===== */
+        
+        /* Tema San Valentín */
+        body.theme-valentine header,
+        body.theme-valentine .rewards {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fb3) !important;
+        }
+
+        body.theme-valentine .reward-btn.active,
+        body.theme-valentine .create-post button,
+        body.theme-valentine .add-comment button {
+            background: #ff6b9d !important;
+        }
+
+        body.theme-valentine .social-toggle-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fb3) !important;
+        }
+
+        /* Tema San Patricio */
+        body.theme-stpatrick header,
+        body.theme-stpatrick .rewards {
+            background: linear-gradient(135deg, #40c057, #51cf66) !important;
+        }
+
+        body.theme-stpatrick .reward-btn.active,
+        body.theme-stpatrick .create-post button,
+        body.theme-stpatrick .add-comment button {
+            background: #40c057 !important;
+        }
+
+        body.theme-stpatrick .social-toggle-btn {
+            background: linear-gradient(135deg, #40c057, #51cf66) !important;
+        }
+
+        /* Tema Día del Estudiante */
+        body.theme-student header,
+        body.theme-student .rewards {
+            background: linear-gradient(135deg, #4a90e2, #357abd) !important;
+        }
+
+        body.theme-student .reward-btn.active,
+        body.theme-student .create-post button,
+        body.theme-student .add-comment button {
+            background: #4a90e2 !important;
+        }
+
+        body.theme-student .social-toggle-btn {
+            background: linear-gradient(135deg, #4a90e2, #357abd) !important;
+        }
+
+        /* Tema Independencia de México */
+        body.theme-mexican header {
+            background: linear-gradient(to bottom, #00b341 33%, white 33%, white 66%, #ce1126 66%) !important;
+        }
+
+        body.theme-mexican .rewards {
+            background: linear-gradient(135deg, #00b341, #ce1126) !important;
+        }
+
+        body.theme-mexican .reward-btn.active,
+        body.theme-mexican .create-post button,
+        body.theme-mexican .add-comment button {
+            background: #00b341 !important;
+        }
+
+        body.theme-mexican .social-toggle-btn {
+            background: linear-gradient(135deg, #00b341, #ce1126) !important;
+        }
+
+        /* Tema Halloween */
+        body.theme-halloween {
+            background: #1a1a1a;
+        }
+
+        body.theme-halloween header,
+        body.theme-halloween .rewards {
+            background: linear-gradient(135deg, #ff6b35, #f7931e) !important;
+        }
+
+        body.theme-halloween .reward-btn.active,
+        body.theme-halloween .create-post button,
+        body.theme-halloween .add-comment button {
+            background: #ff6b35 !important;
+        }
+
+        body.theme-halloween .social-toggle-btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e) !important;
+        }
+
+        body.theme-halloween .post,
+        body.theme-halloween .create-post {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+
+        /* Tema Navidad */
+        body.theme-christmas header,
+        body.theme-christmas .rewards {
+            background: linear-gradient(135deg, #c92a2a, #00b341) !important;
+        }
+
+        body.theme-christmas .reward-btn.active,
+        body.theme-christmas .create-post button,
+        body.theme-christmas .add-comment button {
+            background: #c92a2a !important;
+        }
+
+        body.theme-christmas .social-toggle-btn {
+            background: linear-gradient(135deg, #c92a2a, #00b341) !important;
+        }
+
         /* Dark Theme - Buttons and Elements */
         body.theme-dark .reward-btn {
             background: #333;
@@ -2098,6 +2209,45 @@
                 letter-spacing: 1px;
             }
 
+            /* Mobile Hero - más compacto */
+            .hero {
+                padding: 20px 15px;
+                min-height: auto;
+            }
+
+            .hero-logo {
+                font-size: 28px;
+                gap: 8px;
+            }
+
+            /* Contenedor principal con padding para botones flotantes */
+            .container {
+                padding: 15px;
+                padding-bottom: 100px; /* Espacio para botones flotantes */
+            }
+
+            /* Posts más compactos */
+            .post {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            /* Botones de recompensas más pequeños y con scroll horizontal */
+            .rewards {
+                padding: 12px 10px;
+                overflow-x: auto;
+                gap: 8px;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .reward-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
             .user-role {
                 font-size: 9px;
                 padding: 3px 8px;
@@ -3338,7 +3488,29 @@
             currentCalendarDate = new Date(year, month, 1);
             renderCalendar();
             renderYearSelector();
+            applyMonthTheme(month);
             showEventDecoration(month);
+        }
+
+        // Aplicar tema según el mes
+        function applyMonthTheme(month) {
+            // Remover todos los temas
+            document.body.classList.remove('theme-dark', 'theme-rainbow', 'theme-valentine', 'theme-stpatrick', 'theme-student', 'theme-mexican', 'theme-halloween', 'theme-christmas');
+            
+            // Aplicar tema según el mes
+            if (month === 1) { // Febrero - San Valentín
+                document.body.classList.add('theme-valentine');
+            } else if (month === 2) { // Marzo - San Patricio
+                document.body.classList.add('theme-stpatrick');
+            } else if (month === 4) { // Mayo - Día del Estudiante
+                document.body.classList.add('theme-student');
+            } else if (month === 8) { // Septiembre - Independencia de México
+                document.body.classList.add('theme-mexican');
+            } else if (month === 9) { // Octubre - Halloween
+                document.body.classList.add('theme-halloween');
+            } else if (month === 11) { // Diciembre - Navidad
+                document.body.classList.add('theme-christmas');
+            }
         }
 
         // Mostrar decoraciones según el mes
