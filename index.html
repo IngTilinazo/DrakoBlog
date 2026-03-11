@@ -1536,7 +1536,16 @@
             color: white;
             font-size: 20px;
             margin-right: 12px;
+            position: relative;
         }
+
+        /* Marcos en post-avatar */
+        .post-avatar[data-frame="valentine"]::after { content: '💕'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .post-avatar[data-frame="stpatrick"]::after { content: '☘️'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .post-avatar[data-frame="student"]::after { content: '🎓'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .post-avatar[data-frame="mexican"]::after { content: '🌮'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .post-avatar[data-frame="halloween"]::after { content: '🎃'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: spooky 1.5s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+        .post-avatar[data-frame="christmas"]::after { content: '⭐'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
 
         .post-info {
             flex: 1;
@@ -3440,7 +3449,7 @@
             const frameName = frameNames[activeFrame] || '';
             
             // Aplicar a todos los avatares
-            document.querySelectorAll('.user-avatar, .user-icon').forEach(avatar => {
+            document.querySelectorAll('.user-avatar, .user-icon, .post-avatar').forEach(avatar => {
                 avatar.setAttribute('data-frame', frameName);
             });
         }
@@ -4324,7 +4333,7 @@
                             </div>
                             <div class="post-body">
                                 <div class="post-header">
-                                    <div class="post-avatar user-icon" data-frame="">
+                                    <div class="post-avatar">
                                         <i class="fa-solid fa-user"></i>
                                     </div>
                                     <div class="post-info">
