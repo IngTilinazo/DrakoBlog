@@ -3529,6 +3529,9 @@
 
         // Inicializar
         function init() {
+            console.log('DrakoBlog iniciando...');
+            console.log('Posts cargados:', posts.length);
+            
             // Limpiar tema oscuro si está activo
             const savedTheme = localStorage.getItem('drakoblog_active_theme');
             if (savedTheme === 'theme-dark') {
@@ -3539,6 +3542,8 @@
             checkDailyStreak();
             loadSavedTheme();
             renderFeed();
+            
+            console.log('DrakoBlog iniciado correctamente');
         }
 
         // Verificar racha diaria
@@ -4172,7 +4177,12 @@
 
         // Renderizar feed
         function renderFeed() {
+            console.log('renderFeed iniciando...');
             const content = document.getElementById('content');
+            if (!content) {
+                console.error('ERROR: No se encontró el elemento #content');
+                return;
+            }
             let html = '';
 
             // Formulario de crear post (solo para profesores)
@@ -4410,6 +4420,8 @@
             }
 
             content.innerHTML = html;
+            console.log('Posts renderizados:', filteredPosts.length);
+            console.log('HTML generado, longitud:', html.length);
             
             // Aplicar marcos de perfil después de renderizar
             setTimeout(applyActiveFrame, 50);
