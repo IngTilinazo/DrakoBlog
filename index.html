@@ -540,99 +540,6 @@
             color: white;
             font-size: 20px;
             cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        /* Marcos de perfil - Solo emojis flotantes */
-        .user-avatar[data-frame="valentine"]::after,
-        .user-icon[data-frame="valentine"]::after {
-            content: '💕';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .user-avatar[data-frame="stpatrick"]::after,
-        .user-icon[data-frame="stpatrick"]::after {
-            content: '☘️';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .user-avatar[data-frame="student"]::after,
-        .user-icon[data-frame="student"]::after {
-            content: '🎓';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .user-avatar[data-frame="mexican"]::after,
-        .user-icon[data-frame="mexican"]::after {
-            content: '🌮';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .user-avatar[data-frame="halloween"]::after,
-        .user-icon[data-frame="halloween"]::after {
-            content: '🎃';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: spooky 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        @keyframes spooky {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        .user-avatar[data-frame="christmas"]::after,
-        .user-icon[data-frame="christmas"]::after {
-            content: '⭐';
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            font-size: 18px;
-            animation: float 2s ease-in-out infinite;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
-        }
-
-        .user-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #d30000;
-            font-size: 20px;
-            position: relative;
-            transition: all 0.3s ease;
         }
 
         .close-btn {
@@ -1536,16 +1443,7 @@
             color: white;
             font-size: 20px;
             margin-right: 12px;
-            position: relative;
         }
-
-        /* Marcos en post-avatar */
-        .post-avatar[data-frame="valentine"]::after { content: '💕'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .post-avatar[data-frame="stpatrick"]::after { content: '☘️'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .post-avatar[data-frame="student"]::after { content: '🎓'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .post-avatar[data-frame="mexican"]::after { content: '🌮'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .post-avatar[data-frame="halloween"]::after { content: '🎃'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: spooky 1.5s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .post-avatar[data-frame="christmas"]::after { content: '⭐'; position: absolute; top: -5px; right: -5px; font-size: 18px; animation: float 2s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
 
         .post-info {
             flex: 1;
@@ -3298,13 +3196,7 @@
             { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' },
             { id: 'sticker_trophy', name: 'Sticker Trofeo', icon: '🏆', price: 150, type: 'sticker', description: 'Reconoce el éxito' },
             { id: 'badge_vip', name: 'Insignia VIP', icon: '👑', price: 500, type: 'badge', description: 'Estatus premium' },
-            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' },
-            { id: 'frame_valentine', name: 'Marco San Valentín', icon: '💝', price: 800, type: 'frame', description: 'Marco de corazones' },
-            { id: 'frame_stpatrick', name: 'Marco San Patricio', icon: '☘️', price: 800, type: 'frame', description: 'Marco de tréboles' },
-            { id: 'frame_student', name: 'Marco Estudiante', icon: '🎓', price: 800, type: 'frame', description: 'Marco académico' },
-            { id: 'frame_mexican', name: 'Marco Patrio', icon: '🇲🇽', price: 800, type: 'frame', description: 'Marco tricolor' },
-            { id: 'frame_halloween', name: 'Marco Halloween', icon: '🎃', price: 800, type: 'frame', description: 'Máscara de zombi' },
-            { id: 'frame_christmas', name: 'Marco Navidad', icon: '🎅', price: 800, type: 'frame', description: 'Gorro navideño' }
+            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' }
         ];
 
         var currentRewardsTab = 'stats';
@@ -3321,78 +3213,88 @@
             // Remover todos los temas
             document.body.classList.remove('theme-dark', 'theme-rainbow', 'theme-valentine', 'theme-stpatrick', 'theme-student', 'theme-mexican', 'theme-halloween', 'theme-christmas');
             
-            // San Valentín (Febrero 7-14) - 1 semana antes
-            if (month === 2 && day >= 7 && day <= 14) {
+            // San Valentín (Febrero 14)
+            if (month === 2 && day === 14) {
                 document.body.classList.add('theme-valentine');
-                showEventDecoration(1);
-                giveEventBonus('valentine');
+                showEventDecoration(1); // Febrero es mes 1 (0-indexed)
                 return 'San Valentín';
             }
             
-            // San Patricio (Marzo 10-17) - 1 semana antes
-            if (month === 3 && day >= 10 && day <= 17) {
+            // San Patricio (Marzo 17)
+            if (month === 3 && day === 17) {
                 document.body.classList.add('theme-stpatrick');
-                showEventDecoration(2);
-                giveEventBonus('stpatrick');
+                showEventDecoration(2); // Marzo es mes 2
                 return 'San Patricio';
             }
             
-            // Día del Estudiante (Mayo 16-23) - 1 semana antes
-            if (month === 5 && day >= 16 && day <= 23) {
+            // Día del Estudiante (Mayo 23)
+            if (month === 5 && day === 23) {
                 document.body.classList.add('theme-student');
-                showEventDecoration(4);
-                giveEventBonus('student');
+                showEventDecoration(4); // Mayo es mes 4
                 return 'Día del Estudiante';
             }
             
-            // Independencia de México (Septiembre 9-16) - 1 semana antes
-            if (month === 9 && day >= 9 && day <= 16) {
+            // Independencia de México (Septiembre 16)
+            if (month === 9 && day === 16) {
                 document.body.classList.add('theme-mexican');
-                showEventDecoration(8);
-                giveEventBonus('mexican');
+                showEventDecoration(8); // Septiembre es mes 8
                 return 'Independencia de México';
             }
             
-            // Halloween (Octubre 24-31) - 1 semana antes
-            if (month === 10 && day >= 24 && day <= 31) {
+            // Halloween (Octubre 31)
+            if (month === 10 && day === 31) {
                 document.body.classList.add('theme-halloween');
-                showEventDecoration(9);
-                giveEventBonus('halloween');
+                showEventDecoration(9); // Octubre es mes 9
                 return 'Halloween';
             }
             
-            // Navidad (Diciembre 18-26) - más de 1 semana
-            if (month === 12 && day >= 18 && day <= 26) {
+            // Navidad (Diciembre 20-26)
+            if (month === 12 && day >= 20 && day <= 26) {
                 document.body.classList.add('theme-christmas');
-                showEventDecoration(11);
-                giveEventBonus('christmas');
+                showEventDecoration(11); // Diciembre es mes 11
                 return 'Navidad';
             }
             
-            // Año Nuevo (Diciembre 31 - Enero 1)
-            if ((month === 12 && day === 31) || (month === 1 && day === 1)) {
+            // Año Nuevo (Enero 1)
+            if (month === 1 && day === 1) {
                 document.body.classList.add('theme-rainbow');
-                showEventDecoration(0);
-                giveEventBonus('newyear');
+                showEventDecoration(0); // Enero es mes 0
                 return 'Año Nuevo';
             }
             
-            return null;
-        }
-
-        // Dar bonus de puntos por evento (solo una vez por evento)
-        function giveEventBonus(eventId) {
-            const bonusKey = `event_bonus_${eventId}_${new Date().getFullYear()}`;
-            if (!localStorage.getItem(bonusKey)) {
-                userRewards.totalPoints += 500;
-                saveRewards();
-                localStorage.setItem(bonusKey, 'true');
-                
-                // Mostrar notificación
-                setTimeout(() => {
-                    alert('🎉 ¡Bonus de evento!\n\n+500 puntos por celebración especial');
-                }, 1000);
+            // Detectar todo el mes para temas (modo de prueba)
+            // Febrero completo
+            if (month === 2) {
+                document.body.classList.add('theme-valentine');
+                return 'Mes de San Valentín';
             }
+            // Marzo completo
+            if (month === 3) {
+                document.body.classList.add('theme-stpatrick');
+                return 'Mes de San Patricio';
+            }
+            // Mayo completo
+            if (month === 5) {
+                document.body.classList.add('theme-student');
+                return 'Mes del Estudiante';
+            }
+            // Septiembre completo
+            if (month === 9) {
+                document.body.classList.add('theme-mexican');
+                return 'Mes Patrio';
+            }
+            // Octubre completo
+            if (month === 10) {
+                document.body.classList.add('theme-halloween');
+                return 'Mes de Halloween';
+            }
+            // Diciembre completo
+            if (month === 12) {
+                document.body.classList.add('theme-christmas');
+                return 'Mes de Navidad';
+            }
+            
+            return null;
         }
 
         // Eventos especiales para marcar en el calendario
@@ -3433,29 +3335,6 @@
             const currentMonth = new Date().getMonth();
             showEventDecoration(currentMonth);
         }
-
-        // Aplicar marco de perfil activo
-        function applyActiveFrame() {
-            const activeFrame = localStorage.getItem('active_frame') || '';
-            const frameNames = {
-                'frame_valentine': 'valentine',
-                'frame_stpatrick': 'stpatrick',
-                'frame_student': 'student',
-                'frame_mexican': 'mexican',
-                'frame_halloween': 'halloween',
-                'frame_christmas': 'christmas'
-            };
-            
-            const frameName = frameNames[activeFrame] || '';
-            
-            // Aplicar a todos los avatares
-            document.querySelectorAll('.user-avatar, .user-icon, .post-avatar').forEach(avatar => {
-                avatar.setAttribute('data-frame', frameName);
-            });
-        }
-
-        // Aplicar marco al cargar
-        setTimeout(applyActiveFrame, 100);
 
         // Sistema de recompensas
         let userRewards = JSON.parse(localStorage.getItem('drakoblog_rewards')) || {
@@ -3529,9 +3408,6 @@
 
         // Inicializar
         function init() {
-            console.log('DrakoBlog iniciando...');
-            console.log('Posts cargados:', posts.length);
-            
             // Limpiar tema oscuro si está activo
             const savedTheme = localStorage.getItem('drakoblog_active_theme');
             if (savedTheme === 'theme-dark') {
@@ -3542,8 +3418,6 @@
             checkDailyStreak();
             loadSavedTheme();
             renderFeed();
-            
-            console.log('DrakoBlog iniciado correctamente');
         }
 
         // Verificar racha diaria
@@ -3974,20 +3848,6 @@
             }
             
             if (userRewards.ownedItems.includes(itemId)) {
-                // Si es un marco, permitir activarlo/desactivarlo
-                if (item.type === 'frame') {
-                    const currentFrame = localStorage.getItem('active_frame');
-                    if (currentFrame === itemId) {
-                        localStorage.removeItem('active_frame');
-                        alert(`Marco ${item.name} desactivado.`);
-                    } else {
-                        localStorage.setItem('active_frame', itemId);
-                        alert(`¡Marco ${item.name} activado! ${item.icon}`);
-                    }
-                    applyActiveFrame();
-                    renderShop();
-                    return;
-                }
                 alert('Ya tienes este item.');
                 return;
             }
@@ -3999,14 +3859,8 @@
                 renderShop();
                 updateRewardsDisplay();
                 
-                // Si es un marco, activarlo automáticamente
-                if (item.type === 'frame') {
-                    localStorage.setItem('active_frame', itemId);
-                    applyActiveFrame();
-                    alert(`¡${item.name} adquirido y activado! ${item.icon}\n\nAhora aparecerá en tu foto de perfil.`);
-                }
                 // Si es un tema, aplicarlo automáticamente
-                else if (item.type === 'theme') {
+                if (item.type === 'theme') {
                     applyTheme(itemId);
                     alert(`¡${item.name} adquirido y aplicado! ${item.icon}\n\nPuedes cambiar de tema desde el menú de temas.`);
                 } else {
@@ -4177,12 +4031,7 @@
 
         // Renderizar feed
         function renderFeed() {
-            console.log('renderFeed iniciando...');
             const content = document.getElementById('content');
-            if (!content) {
-                console.error('ERROR: No se encontró el elemento #content');
-                return;
-            }
             let html = '';
 
             // Formulario de crear post (solo para profesores)
@@ -4420,11 +4269,6 @@
             }
 
             content.innerHTML = html;
-            console.log('Posts renderizados:', filteredPosts.length);
-            console.log('HTML generado, longitud:', html.length);
-            
-            // Aplicar marcos de perfil después de renderizar
-            setTimeout(applyActiveFrame, 50);
         }
 
         // Renderizar comentarios
