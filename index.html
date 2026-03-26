@@ -888,13 +888,122 @@
             font-weight: bold;
             margin-top: 15px;
             transition: all .3s;
-        }
+
+}
+            
+        
 
         .create-post button:hover {
             background: #a00000;
             transform: translateY(-2px);
         }
+        
+        .create-post img:selection {
+            background: rgba(200, 0, 30, 1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all .3s;
+        }
 
+        .image-upload-section {
+            margin: 15px 0;
+        }
+
+        .image-upload-section label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .image-upload-section input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-upload-section input[type="file"]:hover {
+            border-color: #d30000;
+            background: #fff5f5;
+        }
+
+        .image-preview {
+            margin-top: 10px;
+            max-width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .post-image-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .post-content-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .post-content-image:hover {
+            transform: scale(1.02);
+        }
+
+        .ban-warning {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+        }
+
+        .ban-warning i {
+            font-size: 18px;
+        }
+
+        .add-comment.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .add-comment.disabled input {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        .add-comment.disabled button {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+            
+
+    
         /* --- POSTS GRID --- */
         .posts-grid {
             display: grid;
@@ -2786,14 +2895,53 @@
 
         // Tienda de recompensas - definir ANTES de las funciones
         var shopItems = [
-            { id: 'gif_happy', name: 'GIF Feliz', icon: '🎉', price: 300, type: 'gif', description: 'Celebra con estilo' },
-            { id: 'gif_fire', name: 'GIF Fuego', icon: '🔥', price: 300, type: 'gif', description: 'Para posts increíbles' },
+            { id: 'theme_dark', name: 'Tema Oscuro', icon: '🌙', price: 200, type: 'theme', description: 'Modo nocturno para tus ojos' },
+            
+            // Personalización
+            { id: 'name_red', name: 'Nombre Rojo', icon: '🔴', price: 100, type: 'name_color', description: 'Color de nombre rojo brillante' },
+            { id: 'name_blue', name: 'Nombre Azul', icon: '🔵', price: 100, type: 'name_color', description: 'Color de nombre azul brillante' },
+            { id: 'name_green', name: 'Nombre Verde', icon: '🟢', price: 100, type: 'name_color', description: 'Color de nombre verde brillante' },
+            { id: 'name_purple', name: 'Nombre Púrpura', icon: '🟣', price: 100, type: 'name_color', description: 'Color de nombre púrpura brillante' },
+            { id: 'name_gold', name: 'Nombre Dorado', icon: '🟨', price: 150, type: 'name_color', description: 'Color de nombre dorado premium' },
+            
+            { id: 'badge_star', name: 'Insignia Estrella', icon: '⭐', price: 200, type: 'badge', description: 'Insignia de estrella dorada' },
+            { id: 'badge_crown', name: 'Insignia Corona', icon: '👑', price: 300, type: 'badge', description: 'Insignia de corona real' },
+            { id: 'badge_dragon', name: 'Insignia Dragón', icon: '🐉', price: 250, type: 'badge', description: 'Insignia de dragón legendaria' },
+            
+            { id: 'border_classic', name: 'Borde Clásico', icon: '📜', price: 150, type: 'border', description: 'Borde elegante clásico' },
+            { id: 'border_neon', name: 'Borde Neón', icon: '💫', price: 200, type: 'border', description: 'Borde brillante de neón' },
+            { id: 'border_rainbow', name: 'Borde Arcoíris', icon: '🌈', price: 250, type: 'border', description: 'Borde con colores del arcoíris' },
+            
+            { id: 'font_bold', name: 'Texto Negrita', icon: '🔤', price: 100, type: 'font', description: 'Estilo de texto en negrita' },
+            { id: 'font_italic', name: 'Texto Cursiva', icon: '🔤', price: 100, type: 'font', description: 'Estilo de texto en cursiva' },
+            { id: 'font_rainbow', name: 'Texto Arcoíris', icon: '🌈', price: 200, type: 'font', description: 'Texto con colores del arcoíris' },
+            
+            // Características divertidas
+            { id: 'reaction_pack_basic', name: 'Pack Básico+', icon: '😊', price: 150, type: 'sticker', description: 'Reacciones básicas mejoradas' },
+            { id: 'reaction_pack_anime', name: 'Pack Anime', icon: '😍', price: 300, type: 'sticker', description: 'Reacciones estilo anime' },
+            { id: 'reaction_pack_meme', name: 'Pack Memes', icon: '😂', price: 250, type: 'sticker', description: 'Reacciones de memes populares' },
+            
+            { id: 'sound_notification', name: 'Sonido Notificación', icon: '🔔', price: 100, type: 'sound', description: 'Sonido personalizado de notificaciones' },
+            { id: 'sound_like', name: 'Sonido Like', icon: '❤️', price: 80, type: 'sound', description: 'Sonido especial para likes' },
+            { id: 'sound_comment', name: 'Sonido Comentario', icon: '💬', price: 80, type: 'sound', description: 'Sonido especial para comentarios' },
+            
+            { id: 'animation_bounce', name: 'Animación Rebote', icon: '⚡', price: 200, type: 'animation', description: 'Posts rebotan al aparecer' },
+            { id: 'animation_glow', name: 'Animación Brillo', icon: '✨', price: 250, type: 'animation', description: 'Posts brillan al aparecer' },
+            { id: 'animation_rainbow', name: 'Animación Arcoíris', icon: '🌈', price: 300, type: 'animation', description: 'Posts con arcoíris animado' },
+            
+            { id: 'gif_library', name: 'Biblioteca GIF', icon: '🎬', price: 400, type: 'gif', description: 'Acceso a biblioteca de GIFs' },
+            { id: 'gif_trending', name: 'GIFs Trending', icon: '🔥', price: 300, type: 'gif', description: 'Pack de GIFs populares' },
+            { id: 'gif_cute', name: 'GIFs Tiernos', icon: '🥰', price: 250, type: 'gif', description: 'Pack de GIFs adorables' },
+            
+            { id: 'sticker_premium', name: 'Pack Premium', icon: '🎯', price: 350, type: 'sticker', description: 'Stickers exclusivos premium' },
+            { id: 'sticker_seasonal', name: 'Pack Temporada', icon: '🎊', price: 200, type: 'sticker', description: 'Stickers de temporada actual' },
+            { id: 'sticker_animal', name: 'Pack Animales', icon: '🐾', price: 180, type: 'sticker', description: 'Stickers de animales divertidos' },
+            { id: 'sticker_food', name: 'Pack Comida', icon: '🍕', price: 150, type: 'sticker', description: 'Stickers de comida deliciosa' },
             { id: 'gif_star', name: 'GIF Estrella', icon: '⭐', price: 300, type: 'gif', description: 'Brilla con luz propia' },
             { id: 'gif_rocket', name: 'GIF Cohete', icon: '🚀', price: 300, type: 'gif', description: 'Despega al éxito' },
             { id: 'sticker_cool', name: 'Sticker Cool', icon: '😎', price: 150, type: 'sticker', description: 'Reacción premium' },
             { id: 'sticker_genius', name: 'Sticker Genio', icon: '🧠', price: 150, type: 'sticker', description: 'Para ideas brillantes' },
             { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' },
-            { id: 'sticker_trophy', name: 'Sticker Trofeo', icon: '🏆', price: 150, type: 'sticker', description: 'Reconoce el éxito' },
             { id: 'badge_vip', name: 'Insignia VIP', icon: '👑', price: 500, type: 'badge', description: 'Estatus premium' },
             { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' }
         ];
@@ -2935,6 +3083,145 @@
             showEventDecoration(currentMonth);
         }
 
+        // Lista de palabras inapropiadas en español (incluyendo variantes)
+        const badWords = [
+            'mierda', 'puta', 'puto', 'joder', 'cabrón', 'cabron', 'coño', 'polla', 'pollas',
+            'maricón', 'maricon', 'marica', 'put0', 'put1', 'put2', 'put3', 'put4', 'put5', 'put6', 'put7', 'put8', 'put9',
+            'zorra', 'zorro', 'gilipollas', 'gili', 'subnormal', 'capullo', 'capullos', 'hijo de puta', 'hijoputa',
+            'hijaputa', 'concha', 'cona', 'verga', 'verg4', 'pendejo', 'pendeja', 'pendejos',
+            'pendejas', 'culero', 'culera', 'chingar', 'chinga', 'chingado', 'chingada',
+            'pinche', 'mamón', 'mamon', 'mamona', 'güevón', 'huevón', 'guevon', 'huevon', 'carajo',
+            'pajero', 'pajera', 'pitos', 'mierdas', 'putas', 'putos', 'coños', 'maricones', 'maricas', 'zorras',
+            'zorros', 'capullos', 'conchas', 'conas', 'vergas', 'pendejos', 'pendejas', 'culeros', 'culeras',
+            'chingas', 'chingados', 'chingadas', 'pinches', 'mamones', 'mamonas', 'güevones', 'huevones', 'guevones',
+            'pajeros', 'pajeras'
+        ];
+
+        // Detección de spam y contenido sexual
+        const spamPatterns = [
+            // Spam patterns
+            /(.)\1{5,}/, // Caracteres repetidos (aaaaaa)
+            /(.)\1{3,}(.)\2{3,}/, // Patrones repetidos (aaabbb)
+            /\b(venga|entra|click|link|gratis|oferta|promo|descuento|ganar|dinero|regalo)\b/gi,
+            /\b(www\.|http|https|\.com|\.es|\.org|\.net)/gi,
+            // Patrones de contenido sexual
+            /\b(sex0|sex1|sex2|sex3|sex4|sex5|sex6|sex7|sex8|sex9|porno|porn|xxx|nsfw|hot|sexy|nude|naked|adult|18\+)\b/gi,
+            /\b(pene|vagina|culo|tetas|teta|coito|oral|anal|sexo|sexual|erótico|erotic|fuck|shit|ass|boob|dick|pussy)\b/gi,
+            // Emojis sexuales inapropiados
+            /[🍑🍆💦🔞🌮🌯🍌🥒🍆🍑💦🔥]/g
+        ];
+
+        // Sistema de moderación de usuarios
+        let userModeration = {
+            strikes: 0,
+            bannedUntil: null,
+            lastStrikeDate: null
+        };
+
+        // Cargar datos de moderación
+        function loadModerationData() {
+            const saved = localStorage.getItem('drakoblog_moderation');
+            if (saved) {
+                userModeration = JSON.parse(saved);
+            // No resetear baneo al reiniciar página para estudiantes
+                // if (userModeration.bannedUntil && currentUser.role === 'estudiante') {
+                //     userModeration.bannedUntil = null;
+                //     userModeration.strikes = 0;
+                //     saveModerationData();
+                // }
+            }
+        }
+
+        // Guardar datos de moderación
+        function saveModerationData() {
+            localStorage.setItem('drakoblog_moderation', JSON.stringify(userModeration));
+        }
+
+        // Verificar si el usuario está baneado
+        function isUserBanned() {
+            if (!userModeration.bannedUntil) return false;
+            const now = new Date();
+            const bannedUntil = new Date(userModeration.bannedUntil);
+            return now < bannedUntil;
+        }
+
+        // Obtener tiempo restante de baneo
+        function getBanTimeRemaining() {
+            if (!userModeration.bannedUntil) return null;
+            const now = new Date();
+            const bannedUntil = new Date(userModeration.bannedUntil);
+            if (now >= bannedUntil) return null;
+            
+            const diff = bannedUntil - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            if (days > 0) return `${days} día${days > 1 ? 's' : ''} y ${hours} hora${hours > 1 ? 's' : ''}`;
+            return `${hours} hora${hours > 1 ? 's' : ''}`;
+        }
+
+        // Verificar si el texto contiene palabras inapropiadas, spam o contenido sexual
+        function containsBadWords(text) {
+            const lowerText = text.toLowerCase();
+            
+            // Verificar palabras inapropiadas
+            if (badWords.some(word => lowerText.includes(word))) {
+                return true;
+            }
+            
+            // Verificar patrones de spam y contenido sexual
+            for (let pattern of spamPatterns) {
+                if (pattern.test(text)) {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+        // Procesar strike por lenguaje inapropiado (solo para estudiantes)
+        function processStrike() {
+            // Solo aplicar strikes a estudiantes
+            if (currentUser.role === 'profesor') {
+                return '⚠️ ADVERTENCIA\n\nComo profesor, se te recuerda mantener un lenguaje apropiado para el ambiente académico.';
+            }
+            
+            const now = new Date();
+            
+            // Resetear strikes si han pasado más de 24 horas desde el último strike
+            if (userModeration.lastStrikeDate) {
+                const lastStrike = new Date(userModeration.lastStrikeDate);
+                const hoursDiff = (now - lastStrike) / (1000 * 60 * 60);
+                if (hoursDiff > 24) {
+                    userModeration.strikes = 0;
+                }
+            }
+            
+            userModeration.strikes++;
+            userModeration.lastStrikeDate = now;
+            
+            let message = '';
+            
+            if (userModeration.strikes === 1) {
+                message = '⚠️ 1/3 Strikes\n\nTen cuidado con tu lenguaje, tratemos de tener un ambiente respetuoso';
+            } else if (userModeration.strikes === 2) {
+                message = '⚠️ 2/3 Strikes\n\nSi no tienes cuidado esta puede ser tu ultima advertencia, cuida tus palabras';
+            } else if (userModeration.strikes >= 3) {
+                // Banear por 1 semana
+                const banUntil = new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000));
+                userModeration.bannedUntil = banUntil;
+                
+                // Resetear racha de login
+                userRewards.currentStreak = 0;
+                saveRewards();
+                
+                message = '🚫 BANEADO\n\nHas alcanzado el límite de strikes. Has sido baneado por 1 semana.\nTu racha de login ha sido reiniciada.\n\nPodrás comentar nuevamente el: ' + banUntil.toLocaleDateString('es-ES');
+            }
+            
+            saveModerationData();
+            return message;
+        }
+
         // Sistema de recompensas
         let userRewards = JSON.parse(localStorage.getItem('drakoblog_rewards')) || {
             currentStreak: 0,
@@ -3014,6 +3301,7 @@
                 document.body.classList.remove('theme-dark');
             }
             
+            loadModerationData();
             checkDailyStreak();
             loadSavedTheme();
             renderFeed();
@@ -3660,6 +3948,11 @@
                                 <option value="show">🎭 Espectáculo</option>
                             </select>
                         </div>
+                        <div class="image-upload-section">
+                            <label for="imageUpload"><i class="fa-solid fa-image"></i> Añadir Imagen (opcional):</label>
+                            <input type="file" id="imageUpload" accept="image/*" onchange="previewImage(event)">
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
                         <textarea id="newPostContent" placeholder="Comparte algo con tus estudiantes..."></textarea>
                         <button onclick="createPost()">
                             <i class="fa-solid fa-paper-plane"></i> Publicar
@@ -3802,6 +4095,7 @@
                                 </div>
                                 <div class="post-category">${getCategoryName(post.category)}</div>
                                 <div class="post-title">${post.title || 'Publicación'}</div>
+                                ${post.image ? `<div class="post-image-container"><img src="${post.image}" alt="Imagen del post" class="post-content-image"></div>` : ''}
                                 <div class="post-content">${post.content}</div>
                                 ${renderReactionSummary(post)}
                                 <div class="post-footer">
@@ -3855,10 +4149,21 @@
                                 </div>
                                 <div class="comments-section" id="comments-${post.id}" style="display: none;">
                                     ${renderComments(post)}
-                                    <div class="add-comment">
-                                        <input type="text" id="comment-input-${post.id}" placeholder="Escribe un comentario...">
-                                        <button onclick="addComment(${post.id})">Enviar</button>
-                                    </div>
+                                    ${currentUser.role === 'estudiante' && isUserBanned() ? `
+                                        <div class="ban-warning">
+                                            <i class="fa-solid fa-ban"></i>
+                                            <span>Estás baneado por lenguaje inapropiado. Tiempo restante: ${getBanTimeRemaining()}</span>
+                                        </div>
+                                        <div class="add-comment disabled">
+                                            <input type="text" id="comment-input-${post.id}" placeholder="No puedes comentar mientras estás baneado..." disabled>
+                                            <button disabled>Enviar</button>
+                                        </div>
+                                    ` : `
+                                        <div class="add-comment">
+                                            <input type="text" id="comment-input-${post.id}" placeholder="Escribe un comentario...">
+                                            <button onclick="addComment(${post.id})">Enviar</button>
+                                        </div>
+                                    `}
                                 </div>
                             </div>
                         </div>
@@ -3895,13 +4200,60 @@
             }
         }
 
+        // Preview image before upload
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            
+            if (file) {
+                // Check if file is an image
+                if (!file.type.startsWith('image/')) {
+                    alert('Por favor selecciona un archivo de imagen válido.');
+                    event.target.value = '';
+                    preview.innerHTML = '';
+                    return;
+                }
+                
+                // Check file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('La imagen es demasiado grande. Por favor selecciona una imagen menor a 5MB.');
+                    event.target.value = '';
+                    preview.innerHTML = '';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Vista previa">`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '';
+            }
+        }
+
         // Crear post
         function createPost() {
             const content = document.getElementById('newPostContent').value.trim();
             const category = document.getElementById('postCategory').value;
+            const imageInput = document.getElementById('imageUpload');
+            const imagePreview = document.getElementById('imagePreview');
             
             if (!content) {
                 alert('Por favor escribe algo antes de publicar.');
+                return;
+            }
+
+            // Verificar si el contenido contiene palabras inapropiadas
+            if (containsBadWords(content)) {
+                const strikeMessage = processStrike();
+                alert(strikeMessage);
+                
+                // Si el usuario fue baneado, limpiar el formulario y no permitir la publicación
+                if (userModeration.strikes >= 3) {
+                    clearForm();
+                    renderFeed();
+                }
                 return;
             }
 
@@ -3926,16 +4278,33 @@
                 }
             }
 
-            posts.push(newPost);
-            savePosts();
-            
-            // Clear form
+            // Add image if uploaded
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    newPost.image = e.target.result;
+                    posts.push(newPost);
+                    savePosts();
+                    clearForm();
+                    renderFeed();
+                };
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                posts.push(newPost);
+                savePosts();
+                clearForm();
+                renderFeed();
+            }
+        }
+
+        // Clear form after posting
+        function clearForm() {
             document.getElementById('newPostContent').value = '';
             document.getElementById('postCategory').value = 'avisos';
             document.getElementById('eventType').value = '';
+            document.getElementById('imageUpload').value = '';
+            document.getElementById('imagePreview').innerHTML = '';
             toggleEventDecorations();
-            
-            renderFeed();
         }
 
         // Obtener reacción del usuario actual
@@ -4184,11 +4553,36 @@
 
         // Agregar comentario
         function addComment(postId) {
+            // Verificar si el usuario está baneado (solo estudiantes)
+            if (currentUser.role === 'estudiante' && isUserBanned()) {
+                const timeRemaining = getBanTimeRemaining();
+                alert(`🚫 ESTÁS BANEADO\nNo puedes comentar mientras estás baneado.\nTiempo restante: ${timeRemaining}`);
+                return;
+            }
+
             const input = document.getElementById(`comment-input-${postId}`);
             const text = input.value.trim();
             
             if (!text) {
                 alert('Por favor escribe un comentario.');
+                return;
+            }
+
+            // Verificar si el comentario contiene palabras inapropiadas
+            if (containsBadWords(text)) {
+                if (currentUser.role === 'estudiante') {
+                    const strikeMessage = processStrike();
+                    alert(strikeMessage);
+                    
+                    // Si el estudiante fue baneado, limpiar el input y no permitir el comentario
+                    if (userModeration.strikes >= 3) {
+                        input.value = '';
+                        renderFeed();
+                    }
+                } else {
+                    // Para profesores, solo advertir y no publicar el comentario
+                    alert('⚠️ COMENTARIO ELIMINADO\n\nTu comentario contiene lenguaje inapropiado y ha sido eliminado automáticamente.');
+                }
                 return;
             }
 
