@@ -29,64 +29,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Dark Theme */
-        body.theme-dark {
-            background: #1a1a1a;
-            color: #e0e0e0;
-        }
 
-        body.theme-dark .post,
-        body.theme-dark .create-post,
-        body.theme-dark .rewards-content {
-            background: #2a2a2a;
-            color: #e0e0e0;
-        }
-
-        body.theme-dark .post-content,
-        body.theme-dark .comment-text {
-            color: #b0b0b0;
-        }
-
-        body.theme-dark .post-author,
-        body.theme-dark .comment-author {
-            color: #e0e0e0;
-        }
-
-        body.theme-dark .comment {
-            background: #333;
-        }
-
-        body.theme-dark .shop-item {
-            background: #333;
-        }
-
-        body.theme-dark .points-card,
-        body.theme-dark .achievement {
-            background: #333;
-        }
-
-        /* Rainbow Theme */
-        body.theme-rainbow {
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
-            background-size: 400% 400%;
-            animation: rainbowGradient 15s ease infinite;
-        }
-
-        @keyframes rainbowGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body.theme-rainbow .post,
-        body.theme-rainbow .create-post {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        body.theme-rainbow .rewards-content {
-            background: rgba(255, 255, 255, 0.98);
-        }
 
         /* ===== TEMAS DE CELEBRACIÓN ===== */
         
@@ -197,326 +140,6 @@
 
         body.theme-christmas .social-toggle-btn {
             background: linear-gradient(135deg, #c92a2a, #00b341) !important;
-        }
-
-        /* Dark Theme - Buttons and Elements */
-        body.theme-dark .reward-btn {
-            background: #333;
-            color: #e0e0e0;
-            border: 1px solid #555;
-        }
-
-        body.theme-dark .reward-btn.active {
-            background: #d30000;
-            color: white;
-            border-color: #d30000;
-        }
-
-        body.theme-dark .reward-btn:hover {
-            background: #444;
-            border-color: #d30000;
-        }
-
-        body.theme-dark #btn-recompensas {
-            background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
-            color: #333 !important;
-        }
-
-        body.theme-dark #btn-calendario {
-            background: linear-gradient(135deg, #4a90e2, #357abd) !important;
-            color: white !important;
-        }
-
-        body.theme-dark .search-container input {
-            background: #333;
-            color: #e0e0e0;
-            border: 1px solid #555;
-        }
-
-        body.theme-dark .search-container input::placeholder {
-            color: #888;
-        }
-
-        body.theme-dark .search-container i {
-            color: #888;
-        }
-
-        body.theme-dark .calendar-content {
-            background: #2a2a2a;
-            color: #e0e0e0;
-        }
-
-        body.theme-dark .calendar-header h2 {
-            color: #4a90e2;
-        }
-
-        body.theme-dark .calendar-day {
-            background: #333;
-            color: #e0e0e0;
-        }
-
-        body.theme-dark .calendar-day:hover {
-            background: #444;
-        }
-
-        body.theme-dark .calendar-day-header {
-            color: #4a90e2;
-        }
-
-        body.theme-dark .year-btn {
-            background: #333;
-            color: #e0e0e0;
-            border-color: #555;
-        }
-
-        body.theme-dark .year-btn:hover {
-            background: #444;
-            border-color: #4a90e2;
-        }
-
-        /* Rainbow Theme - Buttons and Elements */
-        body.theme-rainbow .reward-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            font-weight: bold;
-        }
-
-        body.theme-rainbow .reward-btn.active {
-            background: rgba(211, 0, 0, 0.9);
-            color: white;
-            border-color: #d30000;
-        }
-
-        body.theme-rainbow .reward-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        body.theme-rainbow #btn-recompensas {
-            background: linear-gradient(135deg, #ffd700, #ffed4e) !important;
-            color: #333 !important;
-            border: 2px solid #ffd700 !important;
-        }
-
-        body.theme-rainbow #btn-calendario {
-            background: linear-gradient(135deg, #4a90e2, #357abd) !important;
-            color: white !important;
-            border: 2px solid #4a90e2 !important;
-        }
-
-        body.theme-rainbow .search-container input {
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        body.theme-rainbow .search-container input::placeholder {
-            color: #666;
-        }
-
-        body.theme-rainbow .calendar-content {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        body.theme-rainbow .calendar-day {
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        body.theme-rainbow .calendar-day:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-
-        body.theme-rainbow .year-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-
-        body.theme-rainbow .year-btn:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-
-        /* Dark Theme - Header and Hero */
-        body.theme-dark header {
-            background: #1a1a1a;
-            border-bottom: 2px solid #d30000;
-        }
-
-        body.theme-dark .hero {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-        }
-
-        body.theme-dark .hero::before {
-            background: radial-gradient(circle at center, rgba(211,0,0,0.2) 0%, transparent 70%);
-        }
-
-        body.theme-dark .rewards {
-            background: #1a1a1a;
-            border-top: 2px solid #d30000;
-            border-bottom: 2px solid #d30000;
-        }
-
-        body.theme-dark .top-bar {
-            background: #2a2a2a;
-        }
-
-        body.theme-dark .user-avatar {
-            background: #4a90e2;
-        }
-
-        body.theme-dark .post-category {
-            background: #d30000;
-        }
-
-        body.theme-dark .reaction-option {
-            background: #444;
-        }
-
-        body.theme-dark .reaction-option:hover {
-            background: #555;
-        }
-
-        body.theme-dark .reactions-popup {
-            background: #2a2a2a;
-            border: 1px solid #555;
-        }
-
-        body.theme-dark .reactions-column {
-            border-color: #555;
-        }
-
-        /* Rainbow Theme - Header and Hero */
-        body.theme-rainbow header {
-            background: linear-gradient(135deg, #d30000, #ff4444);
-        }
-
-        body.theme-rainbow .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        }
-
-        body.theme-rainbow .rewards {
-            background: linear-gradient(135deg, #d30000, #ff4444);
-        }
-
-        body.theme-rainbow .top-bar {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-        }
-
-        body.theme-rainbow .reaction-option {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        body.theme-rainbow .reaction-option:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-
-        body.theme-rainbow .reactions-popup {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Dark Theme - Action Buttons and Interactive Elements */
-        body.theme-dark .action-btn {
-            color: #e0e0e0;
-        }
-
-        body.theme-dark .action-btn:hover {
-            color: #d30000;
-            background: rgba(211, 0, 0, 0.2);
-        }
-
-        body.theme-dark .action-btn.reacted,
-        body.theme-dark .action-btn.liked {
-            color: #ff4444;
-        }
-
-        body.theme-dark .add-comment input {
-            background: #333;
-            color: #e0e0e0;
-            border-color: #555;
-        }
-
-        body.theme-dark .add-comment input::placeholder {
-            color: #888;
-        }
-
-        body.theme-dark .add-comment button {
-            background: #d30000;
-        }
-
-        body.theme-dark .add-comment button:hover {
-            background: #ff4444;
-        }
-
-        body.theme-dark .create-post textarea {
-            background: #333;
-            color: #e0e0e0;
-            border-color: #555;
-        }
-
-        body.theme-dark .create-post textarea::placeholder {
-            color: #888;
-        }
-
-        body.theme-dark .category-selector select {
-            background: #333;
-            color: #e0e0e0;
-            border-color: #555;
-        }
-
-        body.theme-dark .reaction-item {
-            background: #333;
-        }
-
-        body.theme-dark .reaction-item:hover {
-            background: #444;
-        }
-
-        body.theme-dark .no-posts {
-            color: #888;
-        }
-
-        body.theme-dark .clear-search {
-            background: #666;
-        }
-
-        body.theme-dark .clear-search:hover {
-            background: #d30000;
-        }
-
-        /* Rainbow Theme - Action Buttons and Interactive Elements */
-        body.theme-rainbow .action-btn {
-            color: #333;
-        }
-
-        body.theme-rainbow .action-btn:hover {
-            color: #d30000;
-            background: rgba(211, 0, 0, 0.1);
-        }
-
-        body.theme-rainbow .add-comment input {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        body.theme-rainbow .create-post textarea {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        body.theme-rainbow .category-selector select {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        body.theme-rainbow .reaction-item {
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        body.theme-rainbow .reaction-item:hover {
-            background: rgba(255, 255, 255, 1);
         }
 
         /* --- TOP BAR --- */
@@ -1194,23 +817,17 @@
 
         /* Responsive para móvil */
         @media (max-width: 768px) {
-            .social-buttons {
-                bottom: 75px;
-                right: 15px;
-            }
-
-            .social-toggle-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
-            }
-
-            .social-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
+            .hero { height: 180px; }
+            .hero-logo { font-size: 32px; }
+            .dragon-icon { width: 70px; height: 70px; }
+            .posts-grid { grid-template-columns: 1fr; gap: 12px; }
+            .post { margin: 8px 0; border-radius: 16px; }
+            .action-btn { min-height: 52px; font-size: 22px; padding: 10px; }
+            .reward-btn { padding: 10px 14px; font-size: 13px; }
+            .create-post textarea { min-height: 120px; font-size: 15px; }
+            .create-post { padding: 16px; margin-bottom: 20px; }
         }
+
 
         /* --- CREATE POST FORM --- */
         .create-post {
@@ -3103,24 +2720,6 @@
                     </div>
                 </div>
 
-                <!-- Theme Selector -->
-                <div id="themeSelector" style="display: none; margin-bottom: 20px; padding: 15px; background: #f0f0f0; border-radius: 10px;">
-                    <div style="font-size: 14px; font-weight: bold; margin-bottom: 10px; text-align: center;">
-                        <i class="fa-solid fa-palette"></i> Cambiar Tema
-                    </div>
-                    <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button onclick="applyTheme('default')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: white; cursor: pointer; font-size: 12px;">
-                            ☀️ Normal
-                        </button>
-                        <button onclick="applyTheme('theme_dark')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: #2a2a2a; color: white; cursor: pointer; font-size: 12px;">
-                            🌙 Oscuro
-                        </button>
-                        <button onclick="applyTheme('theme_rainbow')" style="padding: 8px 15px; border: 2px solid #ddd; border-radius: 8px; background: linear-gradient(45deg, #ff6b6b, #48dbfb); color: white; cursor: pointer; font-size: 12px;">
-                            🌈 Arcoíris
-                        </button>
-                    </div>
-                </div>
-
                 <div class="shop-grid" id="shopGrid">
                     <!-- Shop items will be rendered here -->
                 </div>
@@ -3353,12 +2952,12 @@
             { id: 'first_like', name: 'Primera Reacción', icon: 'fa-heart', requirement: 1, type: 'likes' },
             { id: 'social_butterfly', name: 'Mariposa Social', icon: 'fa-comments', requirement: 5, type: 'comments' },
             { id: 'week_warrior', name: 'Guerrero Semanal', icon: 'fa-fire', requirement: 7, type: 'streak' },
-            { id: 'like_master', name: 'Maestro del Like', icon: 'fa-heart-circle-check', requirement: 10, type: 'likes' },
-            { id: 'comment_king', name: 'Rey de Comentarios', icon: 'fa-crown', requirement: 15, type: 'comments' },
+            { id: 'like_master', name: 'Maestro del Like', icon: 'fa-heart-circle-check', requirement: 20, type: 'likes' },
+            { id: 'comment_king', name: 'Rey de Comentarios', icon: 'fa-crown', requirement: 25, type: 'comments' },
             { id: 'month_champion', name: 'Campeón Mensual', icon: 'fa-trophy', requirement: 30, type: 'streak' },
-            { id: 'point_collector', name: 'Coleccionista', icon: 'fa-star', requirement: 100, type: 'points' },
-            { id: 'dedication', name: 'Dedicación Total', icon: 'fa-medal', requirement: 50, type: 'streak' },
-            { id: 'super_active', name: 'Super Activo', icon: 'fa-bolt', requirement: 500, type: 'points' }
+            { id: 'point_collector', name: 'Coleccionista', icon: 'fa-star', requirement: 250, type: 'points' },
+            { id: 'dedication', name: 'Verdadero Dragon', icon: 'fa-medal', requirement: 50, type: 'streak' },
+            { id: 'super_active', name: 'Super Activo', icon: 'fa-bolt', requirement: 650, type: 'points' }
         ];
 
         // Cargar posts desde localStorage o crear datos de ejemplo
@@ -3577,7 +3176,7 @@
             }
             // Independencia de México (Septiembre - mes 8)
             else if (month === 8) {
-                decorations = ['🇲🇽', '🌮', '🎺', '🎊', '🎉', '💚', '🤍', '❤️'];
+                decorations = ['🌶️', '🌮', '🎺', '🎊', '🎉', '💚', '🤍', '❤️'];
             }
             // Halloween (Octubre - mes 9)
             else if (month === 9) {
