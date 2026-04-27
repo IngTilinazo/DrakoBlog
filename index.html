@@ -2565,6 +2565,10 @@
                 top: 0;
                 z-index: 100;
                 width: 100%;
+                flex-wrap: wrap;
+                gap: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
 
             .header-left {
@@ -2574,6 +2578,42 @@
             .logo {
                 font-size: 18px;
                 letter-spacing: 1px;
+            }
+
+            /* Ajustar botones del header en móvil */
+            .switch-role,
+            .toggle-role-btn,
+            .clear-ban-btn,
+            .admin-mode-btn {
+                padding: 6px 10px !important;
+                font-size: 10px !important;
+                margin-left: 5px !important;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .switch-role i,
+            .toggle-role-btn i,
+            .clear-ban-btn i,
+            .admin-mode-btn i {
+                font-size: 10px !important;
+            }
+
+            .admin-mode-btn span {
+                display: none;
+            }
+
+            .admin-mode-btn i {
+                display: inline;
+            }
+
+            /* Ocultar scrollbar del header */
+            header::-webkit-scrollbar {
+                display: none;
+            }
+
+            header {
+                scrollbar-width: none;
             }
 
             /* Mobile Hero - más compacto */
