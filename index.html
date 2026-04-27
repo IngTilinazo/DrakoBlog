@@ -2541,6 +2541,18 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
+            /* Prevenir desbordamiento global */
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
             /* Hide desktop header elements */
             .search-container {
                 display: none;
@@ -2552,6 +2564,7 @@
                 position: sticky;
                 top: 0;
                 z-index: 100;
+                width: 100%;
             }
 
             .header-left {
@@ -2567,6 +2580,8 @@
             .hero {
                 padding: 20px 15px;
                 min-height: auto;
+                width: 100%;
+                overflow: hidden;
             }
 
             .hero-logo {
@@ -2578,12 +2593,17 @@
             .container {
                 padding: 15px;
                 padding-bottom: 100px; /* Espacio para botones flotantes */
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
             /* Posts más compactos */
             .post {
                 padding: 15px;
                 margin-bottom: 15px;
+                width: 100%;
+                max-width: 100%;
             }
 
             /* Botones de recompensas más pequeños y con scroll horizontal */
@@ -2593,6 +2613,8 @@
                 gap: 8px;
                 flex-wrap: nowrap;
                 -webkit-overflow-scrolling: touch;
+                width: 100%;
+                max-width: 100%;
             }
 
             .reward-btn {
@@ -2600,6 +2622,37 @@
                 font-size: 12px;
                 white-space: nowrap;
                 flex-shrink: 0;
+            }
+
+            /* Ajustar hero-content */
+            .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+            }
+
+            /* Ajustar dragon-icon */
+            .dragon-icon {
+                max-width: 80px;
+                height: auto;
+            }
+
+            /* Ajustar logo-text */
+            .logo-text {
+                font-size: 24px;
+            }
+
+            /* Ajustar rewards section */
+            .rewards {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Ajustar main-content */
+            .main-content {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
             .user-role {
@@ -2610,338 +2663,144 @@
             /* Mobile Hero - Compact */
             .hero {
                 height: 200px;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Ajustar modales */
+            .rewards-modal,
+            .calendar-modal {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .rewards-content,
+            .calendar-content {
+                width: 95%;
+                max-width: 95%;
+                padding: 20px;
+                margin: 0 auto;
+            }
+
+            /* Ajustar posts-grid */
+            .posts-grid {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Ajustar create-post */
+            .create-post {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Ajustar textarea */
+            textarea {
+                width: 100%;
+                max-width: 100%;
+                resize: vertical;
+            }
+
+            /* Ajustar inputs */
+            input {
+                width: 100%;
+                max-width: 100%;
             }
 
             .hero-logo {
                 font-size: 40px;
                 gap: 5px;
             }
-            
+
             .dragon-icon {
                 width: 80px;
                 height: 80px;
-                margin-bottom: -10px;
+            }
+        }
+
+        /* Media query para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100%;
             }
 
-            /* Mobile Navigation Tabs */
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .container {
+                padding: 10px;
+                padding-bottom: 100px;
+            }
+
+            .hero {
+                height: 150px;
+                padding: 15px 10px;
+            }
+
+            .hero-logo {
+                font-size: 28px;
+            }
+
+            .dragon-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-text {
+                font-size: 20px;
+            }
+
             .rewards {
-                padding: 12px 10px;
-                gap: 8px;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-            }
-
-            .rewards::-webkit-scrollbar {
-                display: none;
+                padding: 10px 5px;
+                gap: 5px;
             }
 
             .reward-btn {
-                padding: 10px 18px;
-                font-size: 12px;
-                white-space: nowrap;
-                flex-shrink: 0;
+                padding: 8px 12px;
+                font-size: 10px;
             }
 
-            /* Mobile Container */
-            .container {
-                padding: 0 12px;
-                margin: 20px auto;
-            }
-
-            /* Mobile Post Grid */
-            .posts-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            /* Mobile Post Card - Enhanced */
             .post {
-                border-radius: 16px;
-                box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            }
-
-            .post-image {
-                height: 180px;
-            }
-
-            .post-body {
-                padding: 16px;
-            }
-
-            .post-header {
+                padding: 12px;
                 margin-bottom: 12px;
             }
 
-            .post-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
+            .rewards-content,
+            .calendar-content {
+                width: 90%;
+                padding: 15px;
             }
 
-            .post-author {
-                font-size: 14px;
+            /* Ajustar login page para pantallas muy pequeñas */
+            .login-form-container {
+                padding: 20px 15px;
+                margin: 0 5px;
             }
 
-            .post-meta {
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .brand-tagline {
                 font-size: 11px;
             }
 
-            .post-title {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-
-            .post-content {
-                font-size: 14px;
-                line-height: 1.6;
-            }
-
-            /* Mobile Actions - Larger Touch Targets */
-            .post-footer {
-                padding-top: 12px;
-                margin-top: 12px;
-            }
-
-            .action-btn {
+            .login-title {
                 font-size: 20px;
+            }
+
+            .role-btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .form-input {
                 padding: 10px;
-                min-width: 48px;
-                min-height: 48px;
-                border-radius: 12px;
-            }
-
-            .action-btn .count {
                 font-size: 13px;
-                font-weight: bold;
-            }
-
-            /* Mobile Reactions Popup - Bottom Sheet Style */
-            .reactions-popup {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                transform: none;
-                border-radius: 24px 24px 0 0;
-                padding: 20px;
-                margin-bottom: 0;
-                flex-direction: column;
-                gap: 16px;
-                max-height: 60vh;
-                overflow-y: auto;
-            }
-
-            .reactions-popup::after {
-                display: none;
-            }
-
-            .reactions-popup::before {
-                content: '';
-                position: absolute;
-                top: 8px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 40px;
-                height: 4px;
-                background: #ddd;
-                border-radius: 2px;
-            }
-
-            .reactions-column {
-                border-right: none;
-                border-bottom: 2px solid #f0f0f0;
-                padding: 0 0 16px 0;
-                justify-content: center;
-                flex-wrap: wrap;
-                display: flex;
-                flex-direction: row;
-            }
-
-            .reactions-column.base {
-                padding: 16px 0 0 0;
-                border-bottom: none;
-            }
-
-            .reaction-option {
-                font-size: 32px;
-                min-width: 56px;
-                height: 56px;
-                padding: 12px;
-            }
-
-            /* Mobile Comments */
-            .comments-section {
-                margin-top: 12px;
-                padding-top: 12px;
-            }
-
-            .comment {
-                padding: 12px;
-                margin-bottom: 8px;
-                border-radius: 12px;
-            }
-
-            .add-comment {
-                gap: 8px;
-                margin-top: 12px;
-            }
-
-            .add-comment input {
-                font-size: 14px;
-                padding: 12px 16px;
-                border-radius: 24px;
-            }
-
-            .add-comment button {
-                padding: 12px 20px;
-                font-size: 13px;
-                border-radius: 24px;
-            }
-
-            /* Mobile Create Post */
-            .create-post {
-                border-radius: 16px;
-                padding: 16px;
-                margin-bottom: 20px;
-            }
-
-            .create-post h3 {
-                font-size: 16px;
-            }
-
-            .create-post textarea {
-                font-size: 14px;
-                padding: 12px;
-                border-radius: 12px;
-            }
-
-            .create-post button {
-                padding: 12px 24px;
-                font-size: 14px;
-                border-radius: 24px;
-            }
-
-            /* Mobile Shop */
-            .shop-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-
-            .shop-item {
-                padding: 20px;
-                border-radius: 16px;
-            }
-
-            .shop-item-icon {
-                font-size: 56px;
-            }
-
-            .shop-item-name {
-                font-size: 15px;
-            }
-
-            .shop-buy-btn {
-                padding: 12px 24px;
-                font-size: 13px;
-                border-radius: 24px;
-            }
-
-            /* Mobile Rewards Modal */
-            .rewards-modal {
-                padding: 0;
-            }
-
-            .rewards-content {
-                width: 100%;
-                height: 100%;
-                max-height: 100vh;
-                border-radius: 0;
-                padding: 20px 16px;
-            }
-
-            .rewards-close {
-                top: 12px;
-                right: 12px;
-                font-size: 28px;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: #f0f0f0;
-                border-radius: 50%;
-            }
-
-            .rewards-header h2 {
-                font-size: 24px;
-            }
-
-            .streak-display {
-                padding: 20px;
-                border-radius: 16px;
-            }
-
-            .streak-number {
-                font-size: 42px;
-            }
-
-            .points-display {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .points-card {
-                padding: 16px;
-                border-radius: 12px;
-            }
-
-            .achievement-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
-            }
-
-            .achievement {
-                padding: 12px;
-                border-radius: 12px;
-            }
-
-            /* Mobile Buttons */
-            .switch-role,
-            .admin-mode-btn {
-                font-size: 11px !important;
-                padding: 6px 10px !important;
-            }
-
-            /* Better touch feedback */
-            .reward-btn:active,
-            .action-btn:active,
-            .shop-buy-btn:active,
-            .create-post button:active,
-            .add-comment button:active {
-                transform: scale(0.95);
-                opacity: 0.8;
-            }
-
-            /* Floating Action Button Style for Rewards */
-            #btn-recompensas {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 99;
-                border-radius: 50%;
-                width: 56px;
-                height: 56px;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-                font-size: 24px;
-            }
-
-            #btn-recompensas span {
-                display: none;
             }
         }
 
@@ -3537,6 +3396,187 @@
                 justify-content: center;
             }
         }
+
+        /* Estilos especiales para insignias VIP y Experto */
+        .badge-special {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-left: 8px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .badge-vip {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.5);
+            border: 2px solid #ffed4e;
+        }
+
+        .badge-expert {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(155, 89, 182, 0.5);
+            border: 2px solid #a569bd;
+        }
+
+        .comment-badge {
+            margin-left: 5px;
+        }
+
+        /* Estilos específicos para móviles - Arreglar desbordamiento */
+        @media (max-width: 768px) {
+            .login-page {
+                padding: 10px;
+                overflow-x: hidden;
+            }
+
+            .login-container {
+                padding: 10px;
+                min-height: 100vh;
+            }
+
+            .login-content {
+                padding: 10px;
+            }
+
+            .login-form-container {
+                padding: 25px 20px;
+                max-width: 100%;
+                margin: 0 10px;
+            }
+
+            .login-header {
+                margin-bottom: 20px;
+            }
+
+            .brand-section {
+                margin-bottom: 30px;
+            }
+
+            .brand-logo {
+                margin-bottom: 15px;
+            }
+
+            .brand-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .brand-icon i {
+                font-size: 28px;
+            }
+
+            .brand-name {
+                font-size: 24px;
+            }
+
+            .brand-tagline {
+                font-size: 13px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+
+            .login-subtitle {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-label {
+                font-size: 12px;
+            }
+
+            .form-input {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .role-buttons {
+                gap: 10px;
+            }
+
+            .role-btn {
+                padding: 12px 15px;
+                font-size: 12px;
+            }
+
+            .role-btn i {
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+            .config-buttons {
+                gap: 8px;
+            }
+
+            .config-btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .password-status {
+                font-size: 10px;
+                padding: 8px;
+            }
+
+            .login-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            /* Ocultar elementos que causan desbordamiento */
+            .floating-shapes {
+                display: none;
+            }
+
+            /* Asegurar que el contenido no se desborde */
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-form-container {
+                padding: 20px 15px;
+                margin: 0 5px;
+            }
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .brand-tagline {
+                font-size: 11px;
+            }
+
+            .login-title {
+                font-size: 20px;
+            }
+
+            .role-btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .form-input {
+                padding: 10px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 
@@ -3924,27 +3964,17 @@
             { id: 'badge_star', name: 'Insignia Estrella', icon: '⭐', price: 200, type: 'badge', description: 'Insignia de estrella dorada' },
             { id: 'badge_crown', name: 'Insignia Corona', icon: '👑', price: 300, type: 'badge', description: 'Insignia de corona real' },
             { id: 'badge_dragon', name: 'Insignia Dragón', icon: '🐉', price: 250, type: 'badge', description: 'Insignia de dragón legendaria' },
+            { id: 'badge_vip', name: 'VIP', icon: '', price: 500, type: 'badge', description: 'Estatus premium' },
+            { id: 'badge_expert', name: 'Experto', icon: '', price: 500, type: 'badge', description: 'Maestro del saber' },
             
             { id: 'border_classic', name: 'Borde Clásico', icon: '📜', price: 150, type: 'border', description: 'Borde elegante clásico' },
             { id: 'border_neon', name: 'Borde Neón', icon: '💫', price: 200, type: 'border', description: 'Borde brillante de neón' },
             { id: 'border_rainbow', name: 'Borde Arcoíris', icon: '🌈', price: 250, type: 'border', description: 'Borde con colores del arcoíris' },
             
-            { id: 'font_bold', name: 'Texto Negrita', icon: '🔤', price: 100, type: 'font', description: 'Estilo de texto en negrita' },
-            { id: 'font_italic', name: 'Texto Cursiva', icon: '🔤', price: 100, type: 'font', description: 'Estilo de texto en cursiva' },
-            { id: 'font_rainbow', name: 'Texto Arcoíris', icon: '🌈', price: 200, type: 'font', description: 'Texto con colores del arcoíris' },
-            
             // Características divertidas
             { id: 'reaction_pack_basic', name: 'Pack Básico+', icon: '😊', price: 150, type: 'sticker', description: 'Reacciones básicas mejoradas' },
             { id: 'reaction_pack_anime', name: 'Pack Anime', icon: '😍', price: 300, type: 'sticker', description: 'Reacciones estilo anime' },
             { id: 'reaction_pack_meme', name: 'Pack Memes', icon: '😂', price: 250, type: 'sticker', description: 'Reacciones de memes populares' },
-            
-            { id: 'sound_notification', name: 'Sonido Notificación', icon: '🔔', price: 100, type: 'sound', description: 'Sonido personalizado de notificaciones' },
-            { id: 'sound_like', name: 'Sonido Like', icon: '❤️', price: 80, type: 'sound', description: 'Sonido especial para likes' },
-            { id: 'sound_comment', name: 'Sonido Comentario', icon: '💬', price: 80, type: 'sound', description: 'Sonido especial para comentarios' },
-            
-            { id: 'animation_bounce', name: 'Animación Rebote', icon: '⚡', price: 200, type: 'animation', description: 'Posts rebotan al aparecer' },
-            { id: 'animation_glow', name: 'Animación Brillo', icon: '✨', price: 250, type: 'animation', description: 'Posts brillan al aparecer' },
-            { id: 'animation_rainbow', name: 'Animación Arcoíris', icon: '🌈', price: 300, type: 'animation', description: 'Posts con arcoíris animado' },
             
             { id: 'gif_library', name: 'Biblioteca GIF', icon: '🎬', price: 400, type: 'gif', description: 'Acceso a biblioteca de GIFs' },
             { id: 'gif_trending', name: 'GIFs Trending', icon: '🔥', price: 300, type: 'gif', description: 'Pack de GIFs populares' },
@@ -3958,9 +3988,7 @@
             { id: 'gif_rocket', name: 'GIF Cohete', icon: '🚀', price: 300, type: 'gif', description: 'Despega al éxito' },
             { id: 'sticker_cool', name: 'Sticker Cool', icon: '😎', price: 150, type: 'sticker', description: 'Reacción premium' },
             { id: 'sticker_genius', name: 'Sticker Genio', icon: '🧠', price: 150, type: 'sticker', description: 'Para ideas brillantes' },
-            { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' },
-            { id: 'badge_vip', name: 'Insignia VIP', icon: '👑', price: 500, type: 'badge', description: 'Estatus premium' },
-            { id: 'badge_expert', name: 'Insignia Experto', icon: '🎓', price: 500, type: 'badge', description: 'Maestro del saber' }
+            { id: 'sticker_party', name: 'Sticker Fiesta', icon: '🎊', price: 150, type: 'sticker', description: 'Celebra logros' }
         ];
 
         var currentRewardsTab = 'stats';
@@ -4276,6 +4304,7 @@
         }
 
         // Sistema de recompensas
+        let currentUser = null; // Usuario actual logueado
         let userRewards = JSON.parse(localStorage.getItem('drakoblog_rewards')) || {
             currentStreak: 0,
             bestStreak: 0,
@@ -4284,8 +4313,166 @@
             totalLikes: 0,
             totalComments: 0,
             achievements: [],
-            ownedItems: []
+            ownedItems: [],
+            userPreferences: {} // Guardar preferencias por nombre de usuario
         };
+
+        // Guardar recompensas
+        function saveRewards() {
+            localStorage.setItem('drakoblog_rewards', JSON.stringify(userRewards));
+        }
+
+        // Actualizar display de recompensas
+        function updateRewardsDisplay() {
+            // Actualizar estadísticas
+            const totalPointsEl = document.getElementById('totalPoints');
+            const totalLikesEl = document.getElementById('totalLikes');
+            const totalCommentsEl = document.getElementById('totalComments');
+            const streakDaysEl = document.getElementById('streakDays');
+            const bestStreakEl = document.getElementById('bestStreak');
+
+            if (totalPointsEl) totalPointsEl.textContent = userRewards.totalPoints;
+            if (totalLikesEl) totalLikesEl.textContent = userRewards.totalLikes;
+            if (totalCommentsEl) totalCommentsEl.textContent = userRewards.totalComments;
+            if (streakDaysEl) streakDaysEl.textContent = userRewards.currentStreak;
+            if (bestStreakEl) bestStreakEl.textContent = userRewards.bestStreak;
+
+            // Actualizar puntos en la tienda
+            const shopPointsEl = document.getElementById('shopPoints');
+            if (shopPointsEl) shopPointsEl.textContent = userRewards.totalPoints;
+
+            // Renderizar logros
+            renderAchievements();
+        }
+
+        // Renderizar logros
+        function renderAchievements() {
+            const achievementGrid = document.getElementById('achievementGrid');
+            if (!achievementGrid) return;
+
+            let html = '';
+            achievements.forEach(achievement => {
+                const unlocked = userRewards.achievements.includes(achievement.id);
+                const progress = getAchievementProgress(achievement);
+                
+                html += `
+                    <div class="achievement-item ${unlocked ? 'unlocked' : 'locked'}">
+                        <div class="achievement-icon">
+                            <i class="fa-solid ${achievement.icon}"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>${achievement.name}</h4>
+                            <p>${progress}</p>
+                        </div>
+                        ${unlocked ? '<div class="achievement-check">✓</div>' : ''}
+                    </div>
+                `;
+            });
+
+            achievementGrid.innerHTML = html;
+        }
+
+        // Obtener progreso de logro
+        function getAchievementProgress(achievement) {
+            let current = 0;
+            
+            switch(achievement.type) {
+                case 'likes':
+                    current = userRewards.totalLikes;
+                    break;
+                case 'comments':
+                    current = userRewards.totalComments;
+                    break;
+                case 'streak':
+                    current = userRewards.currentStreak;
+                    break;
+                case 'points':
+                    current = userRewards.totalPoints;
+                    break;
+            }
+
+            return `${current}/${achievement.requirement}`;
+        }
+
+        // Cargar preferencias del usuario
+        function loadUserPreferences() {
+            if (!currentUser) {
+                console.log('No current user found');
+                return;
+            }
+            
+            console.log('Loading preferences for user:', currentUser.name);
+            console.log('User preferences object:', userRewards.userPreferences);
+            
+            // Asegurar que userPreferences existe
+            if (!userRewards.userPreferences) {
+                userRewards.userPreferences = {};
+                console.log('Created userPreferences object');
+            }
+            
+            // Asegurar que las preferencias del usuario actual existen
+            if (!userRewards.userPreferences[currentUser.name]) {
+                userRewards.userPreferences[currentUser.name] = {};
+                console.log('Created preferences for user:', currentUser.name);
+            }
+            
+            const prefs = userRewards.userPreferences[currentUser.name];
+            console.log('User prefs:', prefs);
+            
+            // Aplicar preferencias guardadas
+            if (prefs.nameColor) {
+                localStorage.setItem('drakoblog_name_color', prefs.nameColor);
+                console.log('Applied name color:', prefs.nameColor);
+            }
+            if (prefs.badge) {
+                localStorage.setItem('drakoblog_active_badge', prefs.badge);
+                console.log('Applied badge:', prefs.badge);
+            }
+            if (prefs.border) {
+                localStorage.setItem('drakoblog_active_border', prefs.border);
+                console.log('Applied border:', prefs.border);
+            }
+            if (prefs.font) {
+                localStorage.setItem('drakoblog_active_font', prefs.font);
+                console.log('Applied font:', prefs.font);
+            }
+        }
+
+        // Verificar logros
+        function checkAchievements() {
+            achievements.forEach(achievement => {
+                if (!userRewards.achievements.includes(achievement.id)) {
+                    let current = 0;
+                    
+                    switch(achievement.type) {
+                        case 'likes':
+                            current = userRewards.totalLikes;
+                            break;
+                        case 'comments':
+                            current = userRewards.totalComments;
+                            break;
+                        case 'streak':
+                            current = userRewards.currentStreak;
+                            break;
+                        case 'points':
+                            current = userRewards.totalPoints;
+                            break;
+                    }
+
+                    if (current >= achievement.requirement) {
+                        userRewards.achievements.push(achievement.id);
+                        userRewards.totalPoints += 50; // 50 puntos bonus por logro
+                        saveRewards();
+                        showAchievementNotification(achievement);
+                    }
+                }
+            });
+        }
+
+        // Mostrar notificación de logro
+        function showAchievementNotification(achievement) {
+            alert(`🎉 ¡Logro Desbloqueado!\n\n${achievement.name}\n+50 puntos bonus`);
+        }
 
         // Definición de logros
         const achievements = [
@@ -4738,11 +4925,18 @@
                 const item = shopItems[i];
                 const owned = userRewards.ownedItems.includes(item.id);
                 const canBuy = userRewards.totalPoints >= item.price;
-                const locked = !owned && !canBuy;
+                const isCustomizationItem = ['name_color', 'badge', 'border', 'font'].includes(item.type);
+                
+                // Los bordes son solo para profesores
+                const isProfessorOnly = item.type === 'border';
+                const isProfessor = currentUser && currentUser.role === 'profesor';
+                const isBlockedForStudent = isProfessorOnly && !isProfessor;
+                
+                const locked = !isCustomizationItem && !owned && !canBuy;
                 const pointsNeeded = item.price - userRewards.totalPoints;
                 
                 html += '<div class="shop-item';
-                if (owned) html += ' owned';
+                if (owned && !isCustomizationItem) html += ' owned';
                 if (locked) html += ' locked';
                 html += '">';
                 
@@ -4750,7 +4944,40 @@
                 html += '<div class="shop-item-name">' + item.name + '</div>';
                 html += '<div class="shop-item-desc">' + item.description + '</div>';
                 
-                if (owned) {
+                if (isCustomizationItem) {
+                    // Items de personalización: mostrar comprar o seleccionar según si están comprados
+                    if (isBlockedForStudent) {
+                        html += '<div class="shop-item-price">';
+                        html += '<i class="fa-solid fa-star"></i> ' + item.price;
+                        html += '</div>';
+                        html += '<button class="shop-buy-btn locked" disabled>';
+                        html += '<i class="fa-solid fa-lock"></i> SOLO PROFESORES';
+                        html += '</button>';
+                    } else if (owned) {
+                        html += '<div class="owned-badge"><i class="fa-solid fa-check"></i> COMPRADO</div>';
+                        html += '<button class="shop-buy-btn" onclick="buyItem(\'' + item.id + '\')">';
+                        html += '<i class="fa-solid fa-palette"></i> SELECCIONAR';
+                        html += '</button>';
+                    } else {
+                        html += '<div class="shop-item-price">';
+                        html += '<i class="fa-solid fa-star"></i> ' + item.price;
+                        html += '</div>';
+                        
+                        html += '<button class="shop-buy-btn';
+                        if (!canBuy) html += ' locked';
+                        html += '" onclick="buyItem(\'' + item.id + '\')"';
+                        if (!canBuy) html += ' disabled';
+                        html += '>';
+                        
+                        if (canBuy) {
+                            html += '<i class="fa-solid fa-shopping-cart"></i> COMPRAR';
+                        } else {
+                            html += '<i class="fa-solid fa-lock"></i> BLOQUEADO (' + pointsNeeded + ' pts más)';
+                        }
+                        
+                        html += '</button>';
+                    }
+                } else if (owned) {
                     html += '<div class="owned-badge"><i class="fa-solid fa-check"></i> ADQUIRIDO</div>';
                 } else {
                     html += '<div class="shop-item-price">';
@@ -4783,12 +5010,21 @@
             const item = shopItems.find(i => i.id === itemId);
             if (!item) return;
             
+            // Para items de personalización (colores, badges, borders, fonts), permitir selección múltiple
+            const isCustomizationItem = ['name_color', 'badge', 'border', 'font'].includes(item.type);
+            
+            // Si ya está comprado, solo seleccionarlo
+            if (isCustomizationItem && userRewards.ownedItems.includes(itemId)) {
+                selectItem(itemId);
+                return;
+            }
+            
             if (userRewards.totalPoints < item.price) {
                 alert('No tienes suficientes puntos para comprar este item.');
                 return;
             }
             
-            if (userRewards.ownedItems.includes(itemId)) {
+            if (!isCustomizationItem && userRewards.ownedItems.includes(itemId)) {
                 alert('Ya tienes este item.');
                 return;
             }
@@ -4796,6 +5032,7 @@
             if (confirm(`¿Comprar ${item.name} por ${item.price} puntos?`)) {
                 userRewards.totalPoints -= item.price;
                 userRewards.ownedItems.push(itemId);
+                
                 saveRewards();
                 renderShop();
                 updateRewardsDisplay();
@@ -4806,22 +5043,45 @@
                     alert(`¡${item.name} adquirido y aplicado! ${item.icon}\n\nPuedes cambiar de tema desde el menú de temas.`);
                 } else if (item.type === 'name_color') {
                     applyNameColor(itemId);
-                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTu nombre ahora tiene este color.`);
+                    alert(`¡${item.name} comprado y seleccionado! ${item.icon}\n\nTu nombre ahora tiene este color. Puedes cambiarlo cuando quieras sin costo.`);
                 } else if (item.type === 'badge') {
                     applyBadge(itemId);
-                    alert(`¡${item.name} adquirido! ${item.icon}\n\nLa insignia se mostrará en tus posts.`);
+                    alert(`¡${item.name} comprada y seleccionada! ${item.icon}\n\nLa insignia se mostrará en tus posts. Puedes cambiarla cuando quieras sin costo.`);
                 } else if (item.type === 'border') {
                     applyBorder(itemId);
-                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTus posts tendrán este borde.`);
+                    alert(`¡${item.name} comprado y seleccionado! ${item.icon}\n\nTus posts tendrán este borde. Puedes cambiarlo cuando quieras sin costo.`);
                 } else if (item.type === 'font') {
                     applyFont(itemId);
-                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTu texto tendrá este estilo.`);
+                    alert(`¡${item.name} comprado y seleccionado! ${item.icon}\n\nTu texto tendrá este estilo. Puedes cambiarlo cuando quieras sin costo.`);
                 } else {
                     alert(`¡${item.name} adquirido! ${item.icon}\n\nAhora puedes usarlo en las reacciones.`);
                 }
                 
                 renderFeed();
             }
+        }
+
+        // Seleccionar item (para items ya comprados)
+        function selectItem(itemId) {
+            const item = shopItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            // Aplicar item según su tipo
+            if (item.type === 'name_color') {
+                applyNameColor(itemId);
+                alert(`¡${item.name} seleccionado! ${item.icon}\n\nTu nombre ahora tiene este color.`);
+            } else if (item.type === 'badge') {
+                applyBadge(itemId);
+                alert(`¡${item.name} seleccionada! ${item.icon}\n\nLa insignia se mostrará en tus posts.`);
+            } else if (item.type === 'border') {
+                applyBorder(itemId);
+                alert(`¡${item.name} seleccionado! ${item.icon}\n\nTus posts tendrán este borde.`);
+            } else if (item.type === 'font') {
+                applyFont(itemId);
+                alert(`¡${item.name} seleccionado! ${item.icon}\n\nTu texto tendrá este estilo.`);
+            }
+            
+            renderFeed();
         }
 
         // Aplicar tema
@@ -4851,6 +5111,11 @@
 
         // Aplicar color de nombre
         function applyNameColor(colorId) {
+            if (!currentUser) return;
+            
+            console.log('applyNameColor called with:', colorId);
+            console.log('Current user:', currentUser.name);
+            
             const colors = {
                 'name_red': '#ff0000',
                 'name_blue': '#0000ff',
@@ -4858,31 +5123,101 @@
                 'name_purple': '#800080',
                 'name_gold': '#ffd700'
             };
-            localStorage.setItem('drakoblog_name_color', colors[colorId] || '');
+            
+            const selectedColor = colors[colorId] || '';
+            console.log('Selected color:', selectedColor);
+            
+            // Guardar preferencia para este usuario específico
+            if (!userRewards.userPreferences) {
+                userRewards.userPreferences = {};
+                console.log('Created userPreferences object');
+            }
+            
+            if (!userRewards.userPreferences[currentUser.name]) {
+                userRewards.userPreferences[currentUser.name] = {};
+                console.log('Created preferences for user:', currentUser.name);
+            }
+            
+            userRewards.userPreferences[currentUser.name].nameColor = selectedColor;
+            console.log('Saved color to preferences:', selectedColor);
+            
+            // También guardar en localStorage para compatibilidad
+            localStorage.setItem('drakoblog_name_color', selectedColor);
+            console.log('Saved color to localStorage:', selectedColor);
+            
+            saveRewards();
+            renderFeed(); // Actualizar feed para mostrar el cambio
         }
 
         // Aplicar insignia
         function applyBadge(badgeId) {
-            // Guardar insignia activa
+            if (!currentUser) return;
+            
+            // Guardar preferencia para este usuario específico
+            if (!userRewards.userPreferences) userRewards.userPreferences = {};
+            userRewards.userPreferences[currentUser.name] = userRewards.userPreferences[currentUser.name] || {};
+            userRewards.userPreferences[currentUser.name].badge = badgeId;
+            
+            // También guardar en localStorage para compatibilidad
             localStorage.setItem('drakoblog_active_badge', badgeId);
+            
+            saveRewards();
+            renderFeed(); // Actualizar feed para mostrar el cambio
         }
 
         // Aplicar borde de post
         function applyBorder(borderId) {
+            if (!currentUser) return;
+            
+            // Guardar preferencia para este usuario específico
+            if (!userRewards.userPreferences) userRewards.userPreferences = {};
+            userRewards.userPreferences[currentUser.name] = userRewards.userPreferences[currentUser.name] || {};
+            userRewards.userPreferences[currentUser.name].border = borderId;
+            
+            // También guardar en localStorage para compatibilidad
             localStorage.setItem('drakoblog_active_border', borderId);
+            
+            saveRewards();
+            renderFeed(); // Actualizar feed para mostrar el cambio
         }
 
         // Aplicar estilo de fuente
         function applyFont(fontId) {
+            if (!currentUser) return;
+            
+            // Guardar preferencia para este usuario específico
+            if (!userRewards.userPreferences) userRewards.userPreferences = {};
+            userRewards.userPreferences[currentUser.name] = userRewards.userPreferences[currentUser.name] || {};
+            userRewards.userPreferences[currentUser.name].font = fontId;
+            
+            // También guardar en localStorage para compatibilidad
             localStorage.setItem('drakoblog_active_font', fontId);
+            
+            saveRewards();
+            renderFeed(); // Actualizar feed para mostrar el cambio
         }
 
         // Obtener color de nombre del usuario
         function getUserNameColor(authorName) {
+            console.log('getUserNameColor called for author:', authorName, 'currentUser:', currentUser ? currentUser.name : 'null');
+            
             // Aplicar color al autor del post si es el usuario actual
             if (currentUser && authorName === currentUser.name) {
-                return localStorage.getItem('drakoblog_name_color') || '';
+                console.log('Author matches current user');
+                console.log('userRewards.userPreferences:', userRewards.userPreferences);
+                console.log('userRewards.userPreferences[currentUser.name]:', userRewards.userPreferences ? userRewards.userPreferences[currentUser.name] : 'undefined');
+                
+                // Primero intentar obtener de las preferencias del usuario
+                if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name] && userRewards.userPreferences[currentUser.name].nameColor) {
+                    console.log('Found color in preferences:', userRewards.userPreferences[currentUser.name].nameColor);
+                    return userRewards.userPreferences[currentUser.name].nameColor;
+                }
+                // Fallback a localStorage
+                const localColor = localStorage.getItem('drakoblog_name_color') || '';
+                console.log('Fallback to localStorage color:', localColor);
+                return localColor;
             }
+            console.log('Author does not match current user or no current user');
             return '';
         }
 
@@ -4890,10 +5225,27 @@
         function getUserBadge(authorName) {
             // Mostrar insignia si el autor del post es el usuario actual
             if (currentUser && authorName === currentUser.name) {
-                const badgeId = localStorage.getItem('drakoblog_active_badge');
+                let badgeId = null;
+                
+                // Primero intentar obtener de las preferencias del usuario
+                if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name] && userRewards.userPreferences[currentUser.name].badge) {
+                    badgeId = userRewards.userPreferences[currentUser.name].badge;
+                } else {
+                    // Fallback a localStorage
+                    badgeId = localStorage.getItem('drakoblog_active_badge');
+                }
+                
                 if (badgeId) {
                     const badge = shopItems.find(item => item.id === badgeId && item.type === 'badge');
-                    return badge ? badge.icon : '';
+                    if (badge) {
+                        // Para VIP y Experto, usar estilo destacado sin emoji
+                        if (badge.id === 'badge_vip') {
+                            return '<span class="badge-special badge-vip">VIP</span>';
+                        } else if (badge.id === 'badge_expert') {
+                            return '<span class="badge-special badge-expert">EXPERTO</span>';
+                        }
+                        return badge.icon;
+                    }
                 }
             }
             return '';
@@ -4903,7 +5255,16 @@
         function getPostBorder(authorName) {
             // Aplicar borde si el autor del post es el usuario actual
             if (currentUser && authorName === currentUser.name) {
-                const borderId = localStorage.getItem('drakoblog_active_border');
+                let borderId = null;
+                
+                // Primero intentar obtener de las preferencias del usuario
+                if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name] && userRewards.userPreferences[currentUser.name].border) {
+                    borderId = userRewards.userPreferences[currentUser.name].border;
+                } else {
+                    // Fallback a localStorage
+                    borderId = localStorage.getItem('drakoblog_active_border');
+                }
+                
                 if (borderId) {
                     const border = shopItems.find(item => item.id === borderId && item.type === 'border');
                     if (border) {
@@ -4924,7 +5285,16 @@
         function getFontStyle(authorName) {
             // Aplicar fuente si el autor del post es el usuario actual
             if (currentUser && authorName === currentUser.name) {
-                const fontId = localStorage.getItem('drakoblog_active_font');
+                let fontId = null;
+                
+                // Primero intentar obtener de las preferencias del usuario
+                if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name] && userRewards.userPreferences[currentUser.name].font) {
+                    fontId = userRewards.userPreferences[currentUser.name].font;
+                } else {
+                    // Fallback a localStorage
+                    fontId = localStorage.getItem('drakoblog_active_font');
+                }
+                
                 if (fontId) {
                     // Map font IDs directly to CSS class names
                     const fontClasses = {
@@ -5011,9 +5381,80 @@
             console.log('drakoblog_active_border:', localStorage.getItem('drakoblog_active_border'));
             console.log('drakoblog_active_font:', localStorage.getItem('drakoblog_active_font'));
             
+            // Check user preferences
+            console.log('=== CHECKING USER PREFERENCES ===');
+            if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name]) {
+                console.log('User preferences:', userRewards.userPreferences[currentUser.name]);
+            } else {
+                console.log('No user preferences found');
+            }
+            
             renderFeed();
             console.log('=== TEST COMPLETED ===');
             console.log('Create a new post to see the effects applied!');
+        }
+
+        // Debug function to check color application
+        function debugColorApplication() {
+            console.log('=== DEBUG COLOR APPLICATION ===');
+            console.log('Current user:', currentUser.name);
+            console.log('Current user role:', currentUser.role);
+            
+            // Check all color sources
+            const localColor = localStorage.getItem('drakoblog_name_color');
+            const prefColor = userRewards.userPreferences && userRewards.userPreferences[currentUser.name] ? 
+                            userRewards.userPreferences[currentUser.name].nameColor : null;
+            
+            console.log('LocalStorage color:', localColor);
+            console.log('User preference color:', prefColor);
+            console.log('getUserNameColor result:', getUserNameColor(currentUser.name));
+            
+            // Force apply red color for testing
+            console.log('=== FORCING RED COLOR ===');
+            localStorage.setItem('drakoblog_name_color', '#ff0000');
+            if (userRewards.userPreferences && userRewards.userPreferences[currentUser.name]) {
+                userRewards.userPreferences[currentUser.name].nameColor = '#ff0000';
+            } else {
+                // Create preferences if they don't exist
+                if (!userRewards.userPreferences) userRewards.userPreferences = {};
+                if (!userRewards.userPreferences[currentUser.name]) userRewards.userPreferences[currentUser.name] = {};
+                userRewards.userPreferences[currentUser.name].nameColor = '#ff0000';
+            }
+            saveRewards();
+            
+            console.log('After forcing - LocalStorage:', localStorage.getItem('drakoblog_name_color'));
+            console.log('After forcing - getUserNameColor:', getUserNameColor(currentUser.name));
+            
+            renderFeed();
+        }
+
+        // Test function specifically for students
+        function testStudentColors() {
+            console.log('=== TESTING STUDENT COLORS ===');
+            
+            if (!currentUser) {
+                console.log('No current user');
+                return;
+            }
+            
+            console.log('User:', currentUser.name, 'Role:', currentUser.role);
+            
+            // Test direct color application
+            localStorage.setItem('drakoblog_name_color', '#ff0000');
+            console.log('Set localStorage color to red');
+            
+            // Test preference system
+            if (!userRewards.userPreferences) userRewards.userPreferences = {};
+            if (!userRewards.userPreferences[currentUser.name]) userRewards.userPreferences[currentUser.name] = {};
+            userRewards.userPreferences[currentUser.name].nameColor = '#00ff00';
+            console.log('Set preference color to green');
+            
+            saveRewards();
+            
+            console.log('getUserNameColor result:', getUserNameColor(currentUser.name));
+            
+            renderFeed();
+            console.log('Feed rendered - check if name has color');
         }
 
         // Toggle role function
@@ -5168,8 +5609,18 @@
             const content = document.getElementById('content');
             let html = '';
 
+            // Si no hay usuario logueado, no renderizar nada
+            if (!currentUser) {
+                console.log('No current user, skipping renderFeed');
+                return;
+            }
+
+            console.log('renderFeed called for user:', currentUser.name);
+            console.log('Total posts:', posts.length);
+            console.log('Posts authors:', posts.map(p => p.author));
+
             // Formulario de crear post (solo para profesores)
-            if (currentUser && currentUser.role === 'profesor') {
+            if (currentUser.role === 'profesor') {
                 html += `
                     <div class="create-post">
                         <h3><i class="fa-solid fa-pen-to-square"></i> Crear Nueva Publicación</h3>
@@ -5434,12 +5885,21 @@
             if (post.comments.length === 0) {
                 return '<p style="color: #999; font-size: 13px; margin: 10px 0;">No hay comentarios aún.</p>';
             }
-            return post.comments.map(comment => `
+            return post.comments.map(comment => {
+                // Aplicar color al nombre del autor del comentario si es el usuario actual
+                const commentNameColor = getUserNameColor(comment.author);
+                const commentBadge = getUserBadge(comment.author);
+                
+                return `
                 <div class="comment">
-                    <div class="comment-author">${comment.author}</div>
+                    <div class="comment-author" ${commentNameColor ? `style="color: ${commentNameColor};"` : ''}>
+                        ${comment.author}
+                        ${commentBadge ? `<span class="comment-badge">${commentBadge}</span>` : ''}
+                    </div>
                     <div class="comment-text">${comment.text}</div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         // Toggle event decorations selector
@@ -6098,11 +6558,7 @@
 
         // ===== LOGIN FUNCTIONS =====
         
-        // Estado global
-        let currentUser = {
-            role: 'estudiante',
-            name: 'Estudiante'
-        };
+        // Estado global (currentUser ya está declarado arriba)
         
         let selectedRole = 'student'; // Default login role
 
@@ -6148,7 +6604,7 @@
                 // Set user data
                 currentUser = {
                     role: selectedRole === 'student' ? 'estudiante' : 'profesor',
-                    name: selectedRole === 'student' ? 'Estudiante' : 'Prof. García'
+                    name: username  // Usar el nombre que el usuario ingresó
                 };
                 
                 console.log('User set:', currentUser);
@@ -6177,9 +6633,15 @@
                 localStorage.setItem('drakoblog_user_role', currentUser.role);
                 localStorage.setItem('drakoblog_user_name', currentUser.name);
                 
+                // Initialize the app
+                init();
+                
+                // Cargar preferencias del usuario
+                loadUserPreferences();
+                
                 // Show welcome message
                 setTimeout(() => {
-                    alert(`¡Bienvenido${selectedRole === 'student' ? ' Estudiante!' : ' Profesor!'}`);
+                    alert(`¡Bienvenido${selectedRole === 'student' ? ' ' + currentUser.name + '!' : ' Profesor!'}`);
                 }, 500);
             } else {
                 // Check if it's a password issue
