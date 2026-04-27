@@ -1001,6 +1001,633 @@
             background: #ccc;
             cursor: not-allowed;
         }
+
+        /* --- LOGIN PAGE --- */
+        .login-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%, #0a0a0a 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Universal Laptop Fix */
+        @media (min-width: 1024px) and (max-width: 1440px) {
+            .login-page {
+                align-items: flex-start;
+                padding-top: 50px;
+                height: 100vh;
+                overflow-y: auto;
+            }
+            
+            .login-container {
+                width: 100%;
+                max-width: 500px;
+                height: auto;
+                margin: 0 auto;
+                padding: 0 20px;
+                box-sizing: border-box;
+            }
+            
+            .login-form-container {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 30px;
+                background: linear-gradient(135deg, 
+                    rgba(50, 50, 50, 0.95) 0%, 
+                    rgba(30, 30, 30, 0.9) 50%, 
+                    rgba(50, 50, 50, 0.95) 100%);
+                backdrop-filter: blur(20px);
+                border-radius: 20px;
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.8),
+                    0 10px 30px rgba(139, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 215, 0, 0.2),
+                    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+                border: 2px solid rgba(105, 105, 105, 0.3);
+            }
+            
+            .floating-shapes {
+                display: none;
+            }
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 85%, rgba(139, 0, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(211, 0, 0, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.8) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            animation: floatShape 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            background: radial-gradient(circle, rgba(211, 0, 0, 0.1), rgba(139, 0, 0, 0.05));
+            border: 2px solid rgba(211, 0, 0, 0.2);
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05), rgba(255, 215, 0, 0.03));
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.6), rgba(75, 0, 130, 0.1));
+            border: 1px solid rgba(75, 0, 130, 0.2);
+        }
+
+        .shape-4 {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 25%;
+            animation-delay: 9s;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08), rgba(211, 0, 0, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shape-5 {
+            width: 250px;
+            height: 250px;
+            bottom: 15%;
+            right: 5%;
+            animation-delay: 12s;
+            background: radial-gradient(circle, rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+            border: 2px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .shape-6 {
+            width: 180px;
+            height: 180px;
+            top: 15%;
+            left: 40%;
+            animation-delay: 15s;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1), rgba(75, 0, 130, 0.05));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translate(30px, -20px) rotate(90deg) scale(1.1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-20px, 30px) rotate(180deg) scale(0.9);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translate(20px, -30px) rotate(270deg) scale(1.05);
+                opacity: 0.15;
+            }
+        }
+
+        .login-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .brand-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+        }
+
+        .brand-icon i {
+            font-size: 36px;
+            color: #ffffff;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .brand-tagline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .login-form-container {
+            background: linear-gradient(135deg, 
+                rgba(50, 50, 50, 0.95) 0%, 
+                rgba(30, 30, 30, 0.9) 50%, 
+                rgba(50, 50, 50, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                0 10px 30px rgba(139, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 215, 0, 0.2),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(105, 105, 105, 0.3);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-form-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(105, 105, 105, 0.5),
+                rgba(220, 220, 220, 0.3),
+                rgba(105, 105, 105, 0.5));
+            border-radius: 20px;
+            z-index: -1;
+            animation: onyxGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes onyxGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .login-form {
+            position: relative;
+        }
+
+        .login-title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(211, 0, 0, 0.5);
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            color: rgba(220, 220, 220, 0.9);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-label i {
+            margin-right: 10px;
+            color: #dcdcdc;
+            font-size: 16px;
+            filter: drop-shadow(0 0 3px rgba(220, 220, 220, 0.3));
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 30, 0.8) 0%, 
+                rgba(50, 50, 50, 0.6) 100%);
+            border: 2px solid rgba(105, 105, 105, 0.4);
+            border-radius: 12px;
+            color: #dcdcdc;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #dcdcdc;
+            box-shadow: 
+                0 0 0 3px rgba(220, 220, 220, 0.2),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(220, 220, 220, 0.1);
+            background: linear-gradient(135deg, 
+                rgba(40, 40, 40, 0.9) 0%, 
+                rgba(60, 60, 60, 0.7) 100%);
+            transform: translateY(-1px);
+        }
+
+        .form-input::placeholder {
+            color: rgba(105, 105, 105, 0.8);
+            font-style: italic;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background: #dcdcdc;
+            border-color: #dcdcdc;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid #dcdcdc;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .forgot-link {
+            color: #dcdcdc;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #d30000 0%, #8b0000 50%, #d30000 100%);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.4);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 0, 0, 0.6);
+        }
+
+        .btn-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-glow {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 215, 0, 0.1) 50%, 
+                transparent 70%);
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .login-btn:hover .btn-glow {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+
+        .login-footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .role-selector {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .role-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .role-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .role-btn {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .role-btn i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .role-btn span {
+            display: block;
+            font-weight: 500;
+        }
+
+        .role-btn.active {
+            background: linear-gradient(135deg, #d30000, #8b0000);
+            border-color: #d30000;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(211, 0, 0, 0.4);
+        }
+
+        .role-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+        }
+
+        .password-config {
+            background: rgba(30, 30, 30, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid rgba(105, 105, 105, 0.3);
+        }
+
+        .config-label {
+            color: rgba(220, 220, 220, 0.8);
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .config-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .config-btn {
+            flex: 1;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, 
+                rgba(50, 50, 50, 0.8) 0%, 
+                rgba(30, 30, 30, 0.6) 100%);
+            border: 2px solid rgba(105, 105, 105, 0.4);
+            border-radius: 10px;
+            color: rgba(220, 220, 220, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 13px;
+            backdrop-filter: blur(5px);
+        }
+
+        .config-btn i {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 2px rgba(220, 220, 220, 0.3));
+        }
+
+        .config-btn span {
+            display: block;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .config-btn:hover {
+            background: linear-gradient(135deg, 
+                rgba(60, 60, 60, 0.9) 0%, 
+                rgba(40, 40, 40, 0.7) 100%);
+            border-color: #dcdcdc;
+            color: #dcdcdc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(220, 220, 220, 0.2);
+        }
+
+        .password-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 8px;
+            color: rgba(220, 220, 220, 0.7);
+            font-size: 12px;
+            border: 1px solid rgba(105, 105, 105, 0.2);
+        }
+
+        .password-status i {
+            font-size: 14px;
+            color: #dcdcdc;
+        }
             
 
     
@@ -1169,6 +1796,7 @@
             color: white;
             font-size: 20px;
             margin-right: 12px;
+            position: relative;
         }
 
         .post-info {
@@ -2672,6 +3300,243 @@
                 font-size: 12px;
             }
         }
+
+        /* Customization Styles */
+        .user-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ffd700;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            border: 2px solid white;
+        }
+
+        /* Border Styles */
+        .post.border-classic {
+            border: 3px solid #8b4513;
+            box-shadow: 0 0 10px rgba(139, 69, 19, 0.3);
+        }
+
+        .post.border-neon {
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), inset 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .post.border-rainbow {
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Font Styles */
+        .font-bold {
+            font-weight: bold !important;
+        }
+
+        .font-italic {
+            font-style: italic !important;
+        }
+
+        .font-rainbow {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold !important;
+        }
+
+        /* Forgot Password Modal Styles */
+        .forgot-password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .forgot-password-content {
+            background: linear-gradient(135deg, rgba(50, 50, 50, 0.95) 0%, rgba(30, 30, 30, 0.9) 100%);
+            border: 2px solid rgba(211, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .forgot-password-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(211, 0, 0, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password-close:hover {
+            background: rgba(255, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+        .forgot-password-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password-header i {
+            font-size: 48px;
+            color: #d30000;
+            margin-bottom: 15px;
+        }
+
+        .forgot-password-header h2 {
+            color: #dcdcdc;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .forgot-password-header p {
+            color: rgba(220, 220, 220, 0.7);
+            font-size: 14px;
+        }
+
+        .forgot-password-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .reset-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-box, .warning-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .info-box {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        .warning-box {
+            background: rgba(241, 196, 15, 0.1);
+            border: 1px solid rgba(241, 196, 15, 0.3);
+        }
+
+        .info-box i, .warning-box i {
+            font-size: 24px;
+            margin-top: 5px;
+        }
+
+        .info-box i {
+            color: #3498db;
+        }
+
+        .warning-box i {
+            color: #f1c40f;
+        }
+
+        .info-box h3, .warning-box h3 {
+            color: #dcdcdc;
+            margin: 0 0 5px 0;
+            font-size: 16px;
+        }
+
+        .info-box p, .warning-box p {
+            color: rgba(220, 220, 220, 0.8);
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .info-box strong {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .reset-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .reset-btn, .cancel-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #d30000 0%, #8b0000 100%);
+            color: white;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(211, 0, 0, 0.4);
+        }
+
+        .cancel-btn {
+            background: rgba(105, 105, 105, 0.3);
+            color: #dcdcdc;
+            border: 1px solid rgba(105, 105, 105, 0.5);
+        }
+
+        .cancel-btn:hover {
+            background: rgba(105, 105, 105, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+            .forgot-password-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .reset-actions {
+                flex-direction: column;
+            }
+
+            .reset-btn, .cancel-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 
@@ -2711,10 +3576,169 @@
         <button class="switch-role" onclick="resetPage()" style="background: #a00000; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 15px; font-size: 13px;">
             <i class="fa-solid fa-rotate-right"></i> Reiniciar
         </button>
+        <button class="toggle-role-btn" onclick="toggleRole()" style="background: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px; font-size: 13px;">
+            <i class="fa-solid fa-exchange-alt"></i> Cambiar Rol
+        </button>
+        <button class="clear-ban-btn" onclick="clearBan()" style="background: #28a745; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px; font-size: 13px;">
+            <i class="fa-solid fa-ban"></i> Limpiar Ban
+        </button>
         <button class="admin-mode-btn" onclick="toggleAdminMode()" style="background: #ffd700; color: #333; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-left: 10px; font-size: 13px; font-weight: bold;">
             <i class="fa-solid fa-crown"></i> <span id="adminModeText">ADMIN MODE</span>
         </button>
     </header>
+
+    <!-- LOGIN PAGE -->
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <div class="login-background">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                    <div class="shape shape-5"></div>
+                    <div class="shape shape-6"></div>
+                </div>
+            </div>
+            
+            <div class="login-content">
+                <div class="login-header">
+                    <div class="brand-section">
+                        <div class="brand-logo">
+                            <div class="brand-icon">
+                                <i class="fa-solid fa-dragon"></i>
+                            </div>
+                            <div class="brand-text">
+                                <span class="brand-name">DRAKOBLOG</span>
+                                <span class="brand-tagline">Plataforma Académica Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="login-form-container">
+                        <div class="login-form">
+                            <h2 class="login-title">Bienvenido</h2>
+                            <p class="login-subtitle">Ingresa tus credenciales para acceder</p>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fa-solid fa-user"></i>
+                                    Usuario
+                                </label>
+                                <input type="text" class="form-input" id="loginUsername" placeholder="Tu nombre de usuario">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fa-solid fa-lock"></i>
+                                    Contraseña
+                                </label>
+                                <input type="password" class="form-input" id="loginPassword" placeholder="Tu contraseña">
+                            </div>
+                            
+                            <div class="form-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="rememberMe">
+                                    <span class="checkmark"></span>
+                                    Recordar sesión
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="showPassword">
+                                    <span class="checkmark"></span>
+                                    Mostrar contraseña
+                                </label>
+                                <a href="#" class="forgot-link" onclick="showForgotPasswordDialog(); return false;">¿Olvidaste tu contraseña?</a>
+                            </div>
+                            
+                            <button class="login-btn" onclick="performLogin()">
+                                <span class="btn-text">Iniciar Sesión</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </div>
+                        
+                        <div class="login-footer">
+                            <div class="role-selector">
+                                <p class="role-label">Selecciona tu rol:</p>
+                                <div class="role-buttons">
+                                    <button class="role-btn active" id="roleStudent" onclick="selectLoginRole('student')">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span>Estudiante</span>
+                                    </button>
+                                    <button class="role-btn" id="roleTeacher" onclick="selectLoginRole('teacher')">
+                                        <i class="fa-solid fa-chalkboard-teacher"></i>
+                                        <span>Profesor</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="password-config">
+                                <p class="config-label">Configurar contraseña:</p>
+                                <div class="config-buttons">
+                                    <button class="config-btn" onclick="setDefaultPassword()">
+                                        <i class="fa-solid fa-key"></i>
+                                        <span>Contraseña por defecto</span>
+                                    </button>
+                                    <button class="config-btn" onclick="showCustomPasswordDialog()">
+                                        <i class="fa-solid fa-cog"></i>
+                                        <span>Personalizar</span>
+                                    </button>
+                                </div>
+                                <div class="password-status" id="passwordStatus">
+                                    <i class="fa-solid fa-info-circle"></i>
+                                    <span>Usando contraseña por defecto</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORGOT PASSWORD MODAL -->
+    <div class="forgot-password-modal" id="forgotPasswordModal">
+        <div class="forgot-password-content">
+            <button class="forgot-password-close" onclick="closeForgotPasswordDialog()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="forgot-password-header">
+                <i class="fa-solid fa-key"></i>
+                <h2>¿Olvidaste tu contraseña?</h2>
+                <p>No te preocupes, podemos restablecerla a la contraseña por defecto</p>
+            </div>
+            <div class="forgot-password-body">
+                <div class="reset-info">
+                    <div class="info-box">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <div>
+                            <h3>Contraseña por defecto</h3>
+                            <p>La contraseña se restablecerá a: <strong>drako123</strong></p>
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <div>
+                            <h3>Importante</h3>
+                            <p>Si tenías una contraseña personalizada, será eliminada</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reset-actions">
+                    <button class="reset-btn" onclick="resetToDefaultPassword()">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        Restablecer contraseña
+                    </button>
+                    <button class="cancel-btn" onclick="closeForgotPasswordDialog()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT (Hidden until login) -->
+    <div class="main-content" id="mainContent" style="display: none;">
 
     <!-- HERO SECTION -->
     <div class="hero">
@@ -2886,17 +3910,10 @@
 
     <script>
         // Estado global
-        let currentUser = {
-            role: 'profesor',
-            name: 'Prof. García'
-        };
-
         let currentFilter = 'todos';
 
         // Tienda de recompensas - definir ANTES de las funciones
         var shopItems = [
-            { id: 'theme_dark', name: 'Tema Oscuro', icon: '🌙', price: 200, type: 'theme', description: 'Modo nocturno para tus ojos' },
-            
             // Personalización
             { id: 'name_red', name: 'Nombre Rojo', icon: '🔴', price: 100, type: 'name_color', description: 'Color de nombre rojo brillante' },
             { id: 'name_blue', name: 'Nombre Azul', icon: '🔵', price: 100, type: 'name_color', description: 'Color de nombre azul brillante' },
@@ -3130,11 +4147,47 @@
                 //     saveModerationData();
                 // }
             }
+            
+            // Auto-clear ban if expired
+            if (userModeration.bannedUntil) {
+                const now = new Date();
+                const bannedUntil = new Date(userModeration.bannedUntil);
+                if (now >= bannedUntil) {
+                    userModeration.bannedUntil = null;
+                    userModeration.strikes = 0;
+                    saveModerationData();
+                }
+            }
         }
 
         // Guardar datos de moderación
         function saveModerationData() {
             localStorage.setItem('drakoblog_moderation', JSON.stringify(userModeration));
+        }
+
+        // Limpiar ban manualmente (para testing)
+        function clearBan() {
+            userModeration.bannedUntil = null;
+            userModeration.strikes = 0;
+            saveModerationData();
+            alert('✅ Ban eliminado exitosamente');
+            renderFeed();
+        }
+
+        // Eliminar automáticamente comentarios con palabras inapropiadas
+        function autoDeleteBadComments() {
+            let deletedCount = 0;
+            
+            posts.forEach(post => {
+                const originalLength = post.comments.length;
+                post.comments = post.comments.filter(comment => !containsBadWords(comment.text));
+                deletedCount += originalLength - post.comments.length;
+            });
+            
+            if (deletedCount > 0) {
+                savePosts();
+                console.log(`🗑️ Se eliminaron automáticamente ${deletedCount} comentario${deletedCount > 1 ? 's' : ''} con lenguaje inapropiado`);
+            }
         }
 
         // Verificar si el usuario está baneado
@@ -3304,6 +4357,7 @@
             loadModerationData();
             checkDailyStreak();
             loadSavedTheme();
+            autoDeleteBadComments(); // Eliminar automáticamente comentarios con malas palabras
             renderFeed();
         }
 
@@ -3746,10 +4800,22 @@
                 renderShop();
                 updateRewardsDisplay();
                 
-                // Si es un tema, aplicarlo automáticamente
+                // Aplicar item según su tipo
                 if (item.type === 'theme') {
                     applyTheme(itemId);
                     alert(`¡${item.name} adquirido y aplicado! ${item.icon}\n\nPuedes cambiar de tema desde el menú de temas.`);
+                } else if (item.type === 'name_color') {
+                    applyNameColor(itemId);
+                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTu nombre ahora tiene este color.`);
+                } else if (item.type === 'badge') {
+                    applyBadge(itemId);
+                    alert(`¡${item.name} adquirido! ${item.icon}\n\nLa insignia se mostrará en tus posts.`);
+                } else if (item.type === 'border') {
+                    applyBorder(itemId);
+                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTus posts tendrán este borde.`);
+                } else if (item.type === 'font') {
+                    applyFont(itemId);
+                    alert(`¡${item.name} adquirido! ${item.icon}\n\nTu texto tendrá este estilo.`);
                 } else {
                     alert(`¡${item.name} adquirido! ${item.icon}\n\nAhora puedes usarlo en las reacciones.`);
                 }
@@ -3781,6 +4847,187 @@
             if (savedTheme) {
                 document.body.classList.add(savedTheme);
             }
+        }
+
+        // Aplicar color de nombre
+        function applyNameColor(colorId) {
+            const colors = {
+                'name_red': '#ff0000',
+                'name_blue': '#0000ff',
+                'name_green': '#00ff00',
+                'name_purple': '#800080',
+                'name_gold': '#ffd700'
+            };
+            localStorage.setItem('drakoblog_name_color', colors[colorId] || '');
+        }
+
+        // Aplicar insignia
+        function applyBadge(badgeId) {
+            // Guardar insignia activa
+            localStorage.setItem('drakoblog_active_badge', badgeId);
+        }
+
+        // Aplicar borde de post
+        function applyBorder(borderId) {
+            localStorage.setItem('drakoblog_active_border', borderId);
+        }
+
+        // Aplicar estilo de fuente
+        function applyFont(fontId) {
+            localStorage.setItem('drakoblog_active_font', fontId);
+        }
+
+        // Obtener color de nombre del usuario
+        function getUserNameColor(authorName) {
+            // Aplicar color al autor del post si es el usuario actual
+            if (currentUser && authorName === currentUser.name) {
+                return localStorage.getItem('drakoblog_name_color') || '';
+            }
+            return '';
+        }
+
+        // Obtener insignia del usuario
+        function getUserBadge(authorName) {
+            // Mostrar insignia si el autor del post es el usuario actual
+            if (currentUser && authorName === currentUser.name) {
+                const badgeId = localStorage.getItem('drakoblog_active_badge');
+                if (badgeId) {
+                    const badge = shopItems.find(item => item.id === badgeId && item.type === 'badge');
+                    return badge ? badge.icon : '';
+                }
+            }
+            return '';
+        }
+
+        // Obtener borde del post
+        function getPostBorder(authorName) {
+            // Aplicar borde si el autor del post es el usuario actual
+            if (currentUser && authorName === currentUser.name) {
+                const borderId = localStorage.getItem('drakoblog_active_border');
+                if (borderId) {
+                    const border = shopItems.find(item => item.id === borderId && item.type === 'border');
+                    if (border) {
+                        // Map border IDs to CSS class names
+                        const borderClasses = {
+                            'border_classic': 'border-classic',
+                            'border_neon': 'border-neon',
+                            'border_rainbow': 'border-rainbow'
+                        };
+                        return borderClasses[border.id] || '';
+                    }
+                }
+            }
+            return '';
+        }
+
+        // Obtener estilo de fuente
+        function getFontStyle(authorName) {
+            // Aplicar fuente si el autor del post es el usuario actual
+            if (currentUser && authorName === currentUser.name) {
+                const fontId = localStorage.getItem('drakoblog_active_font');
+                if (fontId) {
+                    // Map font IDs directly to CSS class names
+                    const fontClasses = {
+                        'font_bold': 'font-bold',
+                        'font_italic': 'font-italic',
+                        'font_rainbow': 'font-rainbow'
+                    };
+                    return fontClasses[fontId] || '';
+                }
+            }
+            return '';
+        }
+
+        // Simple direct test
+        function testDirect() {
+            console.log('=== DIRECT TEST ===');
+            
+            // Set values directly
+            localStorage.setItem('drakoblog_name_color', '#ff0000');
+            localStorage.setItem('drakoblog_active_badge', 'badge_star');
+            localStorage.setItem('drakoblog_active_border', 'border_classic');
+            localStorage.setItem('drakoblog_active_font', 'font_bold');
+            
+            // Test helper functions
+            if (currentUser) {
+                console.log('Name color for', currentUser.name, ':', getUserNameColor(currentUser.name));
+                console.log('Badge for', currentUser.name, ':', getUserBadge(currentUser.name));
+                console.log('Border for', currentUser.name, ':', getPostBorder(currentUser.name));
+                console.log('Font for', currentUser.name, ':', getFontStyle(currentUser.name));
+            }
+            
+            // Create a test post to see effects
+            const testPost = {
+                id: Date.now(),
+                author: currentUser ? currentUser.name : 'Usuario',
+                role: currentUser ? currentUser.role : 'estudiante',
+                category: 'avisos',
+                title: 'TEST POST - Check Effects',
+                content: 'This post should have red name, star badge, classic border, and bold font.',
+                date: new Date().toISOString(),
+                reactions: { heart: [], laugh: [], cry: [], worried: [] },
+                comments: []
+            };
+            
+            posts.unshift(testPost);
+            savePosts();
+            renderFeed();
+            
+            console.log('Test post created! Check the first post for effects.');
+        }
+
+        // Test function to verify shop items work
+        function testShopItems() {
+            console.log('=== TESTING SHOP ITEMS ===');
+            console.log('Current user:', currentUser.name, 'Role:', currentUser.role);
+            
+            // Test name color
+            localStorage.setItem('drakoblog_name_color', '#ff0000');
+            console.log('Name color set to red');
+            
+            // Test badge
+            localStorage.setItem('drakoblog_active_badge', 'badge_star');
+            console.log('Badge set to star');
+            
+            // Test border
+            localStorage.setItem('drakoblog_active_border', 'border_classic');
+            console.log('Border set to classic');
+            
+            // Test font
+            localStorage.setItem('drakoblog_active_font', 'font_bold');
+            console.log('Font set to bold');
+            
+            // Test the helper functions directly
+            console.log('=== TESTING HELPER FUNCTIONS ===');
+            console.log('getUserNameColor result:', getUserNameColor(currentUser.name));
+            console.log('getUserBadge result:', getUserBadge(currentUser.name));
+            console.log('getPostBorder result:', getPostBorder(currentUser.name));
+            console.log('getFontStyle result:', getFontStyle(currentUser.name));
+            
+            // Check localStorage values
+            console.log('=== CHECKING LOCAL STORAGE ===');
+            console.log('drakoblog_name_color:', localStorage.getItem('drakoblog_name_color'));
+            console.log('drakoblog_active_badge:', localStorage.getItem('drakoblog_active_badge'));
+            console.log('drakoblog_active_border:', localStorage.getItem('drakoblog_active_border'));
+            console.log('drakoblog_active_font:', localStorage.getItem('drakoblog_active_font'));
+            
+            renderFeed();
+            console.log('=== TEST COMPLETED ===');
+            console.log('Create a new post to see the effects applied!');
+        }
+
+        // Toggle role function
+        function toggleRole() {
+            if (currentUser.role === 'profesor') {
+                currentUser.role = 'estudiante';
+                currentUser.name = 'Estudiante';
+                document.getElementById('currentRole').textContent = 'ESTUDIANTE';
+            } else {
+                currentUser.role = 'profesor';
+                currentUser.name = 'Prof. García';
+                document.getElementById('currentRole').textContent = 'PROFESOR';
+            }
+            renderFeed();
         }
 
         // Actualizar visualización de recompensas
@@ -3922,7 +5169,7 @@
             let html = '';
 
             // Formulario de crear post (solo para profesores)
-            if (currentUser.role === 'profesor') {
+            if (currentUser && currentUser.role === 'profesor') {
                 html += `
                     <div class="create-post">
                         <h3><i class="fa-solid fa-pen-to-square"></i> Crear Nueva Publicación</h3>
@@ -4076,8 +5323,14 @@
                         eventBadge = eventEmojis[post.eventType] || '';
                     }
 
+                    // Get customization items for this post
+                    const nameColor = getUserNameColor(post.author);
+                    const userBadge = getUserBadge(post.author);
+                    const postBorder = getPostBorder(post.author);
+                    const fontStyle = getFontStyle(post.author);
+
                     html += `
-                        <div class="post${eventClass}">
+                        <div class="post${eventClass} ${postBorder ? postBorder : ''}">
                             ${eventBadge ? `<div class="event-badge">${eventBadge}</div>` : ''}
                             <div class="post-image">
                                 <i class="fa-solid fa-graduation-cap"></i>
@@ -4086,17 +5339,18 @@
                                 <div class="post-header">
                                     <div class="post-avatar">
                                         <i class="fa-solid fa-user"></i>
+                                        ${userBadge ? `<div class="user-badge">${userBadge}</div>` : ''}
                                     </div>
                                     <div class="post-info">
-                                        <div class="post-author">${post.author}</div>
+                                        <div class="post-author" ${nameColor ? `style="color: ${nameColor};"` : ''}>${post.author}</div>
                                         <div class="post-meta">${post.role === 'profesor' ? 'Profesor' : 'Estudiante'}</div>
                                         <div class="post-date">${formatDate(post.date)}</div>
                                     </div>
                                 </div>
                                 <div class="post-category">${getCategoryName(post.category)}</div>
-                                <div class="post-title">${post.title || 'Publicación'}</div>
+                                <div class="post-title" ${fontStyle ? `class="${fontStyle}"` : ''}>${post.title || 'Publicación'}</div>
                                 ${post.image ? `<div class="post-image-container"><img src="${post.image}" alt="Imagen del post" class="post-content-image"></div>` : ''}
-                                <div class="post-content">${post.content}</div>
+                                <div class="post-content" ${fontStyle ? `class="${fontStyle}"` : ''}>${post.content}</div>
                                 ${renderReactionSummary(post)}
                                 <div class="post-footer">
                                     <div class="post-stats">
@@ -4259,8 +5513,8 @@
 
             const newPost = {
                 id: Date.now(),
-                author: currentUser.name,
-                role: currentUser.role,
+                author: currentUser ? currentUser.name : 'Usuario',
+                role: currentUser ? currentUser.role : 'estudiante',
                 category: category,
                 title: content.substring(0, 50) + (content.length > 50 ? '...' : ''),
                 content: content,
@@ -4309,7 +5563,7 @@
 
         // Obtener reacción del usuario actual
         function getUserReaction(post) {
-            if (!post.reactions) return null;
+            if (!post.reactions || !currentUser) return null;
             
             for (let [type, users] of Object.entries(post.reactions)) {
                 if (users && users.includes(currentUser.name)) {
@@ -4473,7 +5727,7 @@
 
             // Remover reacción anterior del usuario
             const currentReaction = getUserReaction(post);
-            if (currentReaction) {
+            if (currentReaction && currentUser) {
                 if (post.reactions[currentReaction]) {
                     const index = post.reactions[currentReaction].indexOf(currentUser.name);
                     if (index > -1) {
@@ -4496,7 +5750,9 @@
             if (!post.reactions[reactionType]) {
                 post.reactions[reactionType] = [];
             }
-            post.reactions[reactionType].push(currentUser.name);
+            if (currentUser) {
+                post.reactions[reactionType].push(currentUser.name);
+            }
             
             // Actualizar recompensas
             userRewards.totalLikes++;
@@ -4554,7 +5810,7 @@
         // Agregar comentario
         function addComment(postId) {
             // Verificar si el usuario está baneado (solo estudiantes)
-            if (currentUser.role === 'estudiante' && isUserBanned()) {
+            if (currentUser && currentUser.role === 'estudiante' && isUserBanned()) {
                 const timeRemaining = getBanTimeRemaining();
                 alert(`🚫 ESTÁS BANEADO\nNo puedes comentar mientras estás baneado.\nTiempo restante: ${timeRemaining}`);
                 return;
@@ -4570,7 +5826,7 @@
 
             // Verificar si el comentario contiene palabras inapropiadas
             if (containsBadWords(text)) {
-                if (currentUser.role === 'estudiante') {
+                if (currentUser && currentUser.role === 'estudiante') {
                     const strikeMessage = processStrike();
                     alert(strikeMessage);
                     
@@ -4590,7 +5846,7 @@
             if (!post) return;
 
             post.comments.push({
-                author: currentUser.name,
+                author: currentUser ? currentUser.name : 'Usuario',
                 text: text
             });
 
@@ -4815,6 +6071,8 @@
         })();
     </script>
 
+    </div> <!-- Cierre de main-content -->
+
     <!-- SOCIAL MEDIA BUTTONS -->
     <div class="social-buttons">
         <button class="social-toggle-btn" onclick="toggleSocialButtons()" title="Redes sociales">
@@ -4837,6 +6095,265 @@
             socialLinks.classList.toggle('show');
             toggleBtn.classList.toggle('active');
         }
+
+        // ===== LOGIN FUNCTIONS =====
+        
+        // Estado global
+        let currentUser = {
+            role: 'estudiante',
+            name: 'Estudiante'
+        };
+        
+        let selectedRole = 'student'; // Default login role
+
+        // Password configuration
+        const DEFAULT_PASSWORD = 'drako123';
+
+        // Login functionality
+        function selectLoginRole(role) {
+            selectedRole = role;
+            
+            // Update button states
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (role === 'student') {
+                document.getElementById('roleStudent').classList.add('active');
+            } else {
+                document.getElementById('roleTeacher').classList.add('active');
+            }
+        }
+
+        function performLogin() {
+            console.log('Login attempt started');
+            console.log('Selected role:', selectedRole);
+            
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            console.log('Username:', username);
+            console.log('Password length:', password ? password.length : 0);
+            
+            if (!username || !password) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+            
+            // Validate username and password
+            if (username.length >= 3 && validatePassword(password)) {
+                console.log('Validation passed');
+                
+                // Set user data
+                currentUser = {
+                    role: selectedRole === 'student' ? 'estudiante' : 'profesor',
+                    name: selectedRole === 'student' ? 'Estudiante' : 'Prof. García'
+                };
+                
+                console.log('User set:', currentUser);
+                
+                // Update current role display
+                const roleElement = document.getElementById('currentRole');
+                if (roleElement) {
+                    roleElement.textContent = currentUser.role.toUpperCase();
+                }
+                
+                // Hide login page and show main content
+                const loginPage = document.getElementById('loginPage');
+                const mainContent = document.getElementById('mainContent');
+                
+                if (loginPage) {
+                    loginPage.style.display = 'none';
+                }
+                if (mainContent) {
+                    mainContent.style.display = 'block';
+                }
+                
+                console.log('Login successful - showing main content');
+                
+                // Store login state
+                localStorage.setItem('drakoblog_logged_in', 'true');
+                localStorage.setItem('drakoblog_user_role', currentUser.role);
+                localStorage.setItem('drakoblog_user_name', currentUser.name);
+                
+                // Show welcome message
+                setTimeout(() => {
+                    alert(`¡Bienvenido${selectedRole === 'student' ? ' Estudiante!' : ' Profesor!'}`);
+                }, 500);
+            } else {
+                // Check if it's a password issue
+                if (!validatePassword(password)) {
+                    const storedPassword = localStorage.getItem('drakoblog_custom_password');
+                    if (storedPassword) {
+                        alert('Contraseña incorrecta. Usa tu contraseña personalizada o restablece a la contraseña por defecto.');
+                    } else {
+                        alert(`Contraseña incorrecta. La contraseña por defecto es: ${DEFAULT_PASSWORD}`);
+                    }
+                } else {
+                    alert('El usuario debe tener al menos 3 caracteres.');
+                }
+            }
+        }
+
+        function setDefaultPassword() {
+            localStorage.removeItem('drakoblog_custom_password');
+            updatePasswordStatus('default');
+            alert('Contraseña por defecto activada: drako123');
+        }
+
+        function showCustomPasswordDialog() {
+            const newPassword = prompt('Ingresa tu nueva contraseña (mínimo 6 caracteres):');
+            
+            if (newPassword) {
+                if (newPassword.length < 6) {
+                    alert('La contraseña debe tener al menos 6 caracteres.');
+                    return;
+                }
+                
+                const confirmPassword = prompt('Confirma tu nueva contraseña:');
+                
+                if (newPassword === confirmPassword) {
+                    localStorage.setItem('drakoblog_custom_password', newPassword);
+                    updatePasswordStatus('custom');
+                    alert('¡Contraseña personalizada guardada con éxito!');
+                } else {
+                    alert('Las contraseñas no coinciden. Intenta nuevamente.');
+                }
+            }
+        }
+
+        function updatePasswordStatus(type) {
+            const statusElement = document.getElementById('passwordStatus');
+            
+            if (type === 'custom') {
+                statusElement.innerHTML = `
+                    <i class="fa-solid fa-check-circle" style="color: #4CAF50;"></i>
+                    <span>Contraseña personalizada activa</span>
+                `;
+            } else {
+                statusElement.innerHTML = `
+                    <i class="fa-solid fa-info-circle"></i>
+                    <span>Usando contraseña por defecto</span>
+                `;
+            }
+        }
+
+        function validatePassword(inputPassword) {
+            const storedPassword = localStorage.getItem('drakoblog_custom_password');
+            const activePassword = storedPassword || DEFAULT_PASSWORD;
+            return inputPassword === activePassword;
+        }
+
+        // Check if user is already logged in
+        function checkLoginStatus() {
+            // Clear any existing login state for testing
+            localStorage.removeItem('drakoblog_logged_in');
+            localStorage.removeItem('drakoblog_user_role');
+            localStorage.removeItem('drakoblog_user_name');
+            
+            // Update password status
+            const storedPassword = localStorage.getItem('drakoblog_custom_password');
+            updatePasswordStatus(storedPassword ? 'custom' : 'default');
+            
+            // Always show login page
+            const loginPage = document.getElementById('loginPage');
+            const mainContent = document.getElementById('mainContent');
+            
+            if (loginPage) {
+                loginPage.style.display = 'flex';
+            }
+            if (mainContent) {
+                mainContent.style.display = 'none';
+            }
+            
+            console.log('Login page should be visible now');
+        }
+
+        // Show/Hide password functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const showPasswordCheckbox = document.getElementById('showPassword');
+            const passwordInput = document.getElementById('loginPassword');
+            
+            if (showPasswordCheckbox && passwordInput) {
+                showPasswordCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        passwordInput.type = 'text';
+                    } else {
+                        passwordInput.type = 'password';
+                    }
+                });
+            }
+            
+            // Initialize login status
+            console.log('DOM Content Loaded - Initializing login');
+            
+            // Force show login page
+            setTimeout(() => {
+                const loginPage = document.getElementById('loginPage');
+                const mainContent = document.getElementById('mainContent');
+                
+                console.log('Login page element:', loginPage);
+                console.log('Main content element:', mainContent);
+                
+                if (loginPage) {
+                    loginPage.style.display = 'flex';
+                    loginPage.style.visibility = 'visible';
+                    loginPage.style.opacity = '1';
+                    console.log('Login page forced to show');
+                }
+                
+                if (mainContent) {
+                    mainContent.style.display = 'none';
+                }
+            }, 100);
+            
+            checkLoginStatus();
+        });
+
+        // Forgot password dialog functions
+        function showForgotPasswordDialog() {
+            const modal = document.getElementById('forgotPasswordModal');
+            modal.style.display = 'flex';
+            
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeForgotPasswordDialog() {
+            const modal = document.getElementById('forgotPasswordModal');
+            modal.style.display = 'none';
+            
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        function resetToDefaultPassword() {
+            if (confirm('¿Estás seguro de que quieres restablecer la contraseña a la predeterminada?')) {
+                setDefaultPassword();
+                closeForgotPasswordDialog();
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('✅ Contraseña restablecida exitosamente\n\nTu contraseña ahora es: drako123\n\nYa puedes iniciar sesión con esta contraseña.');
+                }, 300);
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('forgotPasswordModal');
+            if (e.target === modal) {
+                closeForgotPasswordDialog();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeForgotPasswordDialog();
+            }
+        });
     </script>
 
 </body>
